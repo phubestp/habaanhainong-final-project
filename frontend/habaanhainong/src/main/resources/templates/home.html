@@ -5,9 +5,107 @@
   <title>Home</title>
   <link rel="stylesheet" th:href="@{/css/output.css}">
 </head>
-<body>
-<div class="container">
-  <h1 class="text-red-500 text-2xl">Hello World!</h1>
+<body class="bg-background text-primary">
+<!-- Header (Navbar) -->
+<div th:insert="~{fragments/navbar :: navbar}"></div>
+
+<div class="flex flex-col mx-auto p-16 pt-20 container">
+  <!-- มาช่วยน้องๆกัน -->
+  <div class="bg-white lg:pl-16 lg:py-16 p-16 border border-primary my-5 flex flex-col lg:flex-row items-center w-full">
+    <div class="flex flex-col lg:w-1/2 w-full">
+      <h1 class="text-4xl mb-3 font-semibold lg:mx-0 mx-auto">มาช่วยน้องๆกัน 🐶🐕</h1>
+      <p class="text-center lg:text-left">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna
+        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+      </p>
+      <button class="border border-primary p-3 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold max-w-fit mx-auto lg:mx-0 bg-white">
+        <img th:src="@{/images/paw-1-svgrepo-com.svg}" alt="paw" width="20" class="inline mr-1">
+        หาบ้านให้น้องเลย!
+      </button>
+    </div>
+    <!-- Image -->
+    <div class="lg:w-1/2 w-full lg:my-0 my-8">
+      <div class="mx-auto max-w-[300px] border border-primary h-[200px] shadow-[10px_10px_0px_0px_#004225] rounded-lg overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1596854407944-bf87f6fdd49e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80"
+             alt="cat" class="rounded-lg relative">
+      </div>
+    </div>
+  </div>
+  <!-- น้องๆกำลังรอคุณอยู่นะ -->
+  <div class="bg-white p-16 border border-primary my-5 flex flex-col items-center w-full">
+    <h1 class="text-3xl font-semibold">น้องๆกำลังรอคุณอยู่นะ</h1>
+    <p class="py-5">ดูน้องๆที่น่ารักพวกนี้สิ เลือกสัตว์ที่คุณอยากเลี้ยงได้เลย</p>
+    <div class="flex lg:flex-row flex-col lg:justify-between lg:gap-x-10 gap-y-10">
+        <div th:insert="~{fragments/pet-card :: pet-card}" ></div>
+        <div th:insert="~{fragments/pet-card :: pet-card}" ></div>
+        <div th:insert="~{fragments/pet-card :: pet-card}" ></div>
+    </div>
+  </div>
+  <!-- Pet Type -->
+  <div class="bg-white p-16 border border-primary my-5 flex flex-col items-center w-full">
+    <h1 class="text-3xl font-semibold">เลือกประเภทสัตว์ที่คุณชื่นชอบ</h1>
+    <p class="py-5">เรามีน้องๆมากมายหลายประเภทให้เลือก</p>
+    <!-- Example Pet Type -->
+    <div class="grid grid-cols-4 gap-5">
+      <!-- Example Pet Type Button -->
+      <button th:replace="fragments/pet-type-btn :: pet-type-btn"></button>
+      <button th:replace="fragments/pet-type-btn :: pet-type-btn"></button>
+      <button th:replace="fragments/pet-type-btn :: pet-type-btn"></button>
+      <button th:replace="fragments/pet-type-btn :: pet-type-btn"></button>
+      <button th:replace="fragments/pet-type-btn :: pet-type-btn"></button>
+      <button th:replace="fragments/pet-type-btn :: pet-type-btn"></button>
+      <button th:replace="fragments/pet-type-btn :: pet-type-btn"></button>
+      <button th:replace="fragments/pet-type-btn :: pet-type-btn"></button>
+    </div>
+  </div>
+  <!-- Contact to Admin -->
+  <div class="bg-white lg:pl-16 lg:py-16 p-16 border border-primary my-5 flex flex-col lg:flex-row items-center w-full text-primary">
+    <div class="flex flex-col lg:w-1/2 w-full">
+      <h1 class="text-4xl mb-3 font-semibold lg:mx-0 mx-auto">ติดต่อเรา</h1>
+
+      <!-- Contact Form -->
+      <form action="">
+        <!-- Name -->
+        <div class="py-3">
+          <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900">ชื่อ</label>
+          <input type="text" id="first_name"
+                 class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 lg:w-2/3 w-full"
+                 placeholder="John" required>
+        </div>
+        <!-- Email -->
+        <div class="py-3">
+          <label for="first_name" class="block mb-2 text-sm font-medium">อีเมล</label>
+          <input type="email" id="first_name"
+                 class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block lg:w-2/3 w-full p-2.5"
+                 placeholder="John" required>
+        </div>
+        <!-- Description to admin -->
+        <div class="py-3">
+          <label for="message" class="block mb-2 text-sm font-medium">เนื้อหา</label>
+          <textarea id="message" rows="4"
+                    class="block p-2.5 w-full text-sm  bg-white rounded-lg border border-primary focus:ring-blue-500 focus:border-blue-500 "
+                    placeholder="Write your thoughts here..."></textarea>
+        </div>
+        <!-- Submit Button -->
+        <button
+                class="border border-primary py-3 px-4 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold md:max-w-fit mx-auto lg:mx-0 bg-white w-full">
+          ส่งข้อความ
+        </button>
+      </form>
+
+    </div>
+    <!-- Illustration (Contact) -->
+    <div class="lg:w-1/2 w-full lg:my-0 my-8">
+      <div class="">
+        <img th:src="@{/images/undraw_contact_us_re_4qqt.svg}"
+             alt="cat" class="rounded-lg scale-75">
+      </div>
+    </div>
+  </div>
 </div>
+
+<!-- Footer -->
+<footer th:insert="~{fragments/footer :: footer}"></footer>
+
 </body>
 </html>
