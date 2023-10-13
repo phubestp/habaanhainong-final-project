@@ -4,6 +4,6 @@ final website project for 01418471 &amp; 01418442
 setup spring boot
 ```
 cd habaanhainong-final-project/frontend/habaanhainong
-npm install -D tailwindcss flowbite
+npm install -D tailwindcss
 npm run build
 ```
