@@ -14,6 +14,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->call([
+            AnimalSeeder::class,
+        ]);
+
         User::factory()->create([
             'name' => 'User01',
             'email' => 'user01@example.com',
