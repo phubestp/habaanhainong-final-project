@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Post</title>
+  <!-- tailwindcss -->
+  <link rel="stylesheet" th:href="@{/css/output.css}">
+  <!-- flowbite cdn -->
+  <link th:href="@{https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css}"  rel="stylesheet" />
+</head>
+
+<body class="bg-background text-primary">
+
+<div th:insert="~{fragments/navbar :: navbar}"></div>
+
+<div class="flex flex-col mx-auto p-16 pt-20 container">
+  <!-- Post -->
+  <div class="bg-white p-16 border border-primary my-5 flex flex-col w-full">
+    <!-- 4xl = 32 -->
+    <div class="flex justify-center items-center relative w-full">
+      <h1 class="text-4xl mb-3 font-semibold"> โพสต์หาบ้าน </h1>
+    </div>
+    <div class="flex flex-col lg:w-1/2 w-full">
+      <!-- 2xl = 24 -->
+      <h3 class="text-2xl mb-1 font-semibold"> ข้อมูลน้อง </h3>
+
+    </div>
+
+      <form action="">
+        <div class="flex flex-row space-x-4">
+          <div class="py-3 flex flex-col lg:w-1/2 w-full">
+            <label for="name" class="block mb-2 text-sm font-medium text-gray-900"> ชื่อ </label>
+            <input type="text" id="name"
+                   class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+                   placeholder="เช่น มะลิ" required>
+          </div>
+
+          <div class="py-3 flex flex-col lg:w-1/2 w-full">
+            <label for="type" class="block mb-2 text-sm font-medium text-gray-900"> ชื่อ </label>
+            <select name="type" id="type" class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+                    placeholder="ประเภท" required>
+              <option>แมว</option>
+              <option>แมว</option>
+              <option>แมว</option>
+              <option>แมว</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="flex flex-row space-x-4">
+          <div class="py-3 flex flex-col lg:w-1/2 w-full">
+            <label for="sex" class="block mb-2 text-sm font-medium text-gray-900"> เพศ </label>
+            <select name="type" id="sex" class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+                    placeholder="เพศ" required>
+              <option>เพศผู้</option>
+              <option>เพศเมีย</option>
+            </select>
+          </div>
+
+          <div class="py-3 flex flex-col lg:w-1/2 w-full">
+              <label for="breed" class="block mb-2 text-sm font-medium text-gray-900"> สาบพันธุ์ </label>
+              <input type="text" id="breed"
+                     class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+                     placeholder="เช่น : สก๊อตทิช โฟลด์" required>
+          </div>
+        </div>
+
+        <div class="py-3 flex-col">
+          <label for="detail" class="block mb-2 text-sm font-medium text-gray-900"> รายละเอียด </label>
+          <textarea id="detail"
+                 class="block p-2.5 w-full text-sm  bg-white rounded-lg border border-primary focus:ring-blue-500 focus:border-blue-500 min-h-[20px]"
+                 placeholder="เช่น : น้องมะลิเป็นแมวกินเก่ง ชอบข่วนโซฟา" required>
+          </textarea>
+        </div>
+
+        <div class="py-3 flex flex-col lg:w-1/2 w-full">
+          <label for="breed" class="block mb-2 text-sm font-medium text-gray-900"> พิกัด </label>
+          <input type="text" id="map"
+                 class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+                 placeholder="..." required>
+        </div>
+
+        <div class="flex gap-x-4 flex-col lg:flex-row">
+          <div>
+            <h3 class="text-2xl mb-1 font-semibold"> ข้อมูลการติดต่อ </h3>
+          </div>
+          <!--
+          <div>
+            <button class="border border-primary py-3 px-12 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold md:max-w-fit mx-auto lg:mx-0 bg-white w-full">
+              ใช้ข้อมูลของคุณ
+            </button>
+          </div> -->
+
+        </div>
+
+        <div class="flex gap-x-4 flex-col lg:flex-row">
+          <div class="py-3 flex flex-col lg:w-1/2 w-full">
+            <label for="name" class="block mb-2 text-sm font-medium text-gray-900"> เบอร์โทรศัพท์ </label>
+            <input type="tel" id="tel"
+                   class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+                   placeholder="" required>
+          </div>
+
+          <div class="py-3 flex flex-col lg:w-1/2 w-full">
+            <label for="type" class="block mb-2 text-sm font-medium text-gray-900"> Facebook link </label>
+            <input type="tel" id="facebook"
+                   class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+                   placeholder="" required>
+          </div>
+        </div>
+
+        <div class="flex flex-row lg:w-1/2">
+          <div class="py-3 flex flex-col lg:w-1/2 w-full">
+            <label for="name" class="block mb-2 text-sm font-medium text-gray-900"> Instagram link </label>
+            <input type="tel" id="instagram"
+                   class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+                   placeholder="" required>
+          </div>
+        </div>
+
+          <h3 class="text-2xl mb-1 font-semibold"> เพิ่มรูปภาพ </h3>
+
+          <div class="flex items-center justify-center w-full">
+            <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+              <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                </svg>
+                <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+                <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+              </div>
+              <input id="dropzone-file" type="file" class="hidden" />
+            </label>
+          </div>
+
+          <button class="border border-primary py-3 px-8 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold md:max-w-fit mx-auto lg:mx-0 bg-white w-full">
+            โพสต์
+          </button>
+
+      </form>
+  </div>
+</div>
+
+<footer th:insert="~{fragments/footer :: footer}"></footer>
+<!-- flowbite cdn -->
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js}"></script>
+
+</body>
