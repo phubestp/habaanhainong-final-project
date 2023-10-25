@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <!-- tailwindcss -->
+    <link rel="stylesheet" th:href="@{/css/output.css}">
+    <!-- flowbite cdn -->
+    <link th:href="@{https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css}"  rel="stylesheet" />
+</head>
+
+<body class="bg-background text-primary">
+
+<div class="flex flex-col mx-auto p-16 pt-15 container">
+    <div class="bg-white p-16 border border-primary my-5 flex flex-col w-full">
+        <h1 class="text-4xl mb-3 font-semibold pt-20"> หาบ้านให้น้องหน่อยค่ะ เจอน้องอยู่ข้างทาง </h1>
+
+        <div class="flex flex-row gap-x-4">
+            <div> <img class="rounded-full w-12 h-12" th:src="@{/images/undraw_contact_us_re_4qqt.svg}" alt="image author"> </div>
+            <div> <p class="py-3"> น้องมัวร์มัวร์ แรคคูนซ่า </p> </div>
+            <div> <p class="py-3"> 23 กันยายน 2023 </p> </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-x-4 pt-10">
+            <div class="col-span-3 items-center justify-center relative w-full">
+                <div>
+                    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                        eiusmod tempor incididunt ut labore et dolore magna
+                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
+                </div>
+            </div>
+            <div class="col-span-2 bg-background p-8 border border-primary my-5">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-y-8">
+                    <div>
+                        <label class="block mb-2 font-semibold"> ชื่อ </label>
+                        <p> น้อน </p>
+                    </div>
+                    <div>
+                        <label class="block mb-2 font-semibold"> ประเภทสัตว์ </label>
+                        <p> แมว </p>
+                    </div>
+                    <div>
+                        <label class="block mb-2 font-semibold"> พิกัด </label>
+                        <p> น้อน </p>
+                    </div>
+                    <div>
+                        <label class="block mb-2 font-semibold"> เพศ </label>
+                        <p> เพศผู้ </p>
+                    </div>
+                    <div>
+                        <label class="block mb-2 font-semibold"> สายพันธุ์ </label>
+                        <p > ไม่ทราบ </p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="bg-background p-8 border border-primary my-5">
+                <div>
+                    <p>
+                        012-345-6789
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-span-3">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Est pellentesque elit ullamcorper dignissim cras. Sagittis orci a scelerisque purus. Donec adipiscing tristique risus nec feugiat in fermentum posuere urna. Nunc scelerisque viverra mauris in aliquam sem. Non tellus orci ac auctor augue mauris augue. Condimentum id venenatis a condimentum vitae sapien. Feugiat sed lectus vestibulum mattis ullamcorper velit. Est ante in nibh mauris cursus mattis. Diam ut venenatis tellus in metus vulputate eu scelerisque felis. Quam quisque id diam vel quam elementum pulvinar. Imperdiet nulla malesuada pellentesque elit eget. Est ullamcorper eget nulla facilisi etiam dignissim. Massa sapien faucibus et molestie ac feugiat sed.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div th:insert="~{fragments/navbar :: navbar}"></div>
+
+<div class="flex flex-col mx-auto p-16 pt-20 container">
+    <!-- Content -->
+</div>
+
+<footer th:insert="~{fragments/footer :: footer}"></footer>
+<!-- flowbite cdn -->
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js}"></script>
+
+</body>
