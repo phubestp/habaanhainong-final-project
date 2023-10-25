@@ -20,24 +20,46 @@
     <div class="flex justify-center items-center relative w-full">
       <h1 class="text-4xl mb-3 font-semibold"> โพสต์หาบ้าน </h1>
     </div>
+
+    <!-- โพสต์ -->
     <div class="flex flex-col lg:w-1/2 w-full">
       <!-- 2xl = 24 -->
-      <h3 class="text-2xl mb-1 font-semibold"> ข้อมูลน้อง </h3>
-
+      <h3 class="text-2xl mb-1 font-semibold"> ข้อมูลโพสต์ </h3>
     </div>
 
+      <!-- ฟอร์ม -->
       <form action="">
+        <!-- หัวข้อ -->
+        <div class="py-3 flex flex-col lg:w-1/2 w-full">
+          <label for="breed" class="block mb-2 text-sm font-medium text-gray-900"> หัวข้อ </label>
+          <input type="text" id="title"
+                 class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+                 placeholder="" required>
+        </div>
+
+        <!-- รายละเอียด-->
+        <div class="py-3">
+          <label for="description" class="block mb-2 text-sm font-medium text-gray-900"> รายละเอียด </label>
+          <textarea id="description"
+                    class="block p-2.5 w-full text-sm  bg-white rounded-lg border border-primary focus:ring-blue-500 focus:border-blue-500 min-h-[20px]"
+                    placeholder="เช่น : น้องมะลิเป็นแมวกินเก่ง ชอบข่วนโซฟา" required></textarea>
+        </div>
+        <!-- ข้อมูลน้อง -->
+        <h3 class="text-2xl mb-1 font-semibold"> ข้อมูลน้อง </h3>
+
+        <!-- ชื่อและประเภท-->
         <div class="flex flex-row space-x-4">
+          <!-- ชื่อ -->
           <div class="py-3 flex flex-col lg:w-1/2 w-full">
             <label for="name" class="block mb-2 text-sm font-medium text-gray-900"> ชื่อ </label>
             <input type="text" id="name"
                    class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
                    placeholder="เช่น มะลิ" required>
           </div>
-
+          <!-- ประเภท -->
           <div class="py-3 flex flex-col lg:w-1/2 w-full">
             <label for="type" class="block mb-2 text-sm font-medium text-gray-900"> ประเภทสัตว์ </label>
-            <select name="type" id="type" class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+            <select name="text" id="type" class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
                     placeholder="ประเภท" required>
               <option>แมว</option>
               <option>แมว</option>
@@ -47,6 +69,7 @@
           </div>
         </div>
 
+        <!-- เพศ-->
         <div class="flex flex-row space-x-4">
           <div class="py-3 flex flex-col lg:w-1/2 w-full">
             <label for="sex" class="block mb-2 text-sm font-medium text-gray-900"> เพศ </label>
@@ -65,57 +88,11 @@
           </div>
         </div>
 
-        <div class="py-3 flex-col">
-          <label for="detail" class="block mb-2 text-sm font-medium text-gray-900"> รายละเอียด </label>
-          <textarea id="detail"
-                 class="block p-2.5 w-full text-sm  bg-white rounded-lg border border-primary focus:ring-blue-500 focus:border-blue-500 min-h-[20px]"
-                 placeholder="เช่น : น้องมะลิเป็นแมวกินเก่ง ชอบข่วนโซฟา" required>
-          </textarea>
-        </div>
-
         <div class="py-3 flex flex-col lg:w-1/2 w-full">
           <label for="breed" class="block mb-2 text-sm font-medium text-gray-900"> พิกัด </label>
           <input type="text" id="map"
                  class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
                  placeholder="" required>
-        </div>
-
-        <div class="flex gap-x-4 flex-col lg:flex-row">
-          <div>
-            <h3 class="text-2xl mb-1 font-semibold"> ข้อมูลการติดต่อ </h3>
-          </div>
-          <!--
-          <div>
-            <button class="border border-primary py-3 px-12 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold md:max-w-fit mx-auto lg:mx-0 bg-white w-full">
-              ใช้ข้อมูลของคุณ
-            </button>
-          </div> -->
-
-        </div>
-
-        <div class="flex gap-x-4 flex-col lg:flex-row">
-          <div class="py-3 flex flex-col lg:w-1/2 w-full">
-            <label for="name" class="block mb-2 text-sm font-medium text-gray-900"> เบอร์โทรศัพท์ </label>
-            <input type="tel" id="tel"
-                   class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
-                   placeholder="" required>
-          </div>
-
-          <div class="py-3 flex flex-col lg:w-1/2 w-full">
-            <label for="type" class="block mb-2 text-sm font-medium text-gray-900"> Facebook link </label>
-            <input type="tel" id="facebook"
-                   class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
-                   placeholder="" required>
-          </div>
-        </div>
-
-        <div class="flex flex-row lg:w-1/2">
-          <div class="py-3 flex flex-col lg:w-1/2 w-full">
-            <label for="name" class="block mb-2 text-sm font-medium text-gray-900"> Instagram link </label>
-            <input type="tel" id="instagram"
-                   class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
-                   placeholder="" required>
-          </div>
         </div>
 
           <h3 class="text-2xl mb-1 font-semibold"> เพิ่มรูปภาพ </h3>
