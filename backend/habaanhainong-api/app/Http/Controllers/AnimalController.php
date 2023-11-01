@@ -22,32 +22,18 @@ class AnimalController extends Controller
      */
     public function store(Request $request)
     {
-        $user_id = $request->get('user_id');
         $name = $request->get('name');
         $breed = $request->get('breed');
-        $type = $request->get('type');
+        $animal_type = $request->get('animal_type');
         $sex = $request->get('sex');
 
         $animal = new Animal();
         $animal->name = $name;
         $animal->breed = $breed;
-        $animal->type = $type;
+        $animal->animal_type = $animal_type;
         $animal->sex = $sex;
-        $animal->user_id = $user_id;
         $animal->save();
         $animal->refresh();
-        return $animal;
-        //$table->string('name');
-        //$table->string('breed')->nullable();
-        //$table->string('type');
-        //$table->string('sex')->nullable();
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Animal $animal)
-    {
         return $animal;
     }
 
@@ -58,13 +44,13 @@ class AnimalController extends Controller
     {
         $name = $request->get('name');
         $breed = $request->get('breed');
-        $type = $request->get('type');
+        $animal_type = $request->get('animal_type');
         $sex = $request->get('sex');
 
         $animal->name = $name;
         $animal->breed = $breed ?? null;
-        $animal->type = $type;
-        $animal->sex = $sex ?? null;
+        $animal_type = $animal_type;
+        $animal->sex = $sex;
         $animal->save();
         $animal->refresh();
         return $animal;
@@ -75,8 +61,6 @@ class AnimalController extends Controller
      */
     public function destroy(Animal $animal)
     {
-        if ($animal->user->isEmpty()) {
-            $animal->delete();
-        }
+        $animal->delete();
     }
 }

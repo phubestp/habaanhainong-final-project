@@ -16,10 +16,9 @@ class AnimalSeeder extends Seeder
     {
         $animal = new Animal();
         $animal->name = "น้องส้ม";
-        $animal->type = "แมว";
+        $animal->animal_type = "แมว";
         $animal->breed = "แมวส้ม";
         $animal->sex = AnimalSex::FEMALE;
-        $animal->user_id = 1;
         $animal->save();
     }
 }

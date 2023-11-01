@@ -13,12 +13,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('animals', function (Blueprint $table) {
-            $table->id();
-            $table->foreignIdFor(User::class); // artist_id (FK)
+            $table->uuid('id')->primary();;
             $table->string('name');
             $table->string('breed')->nullable();
-            $table->string('type');
-            $table->string('sex')->nullable();
+            $table->string('sex');
+            $table->string('animal_type');
             $table->timestamps();
         });
     }
