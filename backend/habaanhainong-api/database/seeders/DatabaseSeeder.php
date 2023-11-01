@@ -15,16 +15,24 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
+            UserSeeder::class,
             AnimalSeeder::class,
             PostSeeder::class,
         ]);
 
-        User::factory()->create([
-            'name' => 'User01',
+        User::create([
+            'username' => 'user01',
             'email' => 'user01@example.com',
             'password' => Hash::make('password'),
+            'firstname' => 'user',
+            'lastname' => 'example',
+            'isAdmin' => false,
+            'phone_no' => '000-000-0000',
+            'facebook' => 'user example',
+            'instagram' => 'user01',
+            'line' => 'user01'
         ]);
 
-        User::factory(10)->create();
+        // User::factory(10)->create();
     }
 }
