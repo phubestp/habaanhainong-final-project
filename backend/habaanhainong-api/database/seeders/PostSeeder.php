@@ -21,5 +21,21 @@ class PostSeeder extends Seeder
         $post->address = "123 Main Street";
         $post->animal_id = $animal1->id;
         $post->save();
+
+        $animal2 = Animal::where('name', 'น้องKFC')->first();
+        $post = new Post();
+        $post->title = "Adorable Cat for Adoption";
+        $post->description = "This cute cat named น้องKFC is looking for a loving home.";
+        $post->address = "123 Main Street";
+        $post->animal_id = $animal2->id;
+        $post->save();
+
+        $animal2 = Animal::where('name', 'น้องTexas')->first();
+        $post = new Post();
+        $post->title = "Adorable Cat for Adoption";
+        $post->description = "This cute cat named น้องTexas is looking for a loving home.";
+        $post->address = "123 Main Street";
+        $post->animal_id = $animal2->id;
+        $post->save();
     }
 }

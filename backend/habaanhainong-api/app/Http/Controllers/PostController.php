@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Models\Animal;
+use Illuminate\Support\Facades\Log;
 
 class PostController extends Controller
 {
@@ -35,12 +36,7 @@ class PostController extends Controller
         $post->save();
         $post->refresh();
 
-        $animal = Animal::find($post->animal_id);
-
-        return [
-            'post' => $post,
-            'animal' => $animal
-        ];
+        return $post;
     }
 
     /**
@@ -48,11 +44,17 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        $animal = Animal::find($post->animal_id);
-        return [
-            'post' => $post,
-            'animal' => $animal
-        ];
+        return $post;
+    }
+
+    public function showWithAnimalTypeFilter(String $animal_type)
+    {
+        $animals = collect(Animal::where('animal_type', $animal_type)->get('id')->toArray());
+        $animals->transform(function (array $item) {
+            return $item['id'];
+        });
+        $posts = Post::whereIn('animal_id', $animals)->get();
+        return $posts;
     }
 
     /**
@@ -72,12 +74,7 @@ class PostController extends Controller
         $post->save();
         $post->refresh();
 
-        $animal = Animal::find($post->animal_id);
-
-        return [
-            'post' => $post,
-            'animal' => $animal
-        ];
+        return $post;
     }
 
     /**
