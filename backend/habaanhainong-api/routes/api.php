@@ -48,3 +48,6 @@ Route::group([
     Route::post('refresh', [AuthController::class, 'refresh']);
     Route::post('me', [AuthController::class, 'me']);
 });
+
+Route::post('/register', [AuthConroller::class, 'register']);
+Route::post('/reset-password', [AuthController::class, 'reset-password']);

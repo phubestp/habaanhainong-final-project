@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -63,6 +65,44 @@ class AuthController extends Controller
     public function refresh()
     {
         return $this->respondWithToken(auth('api')->refresh());
+    }
+
+    public function register(Request $request) {
+        $username = $request->get('username');
+        $password = $request->get('password');
+        $email = $request->get('email');
+        $firstname = $request->get('firstname');
+        $lastname = $request->get('lastname');
+        $isAdmin = false;
+        $phone_np = $request->get('phone_no');
+        $facebook = $request->get('facebook');
+        $instagram = $request->get('instagram');
+        $line = $request->get('line');
+
+        $user = new User();
+        $user->username = $username;
+        $user->password = $password;
+        $user->email = $email;
+        $user->firstname = $firstname;
+        $user->lastname = $lastname;
+        $user->isAdmin = $isAdmin;
+        $user->phone_no = $phone_np;
+        $user->facebook = $facebook;
+        $user->instagram = $instagram;
+        $user->line = $line;
+        $user->save();
+        $user->refresh();
+        return $user;
+    }
+
+    public function resetPassword(Request $request)
+    {
+        $username = $request->get('username');
+        $new_password = $request->get('new_password');
+        
+        $user = User::where('username', $username)->first();
+        $user->password = $new_password;
+        return $user;
     }
 
     /**
