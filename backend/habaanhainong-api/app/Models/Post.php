@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 use App\Models\Animal;
 
 class Post extends Model
@@ -18,7 +20,7 @@ class Post extends Model
         return $this->hasOne(Animal::class);
     }
 
-    public function users(): BelongsToMany
+    public function users(): BelongsToMany //follow
     {
         return $this->belongsToMany(User::class);
     }
@@ -26,5 +28,10 @@ class Post extends Model
     public function applicants(): BelongsToMany
     {
         return $this->belongsToMany(Applicant::class);
+    }
+
+    public function owner(): BelongsTo //has
+    {
+        return $this->belongsTo(User::class);
     }
 }

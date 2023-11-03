@@ -4,6 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use App\Models\Animal;
+use App\Models\User;
 
 return new class extends Migration
 {
@@ -19,8 +20,13 @@ return new class extends Migration
             $table->string('description');
             $table->string('address');
 
+            $table->string('user_username');
+            $table->foreign('user_username')->references('username')->on('users');
+
             $table->uuid('animal_id');
             $table->foreign('animal_id')->references('id')->on('animals');
+
+
             $table->timestamps();
         });
     }

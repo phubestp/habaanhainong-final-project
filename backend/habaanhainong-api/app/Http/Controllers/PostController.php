@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Models\Animal;
+use App\Models\User;
 use Illuminate\Support\Facades\Log;
 
 class PostController extends Controller
@@ -46,6 +47,14 @@ class PostController extends Controller
     {
         return $post;
     }
+
+    public function showOwnerPost(String $username)
+    {
+        $user = User::where('username', $username)->first();
+        Log::info($user);
+        return $user->all_posts;
+    }
+    
 
     public function showWithAnimalTypeFilter(String $animal_type)
     {

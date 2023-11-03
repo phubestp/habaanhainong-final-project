@@ -14,12 +14,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call([
-            UserSeeder::class,
-            AnimalSeeder::class,
-            PostSeeder::class,
-        ]);
-
         User::create([
             'username' => 'user01',
             'email' => 'user01@example.com',
@@ -32,6 +26,14 @@ class DatabaseSeeder extends Seeder
             'instagram' => 'user01',
             'line' => 'user01'
         ]);
+        
+        $this->call([
+            UserSeeder::class,
+            AnimalSeeder::class,
+            PostSeeder::class,
+        ]);
+
+        
 
         // User::factory(10)->create();
     }

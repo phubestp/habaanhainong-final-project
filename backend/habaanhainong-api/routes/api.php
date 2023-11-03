@@ -24,6 +24,9 @@ Route::resource('/animals', AnimalController::class);
 Route::resource('/posts', PostController::class);
 Route::put('/edit-profile/{username}', [UserController::class, 'editProfile']);
 
+Route::get('/posts/{username}', [PostController::class, 'showOwnerPost']);
+Route::get('/posts/animal-type/{animal_type}', [PostController::class, 'showWithAnimalTypeFilter']);
+
 //follow
 Route::get('/posts/my-follow-post/{username}', [FollowController::class, 'getFollowPosts']);
 Route::post('/follow', [FollowController::class, 'follow']);

@@ -24,6 +24,7 @@ class PostSeeder extends Seeder
         $post->description = "This cute cat named น้องส้ม is looking for a loving home.";
         $post->address = "123 Main Street";
         $post->animal_id = $animal1->id;
+        $user->all_posts()->save($post);
         $post->save();
 
         $animal2 = Animal::where('name', 'น้องKFC')->first();
@@ -32,6 +33,7 @@ class PostSeeder extends Seeder
         $post1->description = "This cute cat named น้องKFC is looking for a loving home.";
         $post1->address = "123 Main Street";
         $post1->animal_id = $animal2->id;
+        $user->all_posts()->save($post1);
         $post1->save();
 
         $animal2 = Animal::where('name', 'น้องTexas')->first();
@@ -40,6 +42,8 @@ class PostSeeder extends Seeder
         $post2->description = "This cute cat named น้องTexas is looking for a loving home.";
         $post2->address = "123 Main Street";
         $post2->animal_id = $animal2->id;
+        $user->all_posts()->save($post2);
         $post2->save();
+
     }
 }

@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
@@ -65,7 +66,7 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-    public function posts()
+    public function posts() //follow
     {
         return $this->belongsToMany(Post::class);
     }
@@ -74,4 +75,10 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->belongsToMany(Applicant::class);
     }
+
+    public function all_posts(): HasMany
+    {
+        return $this->hasMany(Post::class);
+    }
+
 }
