@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <!-- tailwindcss -->
+    <link rel="stylesheet" th:href="@{/css/output.css}">
+    <!-- flowbite cdn -->
+    <link th:href="@{https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css}"  rel="stylesheet" />
+</head>
+
+<body class="bg-background text-primary">
+
+
+<div class="flex flex-col mx-auto p-16 pt-15 container">
+    <!- header ->
+    <div class="bg-white p-16 border border-primary my-5 flex flex-col w-full">
+        <h1 class="text-4xl mb-3 font-semibold pt-15" th:text="${post.title}"></h1>
+
+        <!- author ->
+
+        <div class="flex flex-row gap-x-4">
+            <div> <img class="rounded-full w-12 h-12" th:src="@{/images/undraw_contact_us_re_4qqt.svg}" alt="image author"> </div>
+            <div> <p class="py-3" th:text="${post.user_username}"></p> </div>
+            <div> <p class="py-3" th:text="${post.created_at}"> 23 กันยายน 2023 </p> </div>
+        </div>
+
+        <!- grid ->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-4 pt-10">
+            <!- picture ->
+            <div class="col-span-2 items-center justify-center relative w-full">
+                <div>
+                </div>
+            </div>
+            <!- animal details ->
+            <div class="col-span-2 bg-background px-16 py-8 border border-primary my-5 ">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-y-16">
+                    <div class="mb-2">
+                        <label class="block font-semibold"> ชื่อ </label>
+                        <p th:text="${animal.name}"></p>
+                    </div>
+                    <div class="mb-2">
+                        <label class="block font-semibold"> ประเภทสัตว์ </label>
+                        <p th:text="${animal.animal_type}"></p>
+                    </div>
+                    <div class="mb-2">
+                        <label class="block font-semibold"> พิกัด </label>
+                        <p th:text="${post.address}"></p>
+                    </div>
+                    <div class="mb-2">
+                        <label class="block font-semibold"> เพศ </label>
+                        <p th:text="${animal.sex}"></p>
+                    </div>
+                    <div class="mb-2">
+                        <label class="block font-semibold"> สายพันธุ์ </label>
+                        <p th:text="${animal.breed}"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- contact details
+            <div class="bg-background p-8 border border-primary my-5 mx-auto ">
+                <div class="grid grid-col-1 gap-y-9">
+                    <div class="flex gap-x-4 mb-2">
+                        <img th:src="@{/images/paw-1-svgrepo-com.svg}" alt="paw" width="12">
+                        <p> 012-345-6789 </p>
+                    </div>
+                    <div class="flex gap-x-4 mb-2">
+                        <img th:src="@{/images/paw-1-svgrepo-com.svg}" alt="paw" width="12">
+                        <p><a href="https://web.facebook.com/xmickeys/"> facebook.com/xmickeys </a></p>
+                    </div>
+                    <div class="flex gap-x-4 mb-2">
+                        <img th:src="@{/images/paw-1-svgrepo-com.svg}" alt="paw" width="12">
+                        <p><a href="https://www.instagram.com/xmickeys/"> instagram.com/xmickeys </a></p>
+                    </div>
+                </div>
+            </div>
+            -->
+
+            <!- content ->
+            <div class="col-span-3">
+                <p th:text="${post.description}"></p>
+            </div>
+
+            <!- button ->
+
+        </div>
+    </div>
+</div>
+
+<div th:insert="~{fragments/navbar :: navbar}"></div>
+
+<div class="flex flex-col mx-auto p-16 pt-20 container">
+    <!-- Content -->
+</div>
+
+<footer th:insert="~{fragments/footer :: footer}"></footer>
+<!-- flowbite cdn -->
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js}"></script>
+
+</body>
