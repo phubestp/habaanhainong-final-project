@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Post</title>
+  <!-- tailwindcss -->
+  <link rel="stylesheet" th:href="@{/css/output.css}">
+  <!-- flowbite cdn -->
+  <link th:href="@{https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css}"  rel="stylesheet" />
+</head>
+
+<body class="bg-background text-primary">
+
+<div th:insert="~{fragments/navbar :: navbar}"></div>
+
+<div class="flex flex-col mx-auto p-16 pt-20 container">
+    <div class="bg-white p-16 border border-primary my-5 flex flex-col w-full">
+      <div class="flex flex-col justify-center items-center relative w-full">
+        <h1 class="text-4xl mb-3 font-semibold"> ข้อมูลส่วนตัว </h1>
+        <div>
+          <img class="rounded-full w-20 h-20" th:src="@{/images/undraw_contact_us_re_4qqt.svg}" alt="image author">
+        </div>
+        <div>
+          <button class="border border-primary py-3 px-8 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold md:max-w-fit mx-auto lg:mx-0 bg-white w-full">
+            ใส่รูปโปรไฟล์
+          </button>
+        </div>
+      </div>
+
+
+      <form>
+        <!-- ข้อมูลส่วนตัว -->
+        <div>
+          <!-- 2xl = 24 -->
+          <h3 class="text-2xl mb-1 font-semibold"> ข้อมูลส่วนตัว </h3>
+        </div>
+        <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
+          <!-- ชื่อ -->
+          <div class="flex flex-col">
+            <label for="name" class="block mb-2 text-sm font-medium text-gray-900"> ชื่อ </label>
+            <input id = "name" type="text"
+                   class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+                   placeholder="" required>
+          </div>
+          <!-- นามสกุล -->
+          <div class="flex flex-col">
+            <label for="surname" class="block mb-2 text-sm font-medium text-gray-900"> นามสกุล </label>
+            <input id = "surname" type="text"
+                   class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+                   placeholder="" required>
+          </div>
+          <!-- ชื่อผู้ใช้ -->
+          <div class="flex flex-col lg:w-1/2 w-full">
+            <label for="username" class="block mb-2 text-sm font-medium text-gray-900"> ชื่อผู้ใช้ </label>
+            <input id = "username" type="text"
+                   class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+                   placeholder="" required>
+          </div> <div> </div>
+          <!-- อีเมล -->
+          <div class="flex flex-col lg:w-1/2 w-full">
+            <label for="email" class="block mb-2 text-sm font-medium text-gray-900"> อีเมล </label>
+            <input id = "email" type="text"
+                   class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+                   placeholder="" required>
+          </div> <div> </div>
+        </div>
+
+        <!--ติดต่อ-->
+        <div>
+          <h3 class="text-2xl mb-1 font-semibold"> ช่องทางติดต่อ </h3>
+        </div>
+
+        <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
+          <!-- ชื่อ -->
+          <div class="flex flex-col">
+            <label for="name" class="block mb-2 text-sm font-medium text-gray-900"> เบอร์โทรศัพท์ </label>
+            <input id = "tel" type="text"
+                   class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+                   placeholder="" required>
+          </div>
+          <!-- นามสกุล -->
+          <div class="flex flex-col">
+            <label for="surname" class="block mb-2 text-sm font-medium text-gray-900"> Facebook Link </label>
+            <input id = "facebook" type="text"
+                   class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+                   placeholder="" required>
+          </div>
+          <!-- ชื่อผู้ใช้ -->
+          <div class="flex flex-col lg:w-1/2 w-full">
+            <label for="username" class="block mb-2 text-sm font-medium text-gray-900"> Instagram Link </label>
+            <input id = "ig" type="text"
+                   class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+                   placeholder="" required>
+          </div>
+        </div>
+
+        <div class="flex flex-col justify-center items-center relative w-full">
+          <button class="border border-primary py-3 px-8 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold md:max-w-fit mx-auto lg:mx-0 bg-white w-full">
+            แก้ไขข้อมูลส่วนตัว
+          </button>
+        </div>
+      </form>
+
+      <div>
+        <h3 class="text-2xl mb-1 font-semibold"> แก้ไขรหัสผ่าน </h3>
+        <button class="border border-primary py-3 px-8 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold md:max-w-fit mx-auto lg:mx-0 bg-white w-full">
+          แก้ไขรหัสผ่าน
+        </button>
+      </div>
+
+      <div>
+        <h3 class="text-2xl mb-1 font-semibold"> ลบบัญชี </h3>
+        <button class="border border-primary py-3 px-8 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold md:max-w-fit mx-auto lg:mx-0 bg-white w-full">
+          ลบบัญชี
+        </button>
+      </div>
+
+
+
+    </div>
+
+
+
+</div>
+
+<footer th:insert="~{fragments/footer :: footer}"></footer>
+<!-- flowbite cdn -->
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js}"></script>
+
+</body>
