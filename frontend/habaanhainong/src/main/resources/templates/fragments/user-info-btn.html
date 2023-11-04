@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" th:href="@{/output.css}">
+</head>
+
+<button data-modal-target="userInfoModal" data-modal-toggle="userInfoModal"
+        class="border border-primary py-3 px-8 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold md:max-w-fit mx-auto lg:mx-0 bg-white w-full"
+        type="button"
+        th:fragment="user-info-btn">
+        ดูข้อมูลส่วนตัว
+</button>
+
+<!-- Main modal -->
+<div id="userInfoModal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full" th:fragment="user-info-btn">
+  <div class="relative w-full max-w-2xl max-h-full">
+    <!-- Modal content -->
+    <div class="relative bg-white rounded-lg shadow ">
+      <!-- Modal body -->
+      <div class="p-6 py-10 flex flex-col">
+        <div>
+          <h3 class="text-2xl mb-1 font-semibold mb-4"> ข้อมูลส่วนตัว </h3>
+        </div>
+
+        <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
+          <!-- ชื่อ -->
+          <div class="flex flex-col">
+            <h4 class="block mb-2 text-sm font-medium text-gray-900"> ชื่อ </h4>
+            <p> น้องมัวร์ </p>
+          </div>
+          <!-- นามสกุล -->
+          <div class="flex flex-col">
+            <h4 class="block mb-2 text-sm font-medium text-gray-900"> นามสกุล </h4>
+            <p> แรคคูนซ่า </p>
+          </div>
+          <!-- ชื่อผู้ใช้ -->
+          <div class="flex flex-col lg:w-1/2 w-full">
+            <h4 class="block mb-2 text-sm font-medium text-gray-900"> ชื่อผู้ใช้ </h4>
+            <p> น้องมัวร์มัวร์ แรคคูนซ่า </p>
+          </div> <div> </div>
+          <!-- อีเมล -->
+          <div class="flex flex-col lg:w-1/2 w-full">
+            <h4 class="block mb-2 text-sm font-medium text-gray-900"> อีเมล </h4>
+            <p> maurmaur001@gmail.com </p>
+          </div> <div> </div>
+        </div>
+
+        <!--ติดต่อ-->
+        <div class="mt-5">
+          <h3 class="text-2xl mb-1 font-semibold"> ช่องทางติดต่อ </h3>
+        </div>
+
+        <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
+          <!-- เบอร์โทรศัพท์ชื่อ -->
+          <div class="flex flex-col">
+            <h4 class="block mb-2 text-sm font-medium text-gray-900"> เบอร์โทรศัพท์ </h4>
+            <p> 012-345-6789 </p>
+          </div>
+          <!-- FB-->
+          <div class="flex flex-col">
+            <h4 class="block mb-2 text-sm font-medium text-gray-900"> Facebook Link </h4>
+            <p> facebook.com/xmickeys </p>
+          </div>
+          <!-- IG -->
+          <div class="flex flex-col lg:w-1/2 w-full">
+            <h4 class="block mb-2 text-sm font-medium text-gray-900"> Instagram Link </h4>
+            <p> instagram.com/xmickeys </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</html>

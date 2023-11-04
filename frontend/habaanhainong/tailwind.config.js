@@ -9,7 +9,8 @@ module.exports = {
       'primary': '#004225',
       'secondary': '#FFB000',
       'background': '#FAF8F1',
-      'white': '#FFFFFF'
+      'white': '#FFFFFF',
+      'red' : '#F32013'
     },
     fontFamily : {
       sans: ['Mitr', 'sans-serif']
