@@ -8,12 +8,9 @@ import lombok.Data;
 import java.util.UUID;
 @Data
 @Entity
-public class Member {
+public class User {
 
     @Id
-    @GeneratedValue
-    private UUID id;
-
     private String email;
     private String username;
     private String password;
