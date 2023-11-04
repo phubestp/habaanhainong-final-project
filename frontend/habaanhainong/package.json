@@ -4,5 +4,8 @@
   },
   "scripts": {
     "build": "tailwindcss build -i ./src/main/resources/static/css/input.css -o ./src/main/resources/static/css/output.css --watch"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.4.16"
   }
 }

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" th:href="@{/css/output.css}">
+</head>
+<body class="bg-background text-primary">
+<div th:insert="~{fragments/navbar :: navbar}"></div>
+
+<div class="flex flex-col mx-auto p-16 pt-20 container items-center justify-self-center">
+    <!-- register box -->
+    <div class="bg-white px-20 lg:py-16 border my-5 flex flex-col border-primary justify-center lg:w-1/3">
+        <h1 class="text-4xl mb-3 font-semibold lg:mx-0 justify-center flex lg:flex-row">Register</h1>
+        <div class="justify-center flex">
+            <img th:src="@{/images/cat-family.png}" alt="cat-fam" width="311" height="207">
+        </div>
+        <div class="flex flex-col justify-self-center mb-2">
+            <h2 class="flex font-semibold text-[#004225] text-[16px] mb-2">อีเมลล์</h2>
+            <input type="text" id="email" name="email" class="border border-[#004225] h-[47px]">
+        </div>
+        <div class="flex flex-col justify-self-center mb-2">
+            <h2 class="flex font-semibold text-[#004225] text-[16px] mb-2">รหัสผ่าน</h2>
+            <input type="text" id="password" name="password" class="border border-[#004225] h-[47px]">
+        </div>
+        <div class="flex flex-col justify-self-center mb-2">
+            <h2 class="flex font-semibold text-[#004225] text-[16px] mb-2">ยืนยันรหัสผ่าน</h2>
+            <input type="text" id="confirmPassword" name="confirmPassword" class="border border-[#004225] h-[47px]">
+        </div>
+        <div class="flex justify-center mt-6">
+            <button type="button" class="w-[280px] h-[44px] text-[16px] font-semibold rounded border shadow-[5px_5px_0px_0px_#004225]" >Register</button>
+        </div>
+    </div>
+</div>
+
+<footer th:insert="~{fragments/footer :: footer}"></footer>
+
+</body>
+</html>
