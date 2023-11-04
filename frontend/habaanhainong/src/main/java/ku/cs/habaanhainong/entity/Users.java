@@ -1,20 +1,24 @@
 package ku.cs.habaanhainong.entity;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.Data;
 
-import java.util.UUID;
 @Data
 @Entity
-public class User {
+public class Users {
 
     @Id
-    private String email;
     private String username;
+    private String email;
     private String password;
-    private String name;
-    private String role;
+    private String firstname;
+    private String lastname;
+    private Boolean isAdmin;
+    private Boolean isBan;
+    private String phone_no;
+    private String facebook;
+    private String instagram;
+    private String line;
 }
 

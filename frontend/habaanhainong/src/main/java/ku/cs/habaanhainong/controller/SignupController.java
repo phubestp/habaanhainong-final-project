@@ -1,6 +1,6 @@
 package ku.cs.habaanhainong.controller;
 
-import ku.cs.habaanhainong.entity.Member;
+import ku.cs.habaanhainong.entity.Users;
 import ku.cs.habaanhainong.service.SignupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,12 +20,11 @@ public class SignupController {
         return "signup"; // return หน้าฟอร์ม signup.html
     }
 
-
     @PostMapping("/signup")
-    public String signupUser(@ModelAttribute Member user, Model model) {
+    public String signupUser(@ModelAttribute Users users, Model model) {
 
-        if (signupService.isUsernameAvailable(user.getUsername())) {
-            signupService.createUser(user);
+        if (signupService.isUsernameAvailable(users.getUsername())) {
+            signupService.createUser(users);
             model.addAttribute("signupSuccess", true);
         } else {
             model.addAttribute("signupError", "Username not available");

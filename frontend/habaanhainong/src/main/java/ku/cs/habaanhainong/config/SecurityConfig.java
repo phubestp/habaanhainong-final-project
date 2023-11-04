@@ -32,6 +32,7 @@ public class SecurityConfig {
                 .formLogin((form) -> form
                         .loginPage("/login")
                         .defaultSuccessUrl("/", true)
+                        .usernameParameter("email")
                         .permitAll()
                 )
                 .logout((logout) -> logout
@@ -46,7 +47,7 @@ public class SecurityConfig {
 
     @Bean
     public PasswordEncoder encoder() {
-        return new BCryptPasswordEncoder(12);
+        return new BCryptPasswordEncoder();
     }
 
 
