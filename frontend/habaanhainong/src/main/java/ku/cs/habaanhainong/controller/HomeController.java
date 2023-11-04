@@ -8,6 +8,6 @@ public class HomeController {
 
     @RequestMapping("/")
     public String getHomePage() {
-        return "post-new";
+        return "post-view";
     }
 }
