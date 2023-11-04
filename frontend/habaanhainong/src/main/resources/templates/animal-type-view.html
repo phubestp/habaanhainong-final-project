@@ -15,7 +15,7 @@
 
 <div class="flex flex-col mx-auto p-16 pt-20 container">
   <div class="flex justify-center items-center relative w-full">
-    <h1 class="text-4xl mb-3 font-semibold"> จัดการประเภทสัตว์ </h1>
+    <h1 class="text-4xl mb-3 font-semibold p-16"> จัดการประเภทสัตว์ </h1>
   </div>
 
   <div class="bg-white p-16 border border-primary my-5 flex flex-col w-full">
@@ -42,7 +42,7 @@
     </div>
 
 <!-- Modal -->
-    <div id="defaultModal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div id="addTypeModal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative w-full max-w-2xl max-h-full">
             <!-- Modal content -->
             <div class="relative bg-white rounded-lg shadow ">
@@ -56,10 +56,10 @@
                             <label for="animalType" class="block mb-2 text-sm font-medium text-gray-900"> ชนิดสัตว์ </label>
                             <input type="text" id="animalType"
                                    class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
-                                   placeholder="" required>
+                                   placeholder="เช่น : เม่น" required>
                         </div>
                         <button id="submit-button"
-                                class="border border-primary py-3 px-8 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold">
+                                class="border border-primary py-3 px-8 mt-4 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold">
                             เพิ่ม
                         </button>
                     </form>

@@ -8,7 +8,8 @@ public class HomeController {
 
     @RequestMapping("/")
     public String getHomePage() {
-        return "redirect:/animal-type-view";
+        return "redirect:/report-view";
+//        return "applicant-view";
+//        return "redirect:/animal-type-view";
     }
-
 }

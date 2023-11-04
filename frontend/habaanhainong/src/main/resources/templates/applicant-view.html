@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title> ผู้รอรับเลี้ยง </title>
+  <!-- tailwindcss -->
+  <link rel="stylesheet" th:href="@{/css/output.css}">
+  <!-- flowbite cdn -->
+  <link th:href="@{https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css}"  rel="stylesheet" />
+</head>
+
+<body class="bg-background text-primary">
+
+<div th:insert="~{fragments/navbar :: navbar}"></div>
+
+<div class="flex flex-col mx-auto p-16 pt-20 container">
+    <div class="flex justify-center items-center relative w-full">
+      <h1 class="text-4xl mb-3 font-semibold p-16"> แก้ไขโพสต์ </h1>
+    </div>
+
+  <div>
+    <h2 class="text-2xl mb-3 font-semibold"> รายชื่อผู้ขอรับเลี้ยงทั้งหมด </h2>
+    <div class="bg-white p-16 border border-primary my-5 flex flex-col w-full">
+  </div>
+</div>
+
+<footer th:insert="~{fragments/footer :: footer}"></footer>
+<!-- flowbite cdn -->
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js}"></script>
+
+</body>
+</html>

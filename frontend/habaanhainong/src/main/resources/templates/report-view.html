@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title> ผู้ถูกรายงาน </title>
+  <!-- tailwindcss -->
+  <link rel="stylesheet" th:href="@{/css/output.css}">
+  <!-- flowbite cdn -->
+  <link th:href="@{https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css}"  rel="stylesheet" />
+</head>
+
+<body class="bg-background text-primary">
+
+<div th:insert="~{fragments/navbar :: navbar}"></div>
+
+<div class="flex flex-col mx-auto p-16 pt-20 container">
+  <div class="flex justify-center items-center relative w-full">
+    <h1 class="text-4xl mb-3 font-semibold p-16"> ผู้ถูกรายงาน</h1>
+  </div>
+
+  <div class="my-5 flex flex-row w-full">
+    <div class="flex flex-row">
+      <div>
+        <a href="#" class="text-secondary border-b border-yellow py-3 px-8 my-5 font-semibold">
+          ผู้ถูกรายงาน </a>
+      </div>
+      <div>
+        <a href="#" class="border-b border-primary py-3 px-8 my-5 font-semibold">
+          ผู้ใช้ที่โดนแบน </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-white p-16 border border-primary my-5 flex flex-col w-full">
+    <div >
+      <div th:each="reported : ${reportList}" class="grid grid-cols-2 bg-background px-16 py-8 border border-primary my-5">
+        <div class="flex flex-row space-x-4 justify-items-start items-center">
+          <div> <img class="rounded-full w-12 h-12" th:src="@{/images/undraw_contact_us_re_4qqt.svg}" alt="image author"> </div>
+          <div> <label th:text="${reported.get('name')}"></label> </div>
+        </div>
+
+        <div class="flex flex-row space-x-4 items-end justify-end">
+          <div>
+            <button th:id="${type}+ban"
+                    class="border border-secondary text-secondary py-3 px-8 rounded-md shadow-[5px_5px_0px_0px_#FFB000] my-5 font-semibold">
+              แบน </button>
+          </div>
+          <div>
+            <button th:id="${type}+cancel"
+                    class="border border-primary py-3 px-8 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold">
+              ยกเลิก </button>
+          </div>
+        </div>
+
+        <div class="col-span-2 flex flex-row mb-4">
+          <label> เหตุผล : </label>
+          <p th:text="${reported.get('reason')}"> </p>
+        </div>
+
+        <div class="col-span-2 flex flex-row mb-4">
+          <label> วันที่โดนรายงาน : </label>
+          <p th:text="${reported.get('date')}"> </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</div>
+
+
+
+<footer th:insert="~{fragments/footer :: footer}"></footer>
+<!-- flowbite cdn -->
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js}">
+
+</script>
+
+</body>
