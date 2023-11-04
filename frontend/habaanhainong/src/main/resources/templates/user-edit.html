@@ -23,7 +23,9 @@
         <div>
           <button class="border border-primary py-3 px-8 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold md:max-w-fit mx-auto lg:mx-0 bg-white w-full">
             ใส่รูปโปรไฟล์
+            <input for="file_input" type="file" hidden> </input>
           </button>
+
 <!--          <button th:replace="fragments/delete-post-btn :: delete-post-btn"></button>-->
         </div>
       </div>
@@ -56,14 +58,15 @@
             <input id = "username" type="text"
                    class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
                    placeholder="" required>
-          </div> <div> </div>
-          <!-- อีเมล -->
-          <div class="flex flex-col lg:w-1/2 w-full">
-            <label for="email" class="block mb-2 text-sm font-medium text-gray-900"> อีเมล </label>
-            <input id = "email" type="text"
-                   class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
-                   placeholder="" required>
-          </div> <div> </div>
+          </div>
+<!--          <div> </div>-->
+<!--          &lt;!&ndash; อีเมล &ndash;&gt;-->
+<!--          <div class="flex flex-col lg:w-1/2 w-full">-->
+<!--            <label for="email" class="block mb-2 text-sm font-medium text-gray-900"> อีเมล </label>-->
+<!--            <input id = "email" type="text"-->
+<!--                   class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"-->
+<!--                   placeholder="" required>-->
+<!--          </div> <div> </div>-->
         </div>
 
         <!--ติดต่อ-->

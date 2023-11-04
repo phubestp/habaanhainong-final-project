@@ -8,7 +8,7 @@ public class HomeController {
 
     @RequestMapping("/")
     public String getHomePage() {
-        return "user-edit";
+        return "redirect:/animal-type-view";
     }
 
 }

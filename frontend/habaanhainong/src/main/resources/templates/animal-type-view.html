@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title> จัดการประเภทสัตว์ </title>
+  <!-- tailwindcss -->
+  <link rel="stylesheet" th:href="@{/css/output.css}">
+  <!-- flowbite cdn -->
+  <link th:href="@{https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css}"  rel="stylesheet" />
+</head>
+
+<body class="bg-background text-primary">
+
+<div th:insert="~{fragments/navbar :: navbar}"></div>
+
+<div class="flex flex-col mx-auto p-16 pt-20 container">
+  <div class="flex justify-center items-center relative w-full">
+    <h1 class="text-4xl mb-3 font-semibold"> จัดการประเภทสัตว์ </h1>
+  </div>
+
+  <div class="bg-white p-16 border border-primary my-5 flex flex-col w-full">
+    <div >
+      <div th:each="type : ${animalType}" class="grid grid-cols-4 bg-background px-16 py-8 border border-primary my-5">
+          <div class="col-span-3 flex flex-col items-start justify-center">
+            <label th:text="${type}"></label>
+          </div>
+          <div class="flex flex-col items-end">
+            <button th:id="${type}"
+            class="border border-primary py-3 px-8 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold">
+              ลบ </button>
+          </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="flex-col">
+        <button id="add-button"
+                class="border border-primary py-3 px-8 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold"
+                data-modal-target="addTypeModal" data-modal-toggle="addTypeModal" >
+                สร้าง
+        </button>
+    </div>
+
+<!-- Modal -->
+    <div id="defaultModal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative w-full max-w-2xl max-h-full">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow ">
+                <!-- Modal body -->
+                <div class="p-6 py-8 flex flex-col">
+                    <div>
+                        <h1 class="text-4xl mb-3 font-semibold"> เพิ่มชนิดสัตว์ </h1>
+                    </div>
+                    <form>
+                        <div class="py-3 flex flex-col lg:w-1/2 w-full">
+                            <label for="animalType" class="block mb-2 text-sm font-medium text-gray-900"> ชนิดสัตว์ </label>
+                            <input type="text" id="animalType"
+                                   class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+                                   placeholder="" required>
+                        </div>
+                        <button id="submit-button"
+                                class="border border-primary py-3 px-8 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold">
+                            เพิ่ม
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+<footer th:insert="~{fragments/footer :: footer}"></footer>
+<!-- flowbite cdn -->
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js}">
+
+</script>
+
+</body>

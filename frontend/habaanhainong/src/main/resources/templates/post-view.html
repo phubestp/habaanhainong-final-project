@@ -29,7 +29,7 @@
                 <h1 class="text-4xl mb-3 font-semibold pt-15"> หาบ้านให้น้องหน่อยค่ะ เจอน้องอยู่ข้างทาง </h1>
             </div>
 
-            <div class="col-span-1">
+            <div class="col-span-1 flex flex-col items-end">
                 <button data-modal-target="defaultModal" data-modal-toggle="defaultModal" class="text-secondary text-left" type="button">
                     <img th:src="@{/images/report-flag-1420-svgrepo-com.svg}" alt="paw" width="20" class="inline mr-1">
                 </button>
@@ -111,15 +111,13 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-4 pt-10">
             <!- picture ->
             <div class="col-span-2 items-center justify-center relative w-full">
-                <div>
-                    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                        eiusmod tempor incididunt ut labore et dolore magna
-                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
+                <div class="flex items-center justify-center">
+                    <img class="h-auto max-w-full" th:src="@{/images/undraw_contact_us_re_4qqt.svg}" alt="image description">
                 </div>
             </div>
             <!- animal details ->
             <div class="col-span-2 bg-background px-16 py-8 border border-primary my-5 ">
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-y-16">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-y-7">
                     <div class="mb-2">
                         <label class="block font-semibold"> ชื่อ </label>
                         <p> น้อน </p>
