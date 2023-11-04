@@ -8,7 +8,7 @@ public class HomeController {
 
     @RequestMapping("/")
     public String getHomePage() {
-        return "redirect:/post-manage";
+        return "redirect:/post-all";
 //        return "applicant-view";
 //        return "redirect:/animal-type-view";
     }
