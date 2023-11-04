@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 @Controller
-public class ReportViewController {
+public class UserReportViewController {
 
-    @RequestMapping("/report-view")
-    public String getAnimalType(Model reported){
+    @RequestMapping("/user-report-view")
+    public String getReported(Model reported){
         ArrayList<HashMap<String,String>> reportLists = new ArrayList<>();
         for (int i = 0; i < 2; i++){
             HashMap<String,String> info = new HashMap<>();
@@ -21,6 +21,6 @@ public class ReportViewController {
             reportLists.add(info);
         }
         reported.addAttribute("reportList", reportLists);
-        return "report-view";
+        return "user-report-view";
     }
 }

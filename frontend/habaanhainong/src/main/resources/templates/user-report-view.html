@@ -25,7 +25,7 @@
           ผู้ถูกรายงาน </a>
       </div>
       <div>
-        <a href="#" class="border-b border-primary py-3 px-8 my-5 font-semibold">
+        <a href="/user-ban-view" class="border-b border-primary py-3 px-8 my-5 font-semibold">
           ผู้ใช้ที่โดนแบน </a>
       </div>
     </div>
@@ -41,12 +41,12 @@
 
         <div class="flex flex-row space-x-4 items-end justify-end">
           <div>
-            <button th:id="${type}+ban"
+            <button th:id="${reported}+ban"
                     class="border border-secondary text-secondary py-3 px-8 rounded-md shadow-[5px_5px_0px_0px_#FFB000] my-5 font-semibold">
               แบน </button>
           </div>
           <div>
-            <button th:id="${type}+cancel"
+            <button th:id="${reported}+cancel"
                     class="border border-primary py-3 px-8 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold">
               ยกเลิก </button>
           </div>
