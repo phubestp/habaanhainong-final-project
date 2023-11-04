@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" th:href="@{/output.css}">
+</head>
+
+<button data-modal-target="userInfoModal" data-modal-toggle="userInfoModal"
+        class="border border-primary py-3 px-8 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold md:max-w-fit mx-auto lg:mx-0 bg-white w-full"
+        type="button"
+        th:fragment="delete-post-btn">
+  ดูข้อมูลส่วนตัว
+</button>
+
+<!-- Main modal -->
+<div id="userInfoModal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full" th:fragment="delete-post-btn">
+  <div class="relative w-full max-w-2xl max-h-full">
+    <!-- Modal content -->
+    <div class="relative bg-white rounded-lg shadow ">
+      <!-- Modal body -->
+      <div class="p-6 py-8 flex flex-col items-center">
+        <img th:src="@{/images/triangle-exclamation-svgrepo-com.svg}" alt="paw" width="150"  class="my-4">
+        <h3 class="text-3xl mb-1 text-red"> ยันยันการลบโพสต์ </h3>
+        <div class="flex flex-row space-x-4">
+          <div>
+            <button data-modal-target="userInfoModal" data-modal-toggle="userInfoModal"
+                    type="button"
+                    th:fragment="delete-post-btn"
+                    class="border border-red text-red py-3 px-8 rounded-md shadow-[5px_5px_0px_0px_#F32013] my-5 font-semibold md:max-w-fit mx-auto lg:mx-0 bg-white w-full">
+              ลบ
+            </button>
+          </div>
+          <div>
+            <button data-modal-target="userInfoModal" data-modal-toggle="userInfoModal"
+                    type="button"
+                    th:fragment="delete-post-btn"
+                    class="border border-primary py-3 px-8 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold md:max-w-fit mx-auto lg:mx-0 bg-white w-full">
+              ยกเลิก
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</html>
