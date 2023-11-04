@@ -17,6 +17,12 @@ class AnimalController extends Controller
         return $animals;
     }
 
+
+    public function show(Animal $animal)
+    {
+        return $animal;
+    }
+
     /**
      * Store a newly created resource in storage.
      */
