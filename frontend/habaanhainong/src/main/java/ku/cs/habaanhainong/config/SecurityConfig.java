@@ -26,13 +26,12 @@ public class SecurityConfig {
                         .requestMatchers(new AntPathRequestMatcher("/css/**")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/js/**")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/images/**")).permitAll()
-                        .requestMatchers(new AntPathRequestMatcher("/signup")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/register")).permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
                         .loginPage("/login")
                         .defaultSuccessUrl("/", true)
-                        .usernameParameter("email")
                         .permitAll()
                 )
                 .logout((logout) -> logout

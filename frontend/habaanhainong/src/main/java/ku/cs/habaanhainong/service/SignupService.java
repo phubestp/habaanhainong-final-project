@@ -25,17 +25,12 @@ public class SignupService {
 
     public void createUser(Users users) {
         Users record = new Users();
-        record.setFirstname(users.getFirstname());
-        record.setLastname(users.getLastname());
         record.setUsername(users.getUsername());
-        record.setEmail(users.getEmail());
         record.setPassword(users.getPassword());
+        record.setFirstname("");
+        record.setLastname("");
         record.setIsAdmin(false);
         record.setIsBan(false);
-        record.setPhone_no(users.getPhone_no());
-        record.setFacebook(users.getFacebook());
-        record.setInstagram(users.getInstagram());
-        record.setLine(users.getLine());
 
         String hashedPassword = passwordEncoder.encode(users.getPassword());
         record.setPassword(hashedPassword);
