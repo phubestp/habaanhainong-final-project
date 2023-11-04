@@ -11,7 +11,7 @@ import java.util.HashMap;
 public class PostAllController {
 
     @RequestMapping("/post-all")
-    public String getBanUser(Model post){
+    public String getAllPost(Model post){
         ArrayList<HashMap<String,String>> postList  = new ArrayList<>();
         for (int i = 0; i < 2; i++){
             HashMap<String,String> info = new HashMap<>();
