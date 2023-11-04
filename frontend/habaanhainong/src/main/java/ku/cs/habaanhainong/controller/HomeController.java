@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class HomeController {
 
     private final AnimalService animalService = new AnimalService();
+
     @RequestMapping("/")
     public String getHomePage(Model model) {
         ArrayList<Object> animals = (ArrayList<Object>) animalService.getAnimals();
