@@ -9,6 +9,6 @@ public class HomeController {
 
     @RequestMapping("/")
     public String getHomePage() {
-        return "registerInfo";
+        return "mypost";
     }
 }
