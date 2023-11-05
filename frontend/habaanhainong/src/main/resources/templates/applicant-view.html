@@ -20,7 +20,13 @@
 
   <div>
     <h2 class="text-2xl mb-3 font-semibold"> รายชื่อผู้ขอรับเลี้ยงทั้งหมด </h2>
-    <div class="bg-white p-16 border border-primary my-5 flex flex-col w-full">
+    <div class="bg-white p-16 border border-primary my-5 w-full h-[1920px] overflow-y-scroll">
+      <div th:each="applicant : ${applicants}"
+           class="grid grid-cols-4 bg-background px-16 py-8 border border-primary my-5">
+        <div class="flex flex-row">
+          <p> test </p>
+        </div>
+      </div>
   </div>
 </div>
 </div>
