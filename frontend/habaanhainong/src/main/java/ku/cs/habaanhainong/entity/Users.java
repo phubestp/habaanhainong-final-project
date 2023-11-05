@@ -15,13 +15,13 @@ public class Users {
 
     @Id
     @GeneratedValue
-    private UUID id;
+    private int id;
 
     private String username;
     private String password;
 
-    private Boolean isAdmin;
-    private Boolean isBan;
+    private String role;
+    private String status;
 
     private String firstname;
     private String lastname;
@@ -34,5 +34,6 @@ public class Users {
     private String line;
     @Nullable
     private String instagram;
+
 }
 

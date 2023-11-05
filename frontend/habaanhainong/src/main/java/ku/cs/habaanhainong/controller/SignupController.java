@@ -1,18 +1,14 @@
 package ku.cs.habaanhainong.controller;
 
-import ku.cs.habaanhainong.entity.UserInfoRequest;
+import jakarta.servlet.http.HttpSession;
 import ku.cs.habaanhainong.entity.Users;
 import ku.cs.habaanhainong.service.SignupService;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.client.RestTemplate;
 
 @Controller
 public class SignupController {
@@ -26,11 +22,12 @@ public class SignupController {
     }
 
     @PostMapping("/register")
-    public String signupUser(@ModelAttribute Users users, Model model) {
+    public String signupUser(@ModelAttribute Users users, Model model, HttpSession httpSession) {
 
         if (signupService.isUsernameAvailable(users.getUsername())) {
             signupService.createUser(users);
-            return "registerInfo";
+            httpSession.setAttribute("users", users);
+            return "redirect:/register-info";
         } else {
             model.addAttribute("signupError", "Username not available");
         }

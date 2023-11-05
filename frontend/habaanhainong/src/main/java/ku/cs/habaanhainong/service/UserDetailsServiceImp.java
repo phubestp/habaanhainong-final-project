@@ -27,13 +27,14 @@ public class UserDetailsServiceImp implements UserDetailsService {
             throws UsernameNotFoundException {
 
         Users users = userRepository.findByUsername(username);
+        System.out.println(users);
 
         if (users == null) {
             throw new UsernameNotFoundException("Could not find user");
         }
 
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(users.getIsAdmin() ? "admin" : "user"));
+        authorities.add(new SimpleGrantedAuthority(users.getRole()));
         return new org.springframework.security.core.userdetails.User(
                 users.getUsername(), users.getPassword(), authorities);
     }
