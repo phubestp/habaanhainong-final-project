@@ -12,13 +12,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 @Controller
-@RequestMapping("/posts")
+@RequestMapping("/post-view")
 public class PostController {
 
     private final PostService postService = new PostService();
 
     @GetMapping("/{post_id}")
     public String getPostFromId(Model model, @PathVariable String post_id) {
+        System.out.println("Here");
         System.out.println(post_id);
         HashMap<String, Object> post = postService.getPostFromId(post_id);
         model.addAttribute("post",post.get("post"));

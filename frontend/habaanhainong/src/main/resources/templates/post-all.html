@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
   <meta charset="UTF-8">
   <title> หาบ้านให้น้อง </title>
@@ -20,7 +20,7 @@
 
   <div class="bg-white p-16 border border-primary my-5 flex flex-col w-full">
     <div >
-      <div th:each="post : ${postAllList}" class="grid grid-cols-1 bg-background pl-16 pb-8 border border-primary my-5 lg:grid-cols-2">
+      <div th:each="post : ${posts}" class="grid grid-cols-1 bg-background pr-16 pb-8 border border-primary my-5 lg:grid-cols-2">
         <div class="flex flex-col">
           <div class="flex bg-primary items-center justify-center p-2">
             <div>
@@ -30,22 +30,26 @@
           </div>
           <div class="flex flex-row gap-x-4 px-16 py-4">
             <div> <img class="rounded-full w-12 h-12" th:src="@{/images/undraw_contact_us_re_4qqt.svg}" alt="image author"></div>
-            <div> <p class="py-3" th:text="${post.get('name')}" > </p> </div>
-            <div> <p class="py-3" th:text="${post.get('create')}" > </p> </div>
+            <div> <p class="py-3" th:text="${post.get('user_username')}" > </p> </div>
+            <div> <p class="py-3" th:text="${post.get('create_at')}" > </p> </div>
           </div>
           <div>
-            <label class="text-2xl block font-semibold px-16 py-4" th:text="${post.get('header')}" > </label>
+            <label class="text-2xl block font-semibold px-16 py-4" th:text="${post.get('title')}" > </label>
           </div>
           <div>
-            <p class="px-16" th:text="${post.get('detail')}">
+            <p class="px-16" th:text="${post.get('description')}">
             </p>
           </div>
           <!--button-->
           <div class="flex flex-row space-x-4 px-16  mt-8 justify-startitems-center">
             <div>
-              <button class="border border-primary py-3 px-16 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold md:max-w-fit mx-auto lg:mx-0 bg-white w-full">
-                ดูรายละเอียด
-              </button>
+              <form th:action="@{post-all/read-post}" th:method="GET">
+                <input type="text" hidden name="post_id" th:value="${post.get('id')}"></input>
+                <button type="submit"
+                        class="border border-primary py-3 px-16 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold md:max-w-fit mx-auto lg:mx-0 bg-white w-full">
+                  ดูรายละเอียด
+                </button>
+              </form>
             </div>
             <div>
               <button class="border border-primary py-3 px-8 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold md:max-w-fit mx-auto lg:mx-0 bg-white w-full">

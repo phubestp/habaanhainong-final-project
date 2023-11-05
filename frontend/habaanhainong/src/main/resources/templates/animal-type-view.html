@@ -20,13 +20,14 @@
 
   <div class="bg-white p-16 border border-primary my-5 flex flex-col w-full">
     <div >
-      <div th:each="type : ${animalType}" class="grid grid-cols-4 bg-background px-16 py-8 border border-primary my-5">
+      <div th:each="animalType : ${animalTypes}" class="grid grid-cols-4 bg-background px-16 py-8 border border-primary my-5">
           <div class="col-span-3 flex flex-col items-start justify-center">
-            <label th:text="${type}"></label>
+            <label th:text="${animalType.type}"></label>
           </div>
           <div class="flex flex-col items-end">
-            <button th:id="${type}"
-            class="border border-primary py-3 px-8 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold">
+            <button th:id="${animalType.type}" th:name="${animalType.type}" th:method="DELETE"
+                    action="#" th:action="@{animals-type/post}"
+                    class="border border-primary py-3 px-8 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold">
               ลบ </button>
           </div>
       </div>
@@ -51,10 +52,10 @@
                     <div>
                         <h1 class="text-4xl mb-3 font-semibold"> เพิ่มชนิดสัตว์ </h1>
                     </div>
-                    <form>
+                    <form action="#" th:action="@{animals-type/add}" method="POST">
                         <div class="py-3 flex flex-col lg:w-1/2 w-full">
-                            <label for="animalType" class="block mb-2 text-sm font-medium text-gray-900"> ชนิดสัตว์ </label>
-                            <input type="text" id="animalType"
+                            <label for="type" class="block mb-2 text-sm font-medium text-gray-900"> ชนิดสัตว์ </label>
+                            <input type="text" id="type" name="type"
                                    class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
                                    placeholder="เช่น : เม่น" required>
                         </div>
