@@ -601,6 +601,9 @@ video {
 .right-2{
   right: 0.5rem;
 }
+.right-4{
+  right: 1rem;
+}
 
 .top-0{
   top: 0px;
