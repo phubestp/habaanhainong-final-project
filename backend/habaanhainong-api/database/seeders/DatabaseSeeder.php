@@ -14,18 +14,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
-            'username' => 'user01',
-            'email' => 'user01@example.com',
-            'password' => Hash::make('password'),
-            'firstname' => 'user',
-            'lastname' => 'example',
-            'isAdmin' => false,
-            'phone_no' => '000-000-0000',
-            'facebook' => 'user example',
-            'instagram' => 'user01',
-            'line' => 'user01'
-        ]);
+        // User::create([
+        //     'id' => 'd95639b2-75a1-4a8c-8fc8-5c09c66fcd44',
+        //     'username' => 'user01',
+        //     'password' => Hash::make('password'),
+        //     'firstname' => 'user',
+        //     'lastname' => 'example',
+        //     'isAdmin' => false,
+        //     'phone_no' => '000-000-0000',
+        //     'facebook' => 'user example',
+        //     'instagram' => 'user01',
+        //     'line' => 'user01'
+        // ]);
         
         $this->call([
             UserSeeder::class,
