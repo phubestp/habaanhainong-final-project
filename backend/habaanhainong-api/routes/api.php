@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FollowController;
 use App\Http\Controllers\ApplicantController;
+use App\Http\Controllers\AnimalTypeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,7 +21,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('/animals', AnimalController::class);
+Route::resource('/animals', AnimalController::class); 
+Route::resource('/animals-type', AnimalTypeController::class); 
 Route::resource('/posts', PostController::class);
 Route::put('/edit-profile/{username}', [UserController::class, 'editProfile']);
 
