@@ -9,13 +9,11 @@ import java.util.ArrayList;
 
 @Controller
 public class HomeController {
-
     private final AnimalService animalService = new AnimalService();
-
     @RequestMapping("/")
     public String getHomePage(Model model) {
-//        ArrayList<Object> animals = (ArrayList<Object>) animalService.getAnimals();
-//        model.addAttribute("animals",animals.subList(0, 3));
+        ArrayList<Object> animals = (ArrayList<Object>) animalService.getAnimals();
+        model.addAttribute("animals",animals.subList(0, 3));
         return "home";
     }
 }
