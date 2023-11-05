@@ -37,9 +37,10 @@
     <h1 class="text-3xl font-semibold">น้องๆกำลังรอคุณอยู่นะ</h1>
     <p class="py-5">ดูน้องๆที่น่ารักพวกนี้สิ เลือกสัตว์ที่คุณอยากเลี้ยงได้เลย</p>
     <div class="flex lg:flex-row flex-col lg:justify-between lg:gap-x-10 gap-y-10">
-        <div th:insert="~{fragments/pet-card :: pet-card}" ></div>
-        <div th:insert="~{fragments/pet-card :: pet-card}" ></div>
-        <div th:insert="~{fragments/pet-card :: pet-card}" ></div>
+      <div th:each="animal : ${animals}">
+        <div th:insert="~{fragments/pet-card :: pet-card}"
+             th:with="name=${animal.name},animal_type=${animal.animal_type},breed=${animal.breed},sex=${animal.sex}"></div>
+      </div>
     </div>
   </div>
   <!-- Pet Type -->

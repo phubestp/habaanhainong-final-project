@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
@@ -14,14 +14,23 @@
     </a>
     <!-- Login and Register (ส่วนท้ายๆของ Navbar)-->
     <div class="flex md:order-2 items-center">
-      <button
-              class="border border-primary p-2 px-4 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold max-w-fit mx-0 bg-white">
-        Login
-      </button>
-      <button
-              class="border border-primary p-2 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold max-w-fit ml-5 bg-white">
-        Register
-      </button>
+      <div sec:authorize="isAnonymous()">
+        <button
+                class="border border-primary p-2 px-4 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold max-w-fit mx-0 bg-white">
+          <a th:href="@{/login}">Log in</a>
+        </button>
+        <button
+                class="border border-primary p-2 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold max-w-fit ml-5 bg-white">
+          <a th:href="@{/register}">Register</a>
+        </button>
+      </div>
+      <div sec:authorize="isAuthenticated()">
+        <span sec:authentication="name"></span>
+        <button
+                class="border border-primary p-2 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold max-w-fit ml-5 bg-white">
+          <a th:href="@{/logout}">Logout</a>
+        </button>
+      </div>
       <!-- Hamburger Menu (Responsive) -->
       <button data-collapse-toggle="navbar-sticky" type="button"
               class="inline-flex items-center p-2 ml-5 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
