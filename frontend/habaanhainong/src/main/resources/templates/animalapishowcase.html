@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Animal API Showcase</h1>
+<table>
+    <tr>
+        <td>id</td>
+        <td>name</td>
+        <td>type</td>
+        <td>sex</td>
+        <td>breed</td>
+    </tr>
+    <tr th:each="animal : ${animals}">
+        <td th:text="${animal.get('id')}"></td>
+        <td th:text="${animal.get('name')}"></td>
+        <td th:text="${animal.get('animal_type')}"></td>
+        <td th:text="${animal.get('sex')}"></td>
+        <td th:text="${animal.get('breed')}"></td>
+    </tr>
+</table>
+<form action="#" th:action="@{animals/add}" method="POST">
+    <input type="text" id="name" name="name" placeholder="name">
+    <input type="text" id="animal_type" name="animal_type" placeholder="type">
+    <input type="text" id="sex" name="sex" placeholder="sex">
+    <input type="text" id="breed" name="breed" placeholder="breed">
+    <button type="submit">submit</button>
+</form>
+</body>
+</html>
