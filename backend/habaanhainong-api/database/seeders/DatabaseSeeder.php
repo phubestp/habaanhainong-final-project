@@ -2,10 +2,8 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,26 +12,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
-            'username' => 'user01',
-            'password' => Hash::make('password'),
-            'firstname' => 'user',
-            'lastname' => 'example',
-            'isAdmin' => false,
-            'phone_no' => '000-000-0000',
-            'facebook' => 'user example',
-            'instagram' => 'user01',
-            'line' => 'user01'
-        ]);
-        
-        $this->call([
-            UserSeeder::class,
-            AnimalSeeder::class,
-            PostSeeder::class,
-        ]);
-
-        
-
-        // User::factory(10)->create();
+        // You can call other seeder classes here to seed your data
+        $this->call(UsersSeeder::class);
+        $this->call(AnimalTypesSeeder::class);
+        $this->call(AnimalsSeeder::class);
+        // Add seeder classes as needed
     }
 }

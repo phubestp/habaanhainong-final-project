@@ -12,15 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('applicants', function (Blueprint $table) {
-            $table->id();
-            $table->string('username');
-            $table->uuid('post_id');
-
-            $table->foreign('username')->references('username')->on('users');
-            $table->foreign('post_id')->references('id')->on('posts');
-
+            $table->string('applicants');
+            $table->uuid('post');
             $table->string('reason');
-            $table->string('status')->default('รอการติดต่อ');
+            $table->string('status');
             $table->timestamps();
         });
     }

@@ -2,25 +2,32 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\belongsTo;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Post;
-use App\Models\AnimalType;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Animal extends Model
 {
-    use HasFactory, HasUuids;
+    use HasFactory;
 
-    public function post(): belongsTo
+    protected $keyType = 'uuid';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<string, string>
+     */
+    public $fillable = [
+        'animal_id',
+        'name',
+        'sex',
+        'breed',
+        'animal_type',
+    ];
+
+    // Define a many-to-one relationship with AnimalType (an animal belongs to an animal type)
+    public function animalType() : BelongsTo
     {
-        return $this->belongsTo(Post::class);
+        return $this->belongsTo(AnimalType::class, 'animal_type', 'Type');
     }
-
-    public function animal_type(): belongsTo
-    {
-        return $this->hasMany(AnimalType::class);
-    }
-
 }

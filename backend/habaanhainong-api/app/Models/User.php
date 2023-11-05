@@ -2,83 +2,43 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Tymon\JWTAuth\Contracts\JWTSubject;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-
-
-class User extends Authenticatable implements JWTSubject
+class User extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory;
 
-    protected $primaryKey = 'username';
-    protected $keyType = 'string';
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'username',
-        'email',
-        'password',
-    ];
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-        'password' => 'hashed',
-    ];
-
-    public function getJWTIdentifier()
+    // Define a one-to-many relationship with Posts (a user has many posts)
+    public function posts() : HasMany
     {
-        return $this->getKey();
+        return $this->hasMany(Post::class, 'author', 'username');
     }
 
-    /**
-     * Return a key value array, containing any custom claims to be added to the JWT.
-     *
-     * @return array
-     */
-    public function getJWTCustomClaims()
+    // Define a many-to-many relationship with Follows (a user can follow many posts)
+    public function followedPosts() : BelongsToMany
     {
-        return [];
+        return $this->belongsToMany(Post::class, 'follows', 'user', 'post');
     }
 
-    public function posts() //follow
+// Define a one-to-many relationship with Reports (a user can make many reports)
+    public function reports(): HasMany
     {
-        return $this->belongsToMany(Post::class);
+        return $this->hasMany(Report::class, 'reporter', 'username');
     }
 
-    public function adopters()
+    // Define a one-to-many relationship with BannedUsers (a user can ban other users)
+    public function bannedUsers(): HasMany
     {
-        return $this->belongsToMany(Applicant::class);
+        return $this->hasMany(BannedUser::class, 'by_user', 'username');
     }
 
-    public function all_posts(): HasMany
+    // Define a many-to-many relationship with Applicants (a user can apply to many posts)
+    public function appliedPosts(): BelongsToMany
     {
-        return $this->hasMany(Post::class);
+        return $this->belongsToMany(Post::class, 'applicants', 'applicants', 'post');
     }
-
 }
