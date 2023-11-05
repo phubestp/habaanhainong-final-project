@@ -46,5 +46,8 @@ class AnimalTypeController extends Controller
     public function destroy(AnimalType $animalType)
     {
         $animalType->delete();
+        return response()->json([
+            'message' => 'delete success'
+        ])
     }
 }

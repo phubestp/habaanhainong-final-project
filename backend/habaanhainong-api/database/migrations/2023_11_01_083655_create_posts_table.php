@@ -26,7 +26,6 @@ return new class extends Migration
             $table->uuid('animal_id');
             $table->foreign('animal_id')->references('id')->on('animals');
 
-
             $table->timestamps();
         });
     }
