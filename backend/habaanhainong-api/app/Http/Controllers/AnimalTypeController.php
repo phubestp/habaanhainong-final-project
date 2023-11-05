@@ -48,6 +48,6 @@ class AnimalTypeController extends Controller
         $animalType->delete();
         return response()->json([
             'message' => 'delete success'
-        ])
+        ]);
     }
 }
