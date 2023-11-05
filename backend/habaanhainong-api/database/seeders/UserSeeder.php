@@ -16,12 +16,14 @@ class UserSeeder extends Seeder
     {
         //
         $user = new User();
+        $user->id = 0;
         $user->username = 'User01';
         $user->email = 'user01@example.com';
         $user->password = Hash::make('password'); // You might need to replace Hash::make with the actual password hashing method you are using
         $user->firstname = 'user';
         $user->lastname = 'example';
         $user->isAdmin = false;
+        $user->isBan = false;
         $user->phone_no = '000-000-0000';
         $user->facebook = 'user example';
         $user->instagram = 'user01';

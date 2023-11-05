@@ -25,11 +25,13 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $post = new Post();
-        $title = $request->string('title');
-        $description = $request->string('description');
-        $address = $request->string('address');
-        $animal_id = $request->string('animal_id');
-
+        $username = $request->get('username');
+        $title = $request->get('title');
+        $description = $request->get('description');
+        $address = $request->get('address');
+        $animal_id = $request->get('animal_id');
+        
+        $post->username = $username;
         $post->title = $title;
         $post->description = $description;
         $post->address = $address;
@@ -71,10 +73,10 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        $title = $request->string('title');
-        $description = $request->string('description');
-        $address = $request->string('address');
-        $animal_id = $request->string('animal_id');
+        $title = $request->get('title');
+        $description = $request->get('description');
+        $address = $request->get('address');
+        $animal_id = $request->get('animal_id');
 
         $post->title = $title;
         $post->description = $description;
