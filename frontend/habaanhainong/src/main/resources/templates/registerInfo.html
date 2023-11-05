@@ -8,45 +8,130 @@
 <body class="bg-background text-primary">
 <div th:insert="~{fragments/navbar :: navbar}"></div>
 
-<div class="flex flex-col mx-auto p-16 pt-20 container items-center justify-self-center" style="padding-left: 180px; padding-right: 180px">
-    <!-- register box -->
-    <form class="bg-white px-20 lg:py-16 border my-5 grid grid-cols-2 border-primary justify-center lg:w-2/3" action="#" th:action="@{/register-info}" method="POST">
-        <h1 class="text-4xl mb-3 font-semibold lg:mx-0 justify-center flex lg:flex-row">ข้อมูลส่วนตัว</h1>
-        <div class="justify-center flex">
-            <img th:src="@{/images/camera.png}" alt="camera" width="133" height="133" style="border-radius:50%" class="border mt-6">
+
+<div class="flex flex-col mx-auto p-16 pt-20 container px-120px">
+    <div class="bg-white p-16 border border-primary my-5 flex flex-col w-full">
+        <div class="flex flex-col justify-center items-center relative w-full">
+            <form action="#" th:action="@{/register-info}" method="POST">
+                <div class="flex justify-center">
+                    <h1 class="justify-center text-4xl mb-3 font-semibold"> ข้อมูลส่วนตัว </h1>
+                </div>
+                <div class="flex justify-center">
+                    <img class="rounded-full w-40 h-40" th:src="@{/images/camera.png}" alt="image author">
+                </div>
+                <div class="flex justify-center">
+                    <button class=" border border-primary py-3 px-8 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold md:max-w-fit mx-auto lg:mx-0 bg-white w-full">
+                        ใส่รูปโปรไฟล์
+                        <input for="file_input" type="file" hidden> </input>
+                    </button>
+                </div>
+
+                <div>
+                    <!-- 2xl = 24 -->
+                    <h3 class="text-2xl mb-1 font-semibold mb-4"> ข้อมูลส่วนตัว </h3>
+                </div>
+                <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
+                    <!-- ชื่อ -->
+                    <div class="flex flex-col">
+                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900"> ชื่อ </label>
+                        <input id = "name" type="text"
+                               class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+                               placeholder="" required>
+                    </div>
+                    <!-- นามสกุล -->
+                    <div class="flex flex-col">
+                        <label for="surname" class="block mb-2 text-sm font-medium text-gray-900"> นามสกุล </label>
+                        <input id = "surname" type="text"
+                               class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+                               placeholder="" required>
+                    </div>
+                </div>
+
+                <!--ติดต่อ-->
+                <div class="mt-5">
+                    <h3 class="text-2xl mb-1 font-semibold"> ช่องทางติดต่อ </h3>
+                </div>
+
+                <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
+                    <!-- เบอร์โทรศัพท์ชื่อ -->
+                    <div class="flex flex-col">
+                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900"> เบอร์โทรศัพท์ </label>
+                        <input id = "tel" type="text"
+                               class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+                               placeholder="" required>
+                    </div>
+                    <!-- FB-->
+                    <div class="flex flex-col">
+                        <label for="surname" class="block mb-2 text-sm font-medium text-gray-900"> Facebook Link </label>
+                        <input id = "facebook" type="text"
+                               class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+                               placeholder="" required>
+                    </div>
+                    <!-- IG -->
+                    <div class="flex flex-col lg: w-1/2 w-full">
+                        <label for="username" class="block mb-2 text-sm font-medium text-gray-900"> Instagram Link </label>
+                        <input id = "ig" type="text"
+                               class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+                               placeholder="" required>
+                    </div> <div></div>
+
+                    <div class="flex flex-row space-x-4  w-full">
+                        <input type="checkbox" id="privacyPolicyAndTermOfService" style="width: 20px; height: 20px; margin-right: 2px" required>
+                        <span style="font-size: 12px">คุณได้ยอมรับข้อตกลงและนโยบายการใช้ข้อมูลส่วนบุคคล</span>
+                    </div>
+                </div>
+
+                <div class="flex justify-center">
+                    <button type="submit" class="w-[280px] h-[44px] text-[16px] font-semibold rounded border shadow-[5px_5px_0px_0px_#004225]" onclick="" style="margin-top: 60px">
+                        Login</button>
+                </div>
+
+
+            </form>
         </div>
-        <div class="flex justify-center mt-6">
-            <button type="button" class=" h-[44px] text-[16px] font-semibold rounded border shadow-[5px_5px_0px_0px_#004225]" onclick="" style="width: 184px">ใส่รูปโปรไฟล์</button>
-        </div>
-        <h2 class="font-semibold" style="font-size: 24px; margin-top: 40px; margin-bottom: 20px">ข้อมูลส่วนตัว</h2>
-
-        <label class="font-semibold mb-2" style="font-size: 16px" for="firstname">ชื่อ *จำเป็น</label>
-        <input type="text" id="firstname" name="firstname" class="border border-[#004225] h-[47px]" style="width: 289px; padding-left: 10px; padding-right: 5px">
-
-        <label class="font-semibold mb-2" style="font-size: 16px" for="lastname">นามสกุล</label>
-        <input type="text" id="lastname" name="lastname" class="border border-[#004225] h-[47px]" style="width: 289px; padding-left: 10px; padding-right: 5px">
-
-        <h2 class="font-semibold" style="font-size: 24px; margin-top: 40px; margin-bottom: 20px">ช่องทางติดต่อ</h2>
-
-        <label class="font-semibold mb-2" style="font-size: 16px" for="phone_no">เบอร์โทรศัพท์</label>
-        <input type="text" id="phone_no" name="phone_no" class="border border-[#004225] h-[47px]" style="width: 289px; padding-left: 10px; padding-right: 5px">
-
-        <label class="font-semibold mb-2" style="font-size: 16px" for="facebook">Facebook link</label>
-        <input type="text" id="facebook" name="facebook" class="border border-[#004225] h-[47px]" style="width: 289px; padding-left: 10px; padding-right: 5px">
-
-        <label class="font-semibold mb-2" style="font-size: 16px" for="instagram">Instagram link</label>
-        <input type="text" id="instagram" name="instagram" class="border border-[#004225] h-[47px]" style="width: 289px; padding-left: 10px; padding-right: 5px">
-
-        <label class="font-semibold mb-2" style="font-size: 16px" for="instagram">Instagram link</label>
-        <input type="text" id="instagram" name="line" class="border border-[#004225] h-[47px]" style="width: 289px; padding-left: 10px; padding-right: 5px">
-
-        <input type="checkbox" id="privacyPolicyAndTermOfService" style="width: 20px; height: 20px; margin-right: 2px" required>
-        <span style="font-size: 12px">คุณได้ยอมรับข้อตกลงและนโยบายการใช้ข้อมูลส่วนบุคคล</span>
-
-        <button type="submit" class="w-[280px] h-[44px] text-[16px] font-semibold rounded border shadow-[5px_5px_0px_0px_#004225]" onclick="" style="margin-top: 60px">Login</button>
-
-    </form>
+    </div>
 </div>
+
+<!--<div class="flex flex-col mx-auto p-16 pt-20 container items-center justify-self-center" style="padding-left: 180px; padding-right: 180px">-->
+<!--    &lt;!&ndash; register box &ndash;&gt;-->
+<!--    <div class="bg-white px-20 lg:py-16 border my-5 grid grid-cols-2 border-primary justify-center lg:w-2/3">-->
+<!--        <form class="" action="#" th:action="@{/register-info}" method="POST">-->
+<!--            <h1 class="text-4xl mb-3 font-semibold lg:mx-0 justify-center flex lg:flex-row">ข้อมูลส่วนตัว</h1>-->
+<!--            <div class="justify-center flex">-->
+<!--                <img th:src="@{/images/camera.png}" alt="camera" width="133" height="133" style="border-radius:50%" class="border mt-6">-->
+<!--            </div>-->
+<!--            <div class="flex justify-center mt-6">-->
+<!--                <button type="button" class=" h-[44px] text-[16px] font-semibold rounded border shadow-[5px_5px_0px_0px_#004225]" onclick="" style="width: 184px">ใส่รูปโปรไฟล์</button>-->
+<!--            </div>-->
+<!--            <h2 class="font-semibold" style="font-size: 24px; margin-top: 40px; margin-bottom: 20px">ข้อมูลส่วนตัว</h2>-->
+
+<!--            <label class="font-semibold mb-2" style="font-size: 16px" for="firstname">ชื่อ *จำเป็น</label>-->
+<!--            <input type="text" id="firstname" name="firstname" class="border border-[#004225] h-[47px]" style="width: 289px; padding-left: 10px; padding-right: 5px">-->
+
+<!--            <label class="font-semibold mb-2" style="font-size: 16px" for="lastname">นามสกุล</label>-->
+<!--            <input type="text" id="lastname" name="lastname" class="border border-[#004225] h-[47px]" style="width: 289px; padding-left: 10px; padding-right: 5px">-->
+
+<!--            <h2 class="font-semibold" style="font-size: 24px; margin-top: 40px; margin-bottom: 20px">ช่องทางติดต่อ</h2>-->
+
+<!--            <label class="font-semibold mb-2" style="font-size: 16px" for="phone_no">เบอร์โทรศัพท์</label>-->
+<!--            <input type="text" id="phone_no" name="phone_no" class="border border-[#004225] h-[47px]" style="width: 289px; padding-left: 10px; padding-right: 5px">-->
+
+<!--            <label class="font-semibold mb-2" style="font-size: 16px" for="facebook">Facebook link</label>-->
+<!--            <input type="text" id="facebook" name="facebook" class="border border-[#004225] h-[47px]" style="width: 289px; padding-left: 10px; padding-right: 5px">-->
+
+<!--            <label class="font-semibold mb-2" style="font-size: 16px" for="instagram">Instagram link</label>-->
+<!--            <input type="text" id="instagram" name="instagram" class="border border-[#004225] h-[47px]" style="width: 289px; padding-left: 10px; padding-right: 5px">-->
+
+<!--            <label class="font-semibold mb-2" style="font-size: 16px" for="instagram">Instagram link</label>-->
+<!--            <input type="text" id="instagram" name="line" class="border border-[#004225] h-[47px]" style="width: 289px; padding-left: 10px; padding-right: 5px">-->
+
+<!--            <input type="checkbox" id="privacyPolicyAndTermOfService" style="width: 20px; height: 20px; margin-right: 2px" required>-->
+<!--            <span style="font-size: 12px">คุณได้ยอมรับข้อตกลงและนโยบายการใช้ข้อมูลส่วนบุคคล</span>-->
+
+<!--            <button type="submit" class="w-[280px] h-[44px] text-[16px] font-semibold rounded border shadow-[5px_5px_0px_0px_#004225]" onclick="" style="margin-top: 60px">Login</button>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--</div>-->
 
 <footer th:insert="~{fragments/footer :: footer}"></footer>
 
