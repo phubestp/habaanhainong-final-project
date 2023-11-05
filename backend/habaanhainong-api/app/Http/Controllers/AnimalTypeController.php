@@ -45,6 +45,6 @@ class AnimalTypeController extends Controller
      */
     public function destroy(AnimalType $animalType)
     {
-        $animal_type->delete();
+        $animalType->delete();
     }
 }
