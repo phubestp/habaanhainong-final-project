@@ -1,4 +1,4 @@
 package ku.cs.habaanhainong.service;
 
-public class PostAPI {
+public class PostsAPI {
 }
