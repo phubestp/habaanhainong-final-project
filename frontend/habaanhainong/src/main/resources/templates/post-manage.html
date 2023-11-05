@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title> จัดการโพสต์ </title>
+    <!-- tailwindcss -->
+    <link rel="stylesheet" th:href="@{/css/output.css}">
+    <!-- flowbite cdn -->
+    <link th:href="@{https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css}"  rel="stylesheet" />
+</head>
+
+<body class="bg-background text-primary">
+
+<div th:insert="~{fragments/navbar :: navbar}"></div>
+
+<div class="flex flex-col mx-auto p-16 pt-20 container">
+    <div class="flex justify-center items-center relative w-full">
+        <h1 class="text-4xl mb-3 font-semibold p-16"> จัดการโพสต์ </h1>
+    </div>
+
+    <div class="bg-white p-16 border border-primary my-5 flex flex-col w-full">
+        <div >
+            <div th:each="post : ${postList}" class="grid grid-cols-1 bg-background px-16 py-8 border border-primary my-5 lg:grid-cols-2">
+                <div class="flex flex-col">
+                    <div class="flex flex-row gap-x-4">
+                        <div> <img class="rounded-full w-12 h-12" th:src="@{/images/undraw_contact_us_re_4qqt.svg}" alt="image author"></div>
+                        <div> <p class="py-3" th:text="${post.get('name')}" > </p> </div>
+                        <div> <p class="py-3" th:text="${post.get('create')}" > </p> </div>
+                    </div>
+                    <div>
+                        <label class="text-2xl block font-semibold py-4" th:text="${post.get('header')}" > </label>
+                    </div>
+                    <div>
+                        <p th:text="${post.get('detail')}">
+                        </p>
+                    </div>
+                    <!--button-->
+                    <div class="flex flex-row space-x-4 mt-8 justify-startitems-center">
+                        <div>
+                            <button class="border border-primary py-3 px-8 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold md:max-w-fit mx-auto lg:mx-0 bg-white w-full">
+                                ดูรายละเอียด
+                            </button>
+                        </div>
+                        <div>
+                            <button th:replace="fragments/delete-post-btn :: delete-post-btn"></button>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <img class="h-auto max-w-full" th:src="@{/images/undraw_contact_us_re_4qqt.svg}" alt="image description">
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<footer th:insert="~{fragments/footer :: footer}"></footer>
+<!-- flowbite cdn -->
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js}">
+
+</script>
+
+</body>

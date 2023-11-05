@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> อ่านโพสต์ </title>
+</head>
+<body>
+
+</body>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <!-- tailwindcss -->
+    <link rel="stylesheet" th:href="@{/css/output.css}">
+    <!-- flowbite cdn -->
+    <link th:href="@{https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css}"  rel="stylesheet" />
+</head>
+
+<body class="bg-background text-primary">
+<div th:insert="~{fragments/navbar :: navbar}"></div>
+
+<div class="flex flex-col mx-auto p-16 pt-15 container">
+    <!- header ->
+    <div class="bg-white p-16 border border-primary my-5 flex flex-col w-full">
+        <div class="grid grid-col-1 lg:grid-cols-4">
+            <div class="col-span-3">
+                <h1 class="text-4xl mb-3 font-semibold pt-15"> หาบ้านให้น้องหน่อยค่ะ เจอน้องอยู่ข้างทาง </h1>
+            </div>
+
+            <div class="col-span-1 flex flex-col items-end">
+                <button data-modal-target="defaultModal" data-modal-toggle="defaultModal" class="text-secondary text-left" type="button">
+                    <img th:src="@{/images/report-flag-1420-svgrepo-com.svg}" alt="paw" width="20" class="inline mr-1">
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Main modal -->
+        <div id="defaultModal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+            <div class="relative w-full max-w-2xl max-h-full">
+                <!-- Modal content -->
+                <div class="relative bg-white rounded-lg shadow ">
+                    <!-- Modal body -->
+                    <div class="p-6 py-8 flex flex-col items-center">
+                        <img th:src="@{/images/triangle-exclamation-svgrepo-com.svg}" alt="paw" width="150"  class="my-4">
+                        <h3 class="text-3xl mb-1 text-red">รายงาน</h3>
+                        <p> คุณรายงานโพสต์นี้ทำไม?" </p>
+                        <div class="flex flex-col pt-3 space-x-2 space-y-2 items-center">
+                            <div class="flex-row">
+                                <button class="border border-primary p-3 rounded-md font-semibold max-w-fit bg-white hover:bg-secondary transition-all">
+                                    เนื้อหาไม่เหมาะสม
+                                </button>
+                                <button class="border border-primary p-3 rounded-md font-semibold max-w-fit bg-white hover:bg-secondary transition-all">
+                                    ข้อมูลเท็จ
+                                </button>
+                                <button class="border border-primary p-3 rounded-md font-semibold max-w-fit bg-white hover:bg-secondary transition-all">
+                                    เข้าค่ายหลอกลอง
+                                </button>
+                            </div>
+                            <div class="flex-row">
+                                <button class="border border-primary p-3 rounded-md font-semibold max-w-fit bg-white hover:bg-secondary transition-all">
+                                    สแปม
+                                </button>
+                                <button class="border border-primary p-3 rounded-md font-semibold max-w-fit bg-white hover:bg-secondary transition-all">
+                                    ใช้ถ้อคำหยาบคาย
+                                </button>
+                                <button class="border border-primary p-3 rounded-md font-semibold max-w-fit bg-white hover:bg-secondary transition-all">
+                                    มีความรุนแรง
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="pt-4">
+                            <div>
+                                บอกเหตุผลที่ต้องรายงานเพิ่มเติมได้มั้ย?
+                            </div>
+                            <div class="">
+                                <form action="" class="mt-4 flex flex-col items-center">
+                                    <div class="py-3 flex flex-col lg:w-1/2 w-full">
+                                        <textarea id="description"
+                                                  class="block p-2.5 w-full text-sm  bg-white rounded-lg border border-primary focus:ring-blue-500 focus:border-blue-500 min-h-[20px]"
+                                                  placeholder="" required>
+                                        </textarea>
+                                    </div>
+                                    <div>
+                                        <button class="border border-primary py-3 px-8 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold">
+                                            ยืนยันการรายงาน
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!- author ->
+
+        <div class="flex flex-row gap-x-4">
+            <div> <img class="rounded-full w-12 h-12" th:src="@{/images/undraw_contact_us_re_4qqt.svg}" alt="image author"> </div>
+            <div> <p class="py-3"> น้องมัวร์มัวร์ แรคคูนซ่า </p> </div>
+            <div> <p class="py-3"> 23 กันยายน 2023 </p> </div>
+        </div>
+
+        <!- grid ->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-4 pt-10">
+            <!- picture ->
+            <div class="col-span-2 items-center justify-center relative w-full">
+                <div class="flex items-center justify-center">
+                    <img class="h-auto max-w-full" th:src="@{/images/undraw_contact_us_re_4qqt.svg}" alt="image description">
+                </div>
+            </div>
+            <!- animal details ->
+            <div class="col-span-2 bg-background px-16 py-8 border border-primary my-5 ">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-y-7">
+                    <div class="mb-2">
+                        <label class="block font-semibold"> ชื่อ </label>
+                        <p> น้อน </p>
+                    </div>
+                    <div class="mb-2">
+                        <label class="block font-semibold"> ประเภทสัตว์ </label>
+                        <p > แมว </p>
+                    </div>
+                    <div class="mb-2">
+                        <label class="block font-semibold"> พิกัด </label>
+                        <p> เกษตรศาสตร์ บางเขน </p>
+                    </div>
+                    <div class="mb-2">
+                        <label class="block font-semibold"> เพศ </label>
+                        <p> เพศผู้ </p>
+                    </div>
+                    <div class="mb-2">
+                        <label class="block font-semibold"> สายพันธุ์ </label>
+                        <p > ไม่ทราบ </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- contact details
+            <div class="bg-background p-8 border border-primary my-5 mx-auto ">
+                <div class="grid grid-col-1 gap-y-9">
+                    <div class="flex gap-x-4 mb-2">
+                        <img th:src="@{/images/paw-1-svgrepo-com.svg}" alt="paw" width="12">
+                        <p> 012-345-6789 </p>
+                    </div>
+                    <div class="flex gap-x-4 mb-2">
+                        <img th:src="@{/images/paw-1-svgrepo-com.svg}" alt="paw" width="12">
+                        <p><a href="https://web.facebook.com/xmickeys/"> facebook.com/xmickeys </a></p>
+                    </div>
+                    <div class="flex gap-x-4 mb-2">
+                        <img th:src="@{/images/paw-1-svgrepo-com.svg}" alt="paw" width="12">
+                        <p><a href="https://www.instagram.com/xmickeys/"> instagram.com/xmickeys </a></p>
+                    </div>
+                </div>
+            </div>
+            -->
+
+            <!- content ->
+            <div class="col-span-3">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Est pellentesque elit ullamcorper dignissim cras. Sagittis orci a scelerisque purus. Donec adipiscing tristique risus nec feugiat in fermentum posuere urna. Nunc scelerisque viverra mauris in aliquam sem. Non tellus orci ac auctor augue mauris augue. Condimentum id venenatis a condimentum vitae sapien. Feugiat sed lectus vestibulum mattis ullamcorper velit. Est ante in nibh mauris cursus mattis. Diam ut venenatis tellus in metus vulputate eu scelerisque felis. Quam quisque id diam vel quam elementum pulvinar. Imperdiet nulla malesuada pellentesque elit eget. Est ullamcorper eget nulla facilisi etiam dignissim. Massa sapien faucibus et molestie ac feugiat sed.
+                </p>
+            </div>
+
+            <!- button ->
+            <dic class="col-span-1">
+                <div class="flex flex-row gap-y-5 lg:gap-x-10">
+                    <div>
+                        <button class="border border-primary py-3 px-8 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold md:max-w-fit mx-auto lg:mx-0 bg-white w-full">
+                            <img th:src="@{/images/paw-1-svgrepo-com.svg}" alt="paw" width="20" class="inline mr-1">
+                            ติดตาม 20 คน
+                        </button>
+                    </div>
+                    <div>
+                        <button class="border border-primary py-3 px-8 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold md:max-w-fit mx-auto lg:mx-0 bg-white w-full">
+                            <img th:src="@{/images/paw-1-svgrepo-com.svg}" alt="paw" width="20" class="inline mr-1">
+                            ขอรับเลี้ยง
+                        </button>
+                    </div>
+                </div>
+            </dic>
+
+
+
+        </div>
+    </div>
+</div>
+
+
+<footer th:insert="~{fragments/footer :: footer}"></footer>
+<!-- flowbite cdn -->
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js}"></script>
+
+</body>

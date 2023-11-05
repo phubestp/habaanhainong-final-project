@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 @Controller
 public class HomeController {
-
     private final AnimalService animalService = new AnimalService();
 
     @RequestMapping("/")
