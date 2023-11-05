@@ -14,17 +14,24 @@ import java.util.Map;
 @Controller
 public class SignupInfoController {
     @GetMapping("/register-info")
-    public String getSignupInfoPage() {
+    public String getSignupInfoPage(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Users users = ((Users) session.getAttribute("users"));
+        if(users == null) {
+            return "register";
+        }
         return "registerInfo"; // return หน้าฟอร์ม signup.html
     }
 
     @PostMapping("/register-info")
     public String signupUserInfo(@RequestParam HashMap<String,String> params, Model model, HttpServletRequest request) {
+
         HttpSession session = request.getSession();
         Users users = ((Users) session.getAttribute("users"));
 
         SignupService signupService = new SignupService();
         signupService.updateUser(users, params);
+        session.setAttribute("users", null);
         return "home";
     }
 
