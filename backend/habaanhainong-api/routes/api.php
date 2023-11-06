@@ -32,8 +32,8 @@ Route::get('/posts/animal-type/{animal_type}', [PostController::class, 'showWith
 //follow
 Route::get('/posts/my-follow-post/{username}', [FollowController::class, 'getFollowPosts']);
 Route::get('/followers/{post_id}', [FollowController::class, 'getFollowersCount']);
-Route::gett('/follow/{username}/{post_id}', [FollowController::class, 'follow']);
-Route::get('/unfollow/{username}/{post_id}', [FollowController::class, 'unfollow']);
+Route::post('/follow/{username}/{post_id}', [FollowController::class, 'follow']);
+Route::post('/unfollow/{username}/{post_id}', [FollowController::class, 'unfollow']);
 
 Route::post('/applicant', [ApplicantController::class, 'applicant']);
 Route::get('/applicants/{post_id}', [ApplicantController::class, 'getApplicants']);
