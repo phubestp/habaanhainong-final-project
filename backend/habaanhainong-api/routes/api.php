@@ -23,7 +23,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('/animals', AnimalController::class); 
 Route::resource('/animals-type', AnimalTypeController::class);
-Route::delete('/animals-type/delete', [AnimalTypeController::class, 'delete']); 
 Route::resource('/posts', PostController::class);
 Route::put('/edit-profile/{username}', [UserController::class, 'editProfile']);
 
