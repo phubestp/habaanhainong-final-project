@@ -18,12 +18,12 @@ class Follow extends Model
     // Define a many-to-one relationship with Users (a follow record belongs to a user)
     public function user() : BelongsTo
     {
-        return $this->belongsTo(User::class, 'user', 'username');
+        return $this->belongsTo(User::class, 'user', 'id');
     }
 
     // Define a many-to-one relationship with Posts (a follow record belongs to a post)
     public function post(): BelongsTo
     {
-        return $this->belongsTo(Post::class, 'post', 'post_id');
+        return $this->belongsTo(Post::class, 'post', 'id');
     }
 }

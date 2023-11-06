@@ -12,14 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('images', function (Blueprint $table) {
-            $table->uuid('image_id')->primary();
-            $table->uuid('from_post');
-            $table->binary('image_file');
+            $table->uuid('id')->primary();
+            $table->uuid('from_post')->nullable();
+            $table->string('file_name')->nullable();
             $table->string('file_extension');
             $table->timestamps();
         });
         Schema::table('images', function (Blueprint $table) {
-            $table->foreign('from_post')->references('post_id')->on('posts');
+            $table->foreign('from_post')->references('id')->on('posts');
         });
     }
 

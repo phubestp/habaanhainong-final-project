@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Animal extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
 
     protected $keyType = 'uuid';
 
@@ -18,16 +19,22 @@ class Animal extends Model
      * @var array<string, string>
      */
     public $fillable = [
-        'animal_id',
+        'id',
         'name',
         'sex',
         'breed',
-        'animal_type',
+        'animal_type_id',
+        'age',
     ];
 
     // Define a many-to-one relationship with AnimalType (an animal belongs to an animal type)
-    public function animalType() : BelongsTo
+    public function animalType()
     {
-        return $this->belongsTo(AnimalType::class, 'animal_type', 'Type');
+        return $this->belongsTo(AnimalType::class, "animal_type_id");
+    }
+
+    public function post()
+    {
+        return $this->belongsTo(Post::class);
     }
 }

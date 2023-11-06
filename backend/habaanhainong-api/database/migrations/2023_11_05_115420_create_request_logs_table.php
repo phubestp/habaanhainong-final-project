@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('follows', function (Blueprint $table) {
-            $table->string('post');
-            $table->string('user');
+        Schema::create('request_logs', function (Blueprint $table) {
+            $table->id();
+            $table->text('content');
+            $table->string('method')->nullable();
+            $table->string('url')->nullable();
             $table->timestamps();
         });
-        Schema::table('follows', function (Blueprint $table) {
-            $table->foreign('post')->references('id')->on('posts');
-            $table->foreign('user')->references('id')->on('users');
-        });
+
     }
 
     /**
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('follows');
+        Schema::dropIfExists('request_logs');
     }
 };

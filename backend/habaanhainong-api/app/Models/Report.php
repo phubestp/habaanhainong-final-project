@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Report extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
 
     protected $keyType = 'uuid';
     protected $fillable = [
@@ -23,18 +24,18 @@ class Report extends Model
     // Define a many-to-one relationship with Users (a report belongs to a reporter)
     public function reporter() : BelongsTo
     {
-        return $this->belongsTo(User::class, 'reporter', 'username');
+        return $this->belongsTo(User::class, 'reporter', 'id');
     }
 
     // Define a many-to-one relationship with Users (a report belongs to a reported user)
     public function reported(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'reported', 'username');
+        return $this->belongsTo(User::class, 'reported', 'id');
     }
 
     // Define a many-to-one relationship with Posts (a report belongs to a post)
     public function post(): BelongsTo
     {
-        return $this->belongsTo(Post::class, 'from_post', 'post_id');
+        return $this->belongsTo(Post::class, 'from_post', 'id');
     }
 }

@@ -19,23 +19,26 @@ class AnimalsSeeder extends Seeder
 
         $animal = new Animal();
         $animal->name = "Whiskers";
-        $animal->animal_type = $cat->type;
+        $animal->animal_type_id = $cat->id;
         $animal->breed = "Siamese";
         $animal->sex = "Male";
+        $animal->age = 3;
         $animal->save();
 
         $animal = new Animal();
         $animal->name = "Porky";
-        $animal->animal_type = $pig->type;
+        $animal->animal_type_id = $pig->id;
         $animal->breed = "Berkshire";
         $animal->sex = "Female";
+        $animal->age = 2;
         $animal->save();
 
         $animal = new Animal();
         $animal->name = "Rooster";
-        $animal->animal_type = $chicken->type;
+        $animal->animal_type_id = $chicken->id;
         $animal->breed = "Rhode Island Red";
         $animal->sex = "Male";
+        $animal->age = 1;
         $animal->save();
     }
 }

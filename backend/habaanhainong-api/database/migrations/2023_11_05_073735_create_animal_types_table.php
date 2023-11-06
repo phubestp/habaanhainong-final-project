@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('animal_types', function (Blueprint $table) {
-            $table->string('Type')->primary();
+            $table->id();
+            $table->string('type')->unique();
             $table->timestamps();
         });
     }

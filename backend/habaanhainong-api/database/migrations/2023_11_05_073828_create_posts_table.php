@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('posts', function (Blueprint $table) {
-            $table->uuid('post_id')->primary();
+            $table->uuid('id')->primary();
             $table->string('author');
             $table->string('title');
             $table->string('description');
@@ -23,8 +23,8 @@ return new class extends Migration
         });
 
         Schema::table('posts', function (Blueprint $table) {
-            $table->foreign('author')->references('username')->on('users');
-            $table->foreign('animal_id')->references('animal_id')->on('animals')->onDelete('cascade');
+            $table->foreign('author')->references('id')->on('users');
+            $table->foreign('animal_id')->references('id')->on('animals')->onDelete('cascade');
         });
     }
 

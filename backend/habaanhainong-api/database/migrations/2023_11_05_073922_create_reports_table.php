@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('reports', function (Blueprint $table) {
-            $table->uuid('report_id');
+            $table->uuid('id');
             $table->string('reporter');
             $table->string('reported');
             $table->uuid('from_post')->nullable();
@@ -21,10 +21,10 @@ return new class extends Migration
             $table->timestamps();
         });
         Schema::table('reports', function (Blueprint $table) {
-            $table->primary('report_id');
-            $table->foreign('reporter')->references('username')->on('users');
-            $table->foreign('reported')->references('username')->on('users');
-            $table->foreign('from_post')->references('post_id')->on('posts');
+            $table->primary('id');
+            $table->foreign('reporter')->references('id')->on('users');
+            $table->foreign('reported')->references('id')->on('users');
+            $table->foreign('from_post')->references('id')->on('posts');
         });
     }
 

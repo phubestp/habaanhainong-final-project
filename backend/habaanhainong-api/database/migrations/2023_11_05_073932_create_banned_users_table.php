@@ -20,9 +20,9 @@ return new class extends Migration
             $table->timestamps();
         });
         Schema::table('banned_users', function (Blueprint $table) {
-            $table->foreign('banned_user')->references('username')->on('users');
-            $table->foreign('from_report')->references('report_id')->on('reports');
-            $table->foreign('by_user')->references('username')->on('users');
+            $table->foreign('banned_user')->references('id')->on('users');
+            $table->foreign('from_report')->references('id')->on('reports');
+            $table->foreign('by_user')->references('id')->on('users');
         });
     }
 

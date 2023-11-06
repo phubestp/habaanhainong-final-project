@@ -1,11 +1,6 @@
 <?php
 
 use App\Http\Controllers\AnimalController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\FollowController;
-use App\Http\Controllers\ApplicantController;
 use App\Http\Controllers\AnimalTypeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,35 +16,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('/animals', AnimalController::class); 
-Route::resource('/animals-type', AnimalTypeController::class); 
-Route::resource('/posts', PostController::class);
-Route::put('/edit-profile/{username}', [UserController::class, 'editProfile']);
+//AnimalType
+Route::get('/animal-types', [AnimalTypeController::class, 'getAll']);
+Route::get('/animal-types/list', [AnimalTypeController::class, 'getTypeList']);
+Route::get('/animal-types/animals/{animal_id}', [AnimalTypeController::class, 'getTypesByAnimalId']);
+Route::get('/animal-types/animals', [AnimalTypeController::class, 'getAnimals']);
+Route::post('/animal-types', [AnimalTypeController::class, 'add']);
+Route::put('/animal-types/{type}', [AnimalTypeController::class, 'saveWithType']);
+Route::put('/animal-types', [AnimalTypeController::class, 'save']);
+Route::delete('/animal-types/{type}', [AnimalTypeController::class, 'deleteWithType']);
+Route::delete('/animal-types', [AnimalTypeController::class, 'delete']);
 
-Route::get('/posts/{username}', [PostController::class, 'showOwnerPost']);
-Route::get('/posts/animal-type/{animal_type}', [PostController::class, 'showWithAnimalTypeFilter']);
 
-//follow
-Route::get('/posts/my-follow-post/{username}', [FollowController::class, 'getFollowPosts']);
-Route::post('/follow', [FollowController::class, 'follow']);
-Route::post('/unfollow', [FollowController::class, 'unfollow']);
-
-Route::post('/applicant', [ApplicantController::class, 'applicant']);
-Route::get('/applicants/{post_id}', [ApplicantController::class, 'getApplicants']);
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::group([
-    'middleware' => 'api',
-    'prefix' => 'auth'
-], function ($router) {
-    Route::post('login', [AuthController::class, 'login']);
-    Route::post('logout', [AuthController::class, 'logout']);
-    Route::post('refresh', [AuthController::class, 'refresh']);
-    Route::post('me', [AuthController::class, 'me']);
-});
-
-Route::post('/register', [AuthConroller::class, 'register']);
-Route::post('/reset-password', [AuthController::class, 'reset-password']);
+//Animal
+Route::get('/animals', [AnimalController::class, 'getAll']);
+Route::get('/animals/{id}', [AnimalController::class, 'getFromId']);
+Route::get('/animals/type', [AnimalController::class, 'getAnimalsByTypeObject']);
+Route::get('/animals/type/{type}', [AnimalController::class, 'getAnimalsByType']);
+Route::get('/animals/post/{post_id}', [AnimalController::class, 'getAnimalsByPost']);
+Route::post('/animals', [AnimalController::class, 'add']);
+Route::put('/animals/{id}', [AnimalController::class, 'saveWithId']);
+Route::put('/animals', [AnimalController::class, 'save']);
+Route::delete('/animals/{id}', [AnimalController::class, 'deleteWithId']);
+Route::delete('/animals', [AnimalController::class, 'delete']);

@@ -9,14 +9,15 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class AnimalType extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'Type';
+
+    protected $primaryKey = 'id';
     public $incrementing = false;
     protected $keyType = 'string';
     protected $fillable = [
-        'Type',
+        'type',
     ];
 
-    public function animals() : HasMany
+    public function animals()
     {
         return $this->hasMany(Animal::class);
     }
