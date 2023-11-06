@@ -5,41 +5,40 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Follow;
 
 class FollowController extends Controller
 {
     public function follow(String $username, String $post_id) {
-        $user = User::where('username', $username)->first();
-
-        $user->post()->attach($post_id);
-        return $user->posts;
+        $follow = new Follow();
+        $follow->post = $post_id;
+        $follow->user = $username;
+        $follow->save();
+        return $follow;
     }
 
     public function unfollow(String $username, String $post_id)
     {
-        $user = User::where('username', $username)->first();
-
-        $user->post()->detach($post_id);
-        return $user->post;
+        $follow = Follow::where('user', $username)->where('post', $post_id)->first();
+        $follow->delete();
     }
 
     public function getFollowPosts(String $username)
     {
-        $user = User::where('username', $username)->first();
-        return $user->post;
+        $follow = Follow::where('username', $username);
+        return $follow->post;
     }
 
     public function getFollowersCount(String $post_id) {
-        $post = Post::where('id', $post_id)->first();
+        $follow = Follow::where('post', $post_id);
         return response()->json([
-            'count' => $post->user->count()
+            'count' => $follow->count()
         ]);
     }
 
     public function isFollow(String $username, String $post_id) {
         $isFollow = false;
-        $post = Post::where('id', $post_id)->first();
-        $exist = $post->user->where('username', $username)->first();
+        $exist = Follow::where('user', $username)->where('post', $post_id)->first();
         if($exist !== null) {
             $isFollow = true;
         }
