@@ -21,11 +21,11 @@ public class AnimalTypeService {
         System.out.println(restTemplate.postForObject(resourceUrl,req, Object.class));
     }
 
-//    public static void deleteAnimalType(HttpEntity<String> req){
-//        RestTemplate restTemplate = new RestTemplate();
-//        String resourceUrl = APIServices.BASE_URL + "animals-type";
-//        restTemplate.exchange(resourceUrl, HttpMethod.DELETE, req,Object.class);
-//    }
+    public static void deleteAnimalType(String type){
+        RestTemplate restTemplate = new RestTemplate();
+        String resourceUrl = APIServices.BASE_URL + "animals-type/" + type;
+        restTemplate.delete(resourceUrl);
+    }
 
 
 

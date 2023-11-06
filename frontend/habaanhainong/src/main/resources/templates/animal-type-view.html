@@ -19,16 +19,18 @@
   </div>
 
   <div class="bg-white p-16 border border-primary my-5 flex flex-col w-full">
-    <div >
+    <div \>
       <div th:each="animalType : ${animalTypes}" class="grid grid-cols-4 bg-background px-16 py-8 border border-primary my-5">
           <div class="col-span-3 flex flex-col items-start justify-center">
             <label th:text="${animalType.type}"></label>
           </div>
           <div class="flex flex-col items-end">
-            <button th:id="${animalType.type}" th:name="${animalType.type}" th:method="DELETE"
-                    action="#" th:action="@{animals-type/post}"
-                    class="border border-primary py-3 px-8 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold">
-              ลบ </button>
+              <a th:href="@{|animal-type/delete/${animalType.type}|}" >
+                  <button th:id="${animalType.type}" th:name="${animalType.type}" type="submit"
+                          class="border border-primary py-3 px-8 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold">
+                      ลบ
+                  </button>
+              </a>
           </div>
       </div>
     </div>

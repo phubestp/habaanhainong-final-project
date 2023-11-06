@@ -39,18 +39,10 @@ public class AnimalTypeViewController {
         return "redirect:/animal-type-view";
     }
 
-//    @DeleteMapping("animal-type/delete")
-//    public String deleteAnimalType(Model model, @RequestParam Map<String,String> params){
-//        System.out.println(params);
-//        JSONObject jsonObject = new JSONObject();
-//        jsonObject.put("type", params.get("type"));
-//
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setContentType(MediaType.APPLICATION_JSON);
-//
-//        HttpEntity<String> req = new HttpEntity<>(jsonObject.toString(), headers);
-//        AnimalTypeService.deleteAnimalType(req);
-//        return "redirect:/animal-type-view";
-//
-//    }
+    @GetMapping("animal-type/delete/{type}")
+    public String deleteAnimalType(Model model, @PathVariable String type){
+        System.out.println(type);
+        AnimalTypeService.deleteAnimalType(type);
+        return "redirect:/animal-type-view";
+    }
 }
