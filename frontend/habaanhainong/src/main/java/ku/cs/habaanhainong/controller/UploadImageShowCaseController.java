@@ -2,6 +2,7 @@ package ku.cs.habaanhainong.controller;
 
 import ku.cs.habaanhainong.service.APIServices;
 import ku.cs.habaanhainong.service.AnimalsAPI;
+import ku.cs.habaanhainong.service.PostImageAPI;
 import org.json.JSONObject;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -15,8 +16,14 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.net.URI;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
 import java.util.Base64;
+import java.util.HashMap;
 import java.util.Map;
 
 @Controller
@@ -33,62 +40,31 @@ public class UploadImageShowCaseController {
     public String uploadImage(Model model, @RequestParam("file") MultipartFile file) {
         if (file != null) {
 
-            JSONObject jsonObject = new JSONObject();
+            String fileExtension = file.getOriginalFilename().split("\\.")[ file.getOriginalFilename().split("\\.").length - 1 ];
 
-            String fileExtension = file.getOriginalFilename();
+            HashMap<String, Object> request = new HashMap<>();
+            request.put("file_extension", fileExtension);
+            HashMap<String, Object> result = PostImageAPI.addPostImage(request);
 
-            // Create a JSON object with your data
-            jsonObject.put("file_name", fileExtension);
+            System.out.println(result);
+            System.out.println(result.get("id"));
 
-            String apiUrl = "http://localhost/api/image";
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.APPLICATION_JSON);
+            String fileName = result.get("id") + "." + fileExtension;
+            try {
+                // Check if the file's name contains invalid characters
+                if (fileName.contains("..")) {
+                    // Handle invalid file name
+                }
 
-            // Create a JSON entity with your JSON object
-            HttpEntity<String> req = new HttpEntity<>(jsonObject.toString(), headers);
+                // Copy file to the target location
+                Path targetLocation = Paths.get(fileName);
+                Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
 
-            RestTemplate restTemplate = new RestTemplate();
-            System.out.println(restTemplate.postForObject(apiUrl, req, Object.class));
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
 
         }
-
-//        if (file != null) {
-//            try {
-//                JSONObject jsonObject = new JSONObject();
-//                byte[] fileBytes = file.getBytes();
-//                String fileExtension = file.getOriginalFilename().split("\\.")[1];
-//
-//                // Create a JSON object with your data
-//                jsonObject.put("image_file", Base64.getEncoder().encodeToString(fileBytes));
-//                jsonObject.put("file_extension", fileExtension);
-//
-//                String apiUrl = "http://localhost/api/image";
-//                HttpHeaders headers = new HttpHeaders();
-//                headers.setContentType(MediaType.APPLICATION_JSON);
-//
-//                // Create a JSON entity with your JSON object
-//                HttpEntity<String> req = new HttpEntity<>(jsonObject.toString(), headers);
-//
-//                RestTemplate restTemplate = new RestTemplate();
-//                restTemplate.postForObject(apiUrl, req, Object.class);
-//            } catch (IOException e) {
-//                // Handle the exception
-//                throw new RuntimeException(e);
-//            }
-//        }
-
-//        JSONObject jsonObject = new JSONObject();
-//
-//        jsonObject.put("name", params.get("name"));
-//        jsonObject.put("animal_type", params.get("animal_type"));
-//        jsonObject.put("breed", params.get("breed"));
-//        jsonObject.put("sex", params.get("sex"));
-//
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setContentType(MediaType.APPLICATION_JSON);
-//
-//        HttpEntity<String> req = new HttpEntity<>(jsonObject.toString(), headers);
-//        AnimalsAPI.addAnimal(req);
         return "redirect:/image";
     }
 }
