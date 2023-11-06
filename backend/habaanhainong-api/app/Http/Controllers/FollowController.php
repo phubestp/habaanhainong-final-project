@@ -11,7 +11,7 @@ class FollowController extends Controller
     public function follow(String $username, String $post_id) {
         $user = User::where('username', $username)->first();
 
-        $user->posts()->attach($post_id);
+        $user->post()->attach($post_id);
         return $user->posts;
     }
 
@@ -19,7 +19,7 @@ class FollowController extends Controller
     {
         $user = User::where('username', $username)->first();
 
-        $user->posts()->detach($post_id);
+        $user->post()->detach($post_id);
         return $user->posts;
     }
 
