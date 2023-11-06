@@ -27,7 +27,7 @@ public class ImageFileSourcingService {
 
         HashMap<String, Object> request = new HashMap<>();
         request.put("file_extension", fileExtension);
-        HashMap<String, Object> result = PostImageAPI.addPostImage(request);
+        HashMap<String, Object> result = PostImageService.addPostImage(request);
 
         String imageIdFromDB = (String) result.get("id");
 
