@@ -13,13 +13,13 @@ class AnimalController extends Controller
     //GET /animals/get
     public function getAll()
     {
-        return response()->json(['is_success' => true, 'message' => 'AnimalController[getAll]: Animals all', 'data' => Animal::all()]);
+        return Animal::all();
     }
 
     //GET /animal/get/id/{id}
     public function getFromId($id)
     {
-        return response()->json(['is_success' => true, 'message' => 'AnimalController[getFromId]: Animal found', 'data' => Animal::find($id)]);
+        return Animal::find($id);
     }
 
     //GET /animals/get/type/{type}
@@ -29,7 +29,7 @@ class AnimalController extends Controller
         $typeFound = AnimalType::where('type', $type)->first();
         $animals = Animal::where('animal_type_id', $typeFound->id)->get();
 
-        return response()->json(['is_success' => true, 'message' => 'AnimalController[getAnimalsByType]: Animals found', 'data' => $animals]);
+        return $animals;
     }
 
 
@@ -37,13 +37,13 @@ class AnimalController extends Controller
     public function getAnimalsByPost($post_id)
     {
         $post = Post::find($post_id);
-        return response()->json(['is_success' => true, 'message' => 'AnimalController[getAnimalsByPost]: Animals found', 'data' => Animal::where('post_id', $post)]);
+        return Animal::where('post_id', $post);
     }
 
     //GET /animals/get/sex-list
     public function getSexList(){
         $sexList = [AnimalSex::UNKNOWN, AnimalSex::NOT_SPECIFIED, AnimalSex::MALE, AnimalSex::FEMALE];
-        return response()->json(['is_success' => true, 'message' => "AnimalController[getSexList]: getSexList", 'data' => $sexList]);
+        return $sexList;
     }
 
     //POST /animals/add
@@ -58,7 +58,7 @@ class AnimalController extends Controller
         //verify that the animal type exists
         $animal_type = AnimalType::where('type', $request->get('type'))->first();
         if (!$animal_type) {
-            return response()->json(['is_success' => false, 'message' => 'Animal type \"' . $request->get('type') . '\" not found', 'data' => null]);
+            return null;
         }
 
         //create the animal
@@ -70,7 +70,7 @@ class AnimalController extends Controller
         $animal->animal_type_id = $animal_type->id;
         $animal->save();
 
-        return response()->json(['is_success' => true, 'message' => 'AnimalController[add]: Animal added successfully', 'data' => $animal]);
+        return $animal;
     }
 
     //PUT /animals/save/{id}
@@ -83,7 +83,7 @@ class AnimalController extends Controller
         //verify that the animal type exists
         $animal_type = AnimalType::where('type', $request->get('type'))->first();
         if (!$animal_type) {
-            return response()->json(['is_success' => false, 'message' => 'AnimalController[saveWithId]: Animal type \"' . $request->get('type') . '\" not found', 'data' => null]);
+            return null;
         }
 
         //update the animal
@@ -94,7 +94,7 @@ class AnimalController extends Controller
         $animal->animal_type_id = $animal_type->id;
         $animal->save();
 
-        return response()->json(['is_success' => true, 'message' => 'AnimalController[saveWithId]: Animal updated successfully', 'data' => $animal]);
+        return $animal;
 
     }
 

@@ -46,8 +46,7 @@ class AnimalTypeController extends Controller
         }
         $animal = Animal::find($animal_id);
         if (!$animal) {
-            return response()->json(['is_success' => false, 'message' => 'Animal with request \"' . $request->getContent() . '\"
-             not found', 'data' => null]);
+            return null;
         }
         return $animal->animalType;
     }
@@ -69,8 +68,7 @@ class AnimalTypeController extends Controller
         $animal_request_type = $request->get('type');
         $animal_type = self::getByType($type);
         if (!$animal_type) {
-            return response()->json(['is_success' => false, 'message' => 'Animal type \"' . $type . '\"
-             not found', 'data' => null]);
+            return null;
         }
         $animal_type->type = $animal_request_type;
         $animal_type->save();
@@ -84,8 +82,7 @@ class AnimalTypeController extends Controller
         $old_animal_type_name = $request->get('old_type');
         $animal_type = self::getByType($old_animal_type_name);
         if (!$animal_type) {
-            return response()->json(['is_success' => false, 'message' => 'Animal type \"' . $old_animal_type_name . '\"
-             not found', 'data' => null]);
+            return null;
         }
         $animal_type->type = $animal_type_name;
         $animal_type->save();
@@ -97,8 +94,7 @@ class AnimalTypeController extends Controller
     {
         $animal_type = self::getByType($type);
         if (!$animal_type) {
-            return response()->json(['is_success' => false, 'message' => 'Animal type \"' . $type . '\"
-             not found', 'data' => null]);
+            return null;
         }
         $animal_type->delete();
         return $animal_type;
@@ -110,8 +106,7 @@ class AnimalTypeController extends Controller
         $animal_type_name = $request->get('type');
         $animal_type = self::getByType($animal_type_name);
         if (!$animal_type) {
-            return response()->json(['is_success' => false, 'message' => 'Animal type \"' . $animal_type_name . '\"
-             not found', 'data' => null]);
+            return null;
         }
         $animal_type->delete();
         return $animal_type;

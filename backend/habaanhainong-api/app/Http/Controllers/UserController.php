@@ -99,7 +99,7 @@ class UserController extends Controller
         //verify that the user exists
         $user = User::find($id);
         if(!$user){
-            return response()->json(['is_success' => false, 'message' => 'UserController[saveWithId]: User not found', 'data' => ""]);
+            return null;
         }
 
 //        Schema::create('users', function (Blueprint $table) {
