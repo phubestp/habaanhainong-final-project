@@ -63,7 +63,7 @@ class PostImageController extends Controller
             'file_extension' => $request->get('file_extension'),
         ]);
 
-        return null;
+        return $postImage;
     }
 
     //PUT /post-images/save/{id}
