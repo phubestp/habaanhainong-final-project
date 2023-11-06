@@ -12,42 +12,42 @@ class UserController extends Controller
 {
     //GET /users/get
     public function getAll(){
-        return response()->json(['is_success' => true, 'message' => 'UserController[getAll]: Users all', 'data' => User::all()]);
+        return User::all();
     }
 
     //GET /user/get/id/{id}
     public function getFromId($id){
-        return response()->json(['is_success' => true, 'message' => 'UserController[getFromId]: User found', 'data' => User::find($id)]);
+        return User::find($id);
     }
 
     //GET /user/get/username/{username}
     public function getFromUsername($username){
-        return response()->json(['is_success' => true, 'message' => 'UserController[getFromUsername]: User found', 'data' => User::where('username', $username)->first()]);
+        return User::where('username', $username)->first();
     }
 
     //GET /user/get/email/{email}
     public function getFromEmail($email){
-        return response()->json(['is_success' => true, 'message' => 'UserController[getFromEmail]: User found', 'data' => User::where('email', $email)->first()]);
+        return User::where('email', $email)->first();
     }
 
     //GET /user/get/post/{post_id}
     public function getUserByPost(Post $post){
-        return response()->json(['is_success' => true, 'message' => 'UserController[getUserByPost]: User found', 'data' => $post->author]);
+        return $post->author;
     }
 
     //GET /user/get/reporter/{report_id}
     public function getReporterByReport(Report $report){
-        return response()->json(['is_success' => true, 'message' => 'UserController[getReporterByPost]: User found', 'data' => $report->reporter]);
+        return $report->reporter;
     }
 
     //GET /user/get/reported/{report_id}
     public function getReportedUserByReport(Report $report){
-        return response()->json(['is_success' => true, 'message' => 'UserController[getReportedUserByPost]: User found', 'data' => $report->reported_user]);
+        return $report->reported_user;
     }
 
     //GET /user/get/banned-by/{banned_user}
     public function getBannedByUser(BannedUser $banned_user){
-        return response()->json(['is_success' => true, 'message' => 'UserController[getBannedByUser]: User found', 'data' => $banned_user->by_user]);
+        return $banned_user->by_user;
     }
 
     //GET /users/get/following-post/{post_id}
@@ -56,7 +56,7 @@ class UserController extends Controller
         foreach($post->follows as $follow){
             $users = array_merge($users, User::where('id', $follow->user)->get()->toArray());
         }
-        return response()->json(['is_success' => true, 'message' => 'UserController[getFollowingPost]: Users found', 'data' => $users]);
+        return $users;
     }
 
     //POST /users/add
@@ -71,7 +71,7 @@ class UserController extends Controller
         //verify that the user doesn't already exist
         $user = User::where('username', $request->get('username'))->first();
         if($user){
-            return response()->json(['is_success' => false, 'message' => 'UserController[add]: User already exists', 'data' => ""]);
+            return $user;
         }
 
         //create the user
@@ -81,7 +81,7 @@ class UserController extends Controller
         $user->password = $request->get('password');
         $user->save();
 
-        return response()->json(['is_success' => true, 'message' => 'UserController[add]: User created', 'data' => $user]);
+        return $user;
     }
 
     //PUT /users/save/{id}
@@ -127,6 +127,8 @@ class UserController extends Controller
         $user->Instagram = $request->get('Instagram');
         $user->Line = $request->get('Line');
         $user->save();
+
+        return $user;
     }
 
     //PUT /users/save
@@ -141,7 +143,7 @@ class UserController extends Controller
         //verify that the user exists
         $user = User::where('username', $request->get('username'))->first();
         if(!$user){
-            return response()->json(['is_success' => false, 'message' => 'UserController[save]: User not found', 'data' => ""]);
+            return null;
         }
 
         //save the user
@@ -150,7 +152,7 @@ class UserController extends Controller
         $user->password = $request->get('password');
         $user->save();
 
-        return response()->json(['is_success' => true, 'message' => 'UserController[save]: User saved', 'data' => $user]);
+        return $user;
     }
 
     //DELETE /users/delete/{id}
@@ -158,13 +160,13 @@ class UserController extends Controller
         //verify that the user exists
         $user = User::find($id);
         if(!$user){
-            return response()->json(['is_success' => false, 'message' => 'UserController[deleteWithId]: User not found', 'data' => ""]);
+            return null;
         }
 
         //delete the user
         $user->delete();
 
-        return response()->json(['is_success' => true, 'message' => 'UserController[deleteWithId]: User deleted', 'data' => ""]);
+        return null;
     }
 
     //DELETE /users/delete
@@ -177,13 +179,13 @@ class UserController extends Controller
         //verify that the user exists
         $user = User::where('username', $request->get('username'))->first();
         if(!$user){
-            return response()->json(['is_success' => false, 'message' => 'UserController[delete]: User not found', 'data' => ""]);
+            return null;
         }
 
         //delete the user
         $user->delete();
 
-        return response()->json(['is_success' => true, 'message' => 'UserController[delete]: User deleted', 'data' => ""]);
+        return null;
     }
 
     //PUT /admin/add/{user_id}
@@ -191,14 +193,14 @@ class UserController extends Controller
         //verify that the user exists
         $user = User::find($user_id);
         if(!$user){
-            return response()->json(['is_success' => false, 'message' => 'UserController[addAdmin]: User not found', 'data' => ""]);
+            return null;
         }
 
         //add the admin
         $user->isAdmin = true;
         $user->save();
 
-        return response()->json(['is_success' => true, 'message' => 'UserController[addAdmin]: Admin added', 'data' => $user]);
+        return $user;
     }
 
     //PUT /admin/remove/{user_id}
@@ -206,14 +208,14 @@ class UserController extends Controller
         //verify that the user exists
         $user = User::find($user_id);
         if(!$user){
-            return response()->json(['is_success' => false, 'message' => 'UserController[removeAdmin]: User not found', 'data' => ""]);
+            return null;
         }
 
         //remove the admin
         $user->isAdmin = false;
         $user->save();
 
-        return response()->json(['is_success' => true, 'message' => 'UserController[removeAdmin]: Admin removed', 'data' => $user]);
+        return $user;
     }
 
 }

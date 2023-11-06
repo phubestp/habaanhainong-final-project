@@ -12,29 +12,29 @@ class PostController extends Controller
 {
     //GET /posts/get
     public function getAll(){
-        return response()->json(['is_success' => true, 'message' => 'PostController[getAll]: Posts all', 'data' => Post::all()]);
+        return Post::all();
     }
 
     //GET /post/get/id/{id}
     public function getFromId($id){
-        return response()->json(['is_success' => true, 'message' => 'PostController[getFromId]: Post found', 'data' => Post::find($id)]);
+        return Post::find($id);
     }
 
     //GET /posts/get/author/{user_id}
     public function getPostsByAuthor($user_id){
-        return response()->json(['is_success' => true, 'message' => 'PostController[getPostsByUser]: Posts found', 'data' => Post::where('author', $user_id)->get()]);
+        return Post::where('author', $user_id)->get();
     }
 
     //GET /posts/get/animal/{animal_id}
     public function getPostsByAnimal($animal_id){
-        return response()->json(['is_success' => true, 'message' => 'PostController[getPostsByAnimal]: Posts found', 'data' => Post::where('animal_id', $animal_id)->get()]);
+        return Post::where('animal_id', $animal_id)->get();
     }
 
     //GET /posts/get/animal-type/{type}
     public function getPostsByAnimalType($type){
         $animal_type = AnimalType::where('type', $type)->first();
         if(!$animal_type){
-            return response()->json(['is_success' => false, 'message' => 'PostController[getPostsByAnimalType]: Animal type not found', 'data' => ""]);
+            return null;
         }
         $animals_by_type = Animal::where('animal_type_id', $animal_type->id)->get();
         $posts = [];
@@ -42,20 +42,20 @@ class PostController extends Controller
             $posts = array_merge($posts, Post::where('animal_id', $animal->id)->get()->toArray());
         }
 
-        return response()->json(['is_success' => true, 'message' => 'PostController[getPostsByAnimalType]: Posts found', 'data' => $posts]);
+        return $posts;
     }
 
     //GET /posts/get/followed-by/{user_id}
     public function getPostsFollowedByUser($user_id){
         $user = User::find($user_id);
         if(!$user){
-            return response()->json(['is_success' => false, 'message' => 'PostController[getPostsFollowedByUser]: User not found', 'data' => ""]);
+            return null;
         }
         $posts = [];
         foreach($user->follows as $follow){
             $posts = array_merge($posts, Post::where('id', $follow->post)->get()->toArray());
         }
-        return response()->json(['is_success' => true, 'message' => 'PostController[getPostsFollowedByUser]: Posts found', 'data' => $posts]);
+        return $posts;
     }
 
     //POST /posts/add
@@ -70,13 +70,13 @@ class PostController extends Controller
         //verify that the animal exists
         $animal = Animal::find($request->get('animal_id'));
         if(!$animal){
-            return response()->json(['is_success' => false, 'message' => 'PostController[add]: Animal not found', 'data' => ""]);
+            return null;
         }
 
         //verify that the author exists
         $author = User::find($request->get('author_id'));
         if(!$author){
-            return response()->json(['is_success' => false, 'message' => 'PostController[add]: Author not found', 'data' => ""]);
+            return null;
         }
 
         //create the post
@@ -86,7 +86,7 @@ class PostController extends Controller
         $post->animal_id = $request->get('animal_id');
         $post->save();
 
-        return response()->json(['is_success' => true, 'message' => 'PostController[add]: Post added', 'data' => $post]);
+        return $post;
     }
 
     //PUT /posts/save/{id}
@@ -101,13 +101,13 @@ class PostController extends Controller
         //verify that the animal exists
         $animal = Animal::find($request->get('animal_id'));
         if(!$animal){
-            return response()->json(['is_success' => false, 'message' => 'PostController[saveWithId]: Animal not found', 'data' => ""]);
+            return null;
         }
 
         //verify that the author exists
         $author = User::find($request->get('author_id'));
         if(!$author){
-            return response()->json(['is_success' => false, 'message' => 'PostController[saveWithId]: Author not found', 'data' => ""]);
+            return null;
         }
 
         //update the post
@@ -116,7 +116,7 @@ class PostController extends Controller
         $post->animal_id = $request->get('animal_id');
         $post->save();
 
-        return response()->json(['is_success' => true, 'message' => 'PostController[saveWithId]: Post updated', 'data' => $post]);
+        return $post;
     }
 
     //PUT /posts/save
@@ -132,13 +132,13 @@ class PostController extends Controller
         //verify that the animal exists
         $animal = Animal::find($request->get('animal_id'));
         if(!$animal){
-            return response()->json(['is_success' => false, 'message' => 'PostController[save]: Animal not found', 'data' => ""]);
+            return null;
         }
 
         //verify that the author exists
         $author = User::find($request->get('author_id'));
         if(!$author){
-            return response()->json(['is_success' => false, 'message' => 'PostController[save]: Author not found', 'data' => ""]);
+            return null;
         }
 
         //update the post
@@ -148,13 +148,13 @@ class PostController extends Controller
         $post->animal_id = $request->get('animal_id');
         $post->save();
 
-        return response()->json(['is_success' => true, 'message' => 'PostController[save]: Post updated', 'data' => $post]);
+        return $post;
     }
 
     //DELETE /posts/delete/{id}
     public function deleteWithId(Post $post){
         $post->delete();
-        return response()->json(['is_success' => true, 'message' => 'PostController[deleteWithId]: Post deleted', 'data' => ""]);
+        return $post;// response()->json(['is_success' => true, 'message' => 'PostController[deleteWithId]: Post deleted', 'data' => ""]);
     }
 
     //DELETE /posts/delete
@@ -167,7 +167,7 @@ class PostController extends Controller
         //delete the post
         $post = Post::find($request->get('id'));
         $post->delete();
-        return response()->json(['is_success' => true, 'message' => 'PostController[delete]: Post deleted', 'data' => ""]);
+        return $post;
     }
 
 }

@@ -11,14 +11,14 @@ class BannedUserController extends Controller
     //GET /banned_users/get
     public function getAll()
     {
-        return response()->json(['is_success' => true, 'message' => 'BannedUserController[getAll]: Banned users all', 'data' => BannedUser::all()]);
+        return BannedUser::all();
     }
 
     //GET /banned_user/get/banned/{user_id}
     public function getBannedUser($user_id)
     {
         $user = User::find($user_id);
-        return response()->json(['is_success' => true, 'message' => 'BannedUserController[getBannedUser]: Banned user found', 'data' => BannedUser::where('banned_user', $user)->first()]);
+        return BannedUser::where('banned_user', $user)->first();
     }
 
     //POST /banned_users/add
@@ -44,7 +44,7 @@ class BannedUserController extends Controller
         // save new banned user
         $banned_user->save();
 
-        return response()->json(['is_success' => true, 'message' => 'BannedUserController[add]: Banned user added', 'data' => $banned_user]);
+        return $banned_user;
     }
 
     //DELETE /banned_users/delete/{user_id}
@@ -53,7 +53,7 @@ class BannedUserController extends Controller
         $user = User::find($user_id);
         $banned_user = BannedUser::where('banned_user', $user)->first();
         $banned_user->delete();
-        return response()->json(['is_success' => true, 'message' => 'BannedUserController[delete]: Banned user deleted', 'data' => $banned_user]);
+        return $banned_user;
     }
 
     //DELETE /banned_users/delete
@@ -67,7 +67,7 @@ class BannedUserController extends Controller
         $user = User::find($request->get('banned_user'));
         $banned_user = BannedUser::where('banned_user', $user)->first();
         $banned_user->delete();
-        return response()->json(['is_success' => true, 'message' => 'BannedUserController[deleteWithId]: Banned user deleted', 'data' => $banned_user]);
+        return $banned_user;
     }
 
 }

@@ -12,14 +12,14 @@ class AnimalTypeController extends Controller
     //GET /animal-types/get
     public function getAll()
     {
-        return response()->json(['is_success' => true, 'message' => 'Animal types all', 'data' => AnimalType::all()]);
+        return AnimalType::all();
         //AnimalType::all();
     }
 
     //GET /animal-types/get/type-list
     public function getTypeList()
     {
-        return response()->json(['is_success' => true, 'message' => 'Animal types string list', 'data' => AnimalType::all()->pluck('type')]);
+        return AnimalType::all()->pluck('type');
         //AnimalType::all()->pluck('type');
     }
 
@@ -31,7 +31,7 @@ class AnimalTypeController extends Controller
             return response()->json(['is_success' => false, 'message' => 'Animal with id \"' . $animal_id . '\"
              not found', 'data' => null]);
         }
-        return response()->json(['is_success' => true, 'message' => 'Animal found', 'data' => $animal->animalType]);
+        return $animal->animalType;
     }
 
     //GET /animal-types/get/animal
@@ -49,7 +49,7 @@ class AnimalTypeController extends Controller
             return response()->json(['is_success' => false, 'message' => 'Animal with request \"' . $request->getContent() . '\"
              not found', 'data' => null]);
         }
-        return response()->json(['is_success' => true, 'message' => 'Animal found', 'data' => $animal->animalType]);
+        return $animal->animalType;
     }
 
 
@@ -60,7 +60,7 @@ class AnimalTypeController extends Controller
         $animal_type = new AnimalType();
         $animal_type->type = $animal_type_name;
         $animal_type->save();
-        return response()->json(['is_success' => true, 'message' => 'Animal type added successfully', 'data' => $animal_type]);
+        return $animal_type;
     }
 
     //PUT /animal-types/save/{type}
@@ -74,7 +74,7 @@ class AnimalTypeController extends Controller
         }
         $animal_type->type = $animal_request_type;
         $animal_type->save();
-        return response()->json(['is_success' => true, 'message' => 'Animal type updated successfully', 'data' => $animal_type]);
+        return $animal_type;
     }
 
     //PUT /animal-types/save
@@ -89,7 +89,7 @@ class AnimalTypeController extends Controller
         }
         $animal_type->type = $animal_type_name;
         $animal_type->save();
-        return response()->json(['is_success' => true, 'message' => 'Animal type updated successfully', 'data' => $animal_type]);
+        return $animal_type;
     }
 
     //DELETE /animal-types/delete/{type}
@@ -101,7 +101,7 @@ class AnimalTypeController extends Controller
              not found', 'data' => null]);
         }
         $animal_type->delete();
-        return response()->json(['is_success' => true, 'message' => 'Animal type deleted successfully', 'data' => $animal_type]);
+        return $animal_type;
     }
 
     //DELETE /animal-types/delete
@@ -114,7 +114,7 @@ class AnimalTypeController extends Controller
              not found', 'data' => null]);
         }
         $animal_type->delete();
-        return response()->json(['is_success' => true, 'message' => 'Animal type deleted successfully', 'data' => $animal_type]);
+        return $animal_type;
     }
 
     private static function getByType($type) : ?AnimalType

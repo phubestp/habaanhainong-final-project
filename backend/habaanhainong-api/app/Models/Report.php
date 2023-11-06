@@ -24,13 +24,13 @@ class Report extends Model
     // Define a many-to-one relationship with Users (a report belongs to a reporter)
     public function reporter() : BelongsTo
     {
-        return $this->belongsTo(User::class, 'reporter', 'id');
+        return $this->belongsTo(User::class, 'reporter', 'username');
     }
 
     // Define a many-to-one relationship with Users (a report belongs to a reported user)
     public function reported(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'reported', 'id');
+        return $this->belongsTo(User::class, 'reported', 'username');
     }
 
     // Define a many-to-one relationship with Posts (a report belongs to a post)

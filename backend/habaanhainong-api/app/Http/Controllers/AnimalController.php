@@ -110,7 +110,7 @@ class AnimalController extends Controller
         //verify that the animal type exists
         $animal_type = AnimalType::where('type', $request->get('type'))->first();
         if (!$animal_type) {
-            return response()->json(['is_success' => false, 'message' => 'AnimalController[save]: Animal type \"' . $request->get('type') . '\" not found', 'data' => null]);
+            return null;
         }
 
         //update the animal
@@ -122,14 +122,14 @@ class AnimalController extends Controller
         $animal->animal_type_id = $animal_type->id;
         $animal->save();
 
-        return response()->json(['is_success' => true, 'message' => 'AnimalController[save]: Animal updated successfully', 'data' => $animal]);
+        return $animal;
     }
 
     //DELETE /animals/delete/{id}
     public function deleteWithId(Animal $animal)
     {
         $animal->delete();
-        return response()->json(['is_success' => true, 'message' => 'AAnimalController[deleteWithId]: Animal deleted successfully', 'data' => $animal]);
+        return $animal;
     }
 
     //DELETE /animals/delete
@@ -141,6 +141,6 @@ class AnimalController extends Controller
 
         $animal = Animal::find($validatedData['id']);
         $animal->delete();
-        return response()->json(['is_success' => true, 'message' => 'AAnimalController[delete]: Animal deleted successfully', 'data' => $animal]);
+        return $animal;
     }
 }

@@ -21,7 +21,7 @@ class Applicant extends Model
     // Define a many-to-one relationship with Users (an applicant record belongs to a user)
     public function user() : BelongsTo
     {
-        return $this->belongsTo(User::class, 'applicants', 'id');
+        return $this->belongsTo(User::class, 'applicants', 'username');
     }
 
     // Define a many-to-one relationship with Posts (an applicant record belongs to a post)

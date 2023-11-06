@@ -30,7 +30,7 @@ class Post extends Model
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'author', 'id');
+        return $this->belongsTo(User::class, 'author', 'username');
     }
 
     public function animal(): HasOne

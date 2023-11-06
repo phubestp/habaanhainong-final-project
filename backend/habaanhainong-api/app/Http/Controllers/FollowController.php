@@ -12,19 +12,19 @@ class FollowController extends Controller
     //Get /follows/get
     public function getAll()
     {
-        return response()->json(['is_success' => true, 'message' => 'FollowController[getAll]: Follows all', 'data' => Follow::all()]);
+        return Follow::all();
     }
 
     //GET /follows/get/user/{user_id}
     public function getFollowsByUser($user_id)
     {
-        return response()->json(['is_success' => true, 'message' => 'FollowController[getFollowsByUser]: Follows found', 'data' => Follow::where('user', $user_id)->get()]);
+        return Follow::where('user', $user_id)->get();
     }
 
     //GET /follows/get/post/{post_id}
     public function getFollowsByPost($post_id)
     {
-        return response()->json(['is_success' => true, 'message' => 'FollowController[getFollowsByPost]: Follows found', 'data' => Follow::where('post', $post_id)->get()]);
+        return Follow::where('post', $post_id)->get();
     }
 
     //POST /follows/add
@@ -39,19 +39,19 @@ class FollowController extends Controller
         //verify that the post exists
         $post = Post::find($request->get('post'));
         if (!$post) {
-            return response()->json(['is_success' => false, 'message' => 'FollowController[add]: Post not found', 'data' => null]);
+            return null;
         }
 
         //verify that the user exists
         $user = User::find($request->get('user'));
         if (!$user) {
-            return response()->json(['is_success' => false, 'message' => 'FollowController[add]: User not found', 'data' => null]);
+            return null;
         }
 
         //verify that the follow doesn't already exist
         $follow = Follow::where('post', $post->id)->where('user', $user->id)->first();
         if ($follow) {
-            return response()->json(['is_success' => false, 'message' => 'FollowController[add]: Follow already exists', 'data' => null]);
+            return null;
         }
 
         //create the follow
@@ -60,7 +60,7 @@ class FollowController extends Controller
         $follow->user = $user->id;
         $follow->save();
 
-        return response()->json(['is_success' => true, 'message' => 'FollowController[add]: Follow created', 'data' => $follow]);
+        return $follow;
     }
 
     //DELETE /follows/delete
@@ -75,25 +75,25 @@ class FollowController extends Controller
         //verify that the post exists
         $post = Post::find($request->get('post'));
         if (!$post) {
-            return response()->json(['is_success' => false, 'message' => 'FollowController[delete]: Post not found', 'data' => null]);
+            return null;
         }
 
         //verify that the user exists
         $user = User::find($request->get('user'));
         if (!$user) {
-            return response()->json(['is_success' => false, 'message' => 'FollowController[delete]: User not found', 'data' => null]);
+            return null;
         }
 
         //verify that the follow exists
         $follow = Follow::where('post', $post->id)->where('user', $user->id)->first();
         if (!$follow) {
-            return response()->json(['is_success' => false, 'message' => 'FollowController[delete]: Follow not found', 'data' => null]);
+            return null;
         }
 
         //delete the follow
         $follow->delete();
 
-        return response()->json(['is_success' => true, 'message' => 'FollowController[delete]: Follow deleted', 'data' => $follow]);
+        return $follow;
     }
 
 

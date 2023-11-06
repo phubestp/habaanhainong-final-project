@@ -11,19 +11,19 @@ class PostImageController extends Controller
     //GET /post-images/get
     public function getAll()
     {
-        return response()->json(['is_success' => true, 'message' => 'PostImageController[getAll]: PostImages all', 'data' => PostImage::all()]);
+        return PostImage::all();
     }
 
     //GET /post-image/get/id/{id}
     public function getFromId($id)
     {
-        return response()->json(['is_success' => true, 'message' => 'PostImageController[getFromId]: PostImage found', 'data' => PostImage::find($id)]);
+        return PostImage::find($id);
     }
 
     //GET /post-images/get/post/{post_id}
     public function getPostImagesByPost($post_id)
     {
-        return response()->json(['is_success' => true, 'message' => 'PostImageController[getPostImagesByPost]: PostImages found', 'data' => PostImage::where('post_id', $post_id)->get()]);
+        return PostImage::where('post_id', $post_id)->get();
     }
 
     //POST /post-images/add
@@ -38,7 +38,7 @@ class PostImageController extends Controller
         //verify that the post exists
         $post = Post::find($request->get('post_id'));
         if (!$post) {
-            return response()->json(['is_success' => false, 'message' => 'PostImageController[add]: Post not found', 'data' => null]);
+            return null;
         }
 
         //create the post image
@@ -47,7 +47,7 @@ class PostImageController extends Controller
             'file_extension' => $request->get('file_extension'),
         ]);
 
-        return response()->json(['is_success' => true, 'message' => 'PostImageController[add]: PostImage created', 'data' => $postImage]);
+        return $postImage;
     }
 
     //POST /post-images/add-test
@@ -63,7 +63,7 @@ class PostImageController extends Controller
             'file_extension' => $request->get('file_extension'),
         ]);
 
-        return response()->json(['is_success' => true, 'message' => 'PostImageController[add]: PostImage created', 'data' => $postImage]);
+        return null;
     }
 
     //PUT /post-images/save/{id}
@@ -78,13 +78,13 @@ class PostImageController extends Controller
         //verify that the post exists
         $post = Post::find($request->get('post_id'));
         if (!$post) {
-            return response()->json(['is_success' => false, 'message' => 'PostImageController[saveWithId]: Post not found', 'data' => null]);
+            return null;
         }
 
         //verify that the post image exists
         $postImage = PostImage::find($id);
         if (!$postImage) {
-            return response()->json(['is_success' => false, 'message' => 'PostImageController[saveWithId]: PostImage not found', 'data' => null]);
+            return null;
         }
 
         //update the post image
@@ -92,7 +92,7 @@ class PostImageController extends Controller
         $postImage->file_extension = $request->get('file_extension');
         $postImage->save();
 
-        return response()->json(['is_success' => true, 'message' => 'PostImageController[saveWithId]: PostImage updated', 'data' => $postImage]);
+        return $postImage;
     }
 
     //PUT /post-images/save
@@ -108,13 +108,13 @@ class PostImageController extends Controller
         //verify that the post exists
         $post = Post::find($request->get('post_id'));
         if (!$post) {
-            return response()->json(['is_success' => false, 'message' => 'PostImageController[save]: Post not found', 'data' => null]);
+            return null;
         }
 
         //verify that the post image exists
         $postImage = PostImage::find($request->get('id'));
         if (!$postImage) {
-            return response()->json(['is_success' => false, 'message' => 'PostImageController[save]: PostImage not found', 'data' => null]);
+            return null;
         }
 
         //update the post image
@@ -122,7 +122,7 @@ class PostImageController extends Controller
         $postImage->file_extension = $request->get('file_extension');
         $postImage->save();
 
-        return response()->json(['is_success' => true, 'message' => 'PostImageController[save]: PostImage updated', 'data' => $postImage]);
+        return $postImage;
     }
 
     //DELETE /post-images/delete/{id}
@@ -131,13 +131,13 @@ class PostImageController extends Controller
         //verify that the post image exists
         $postImage = PostImage::find($id);
         if (!$postImage) {
-            return response()->json(['is_success' => false, 'message' => 'PostImageController[deleteWithId]: PostImage not found', 'data' => null]);
+            return null;
         }
 
         //delete the post image
         $postImage->delete();
 
-        return response()->json(['is_success' => true, 'message' => 'PostImageController[deleteWithId]: PostImage deleted', 'data' => $postImage]);
+        return $postImage;
     }
 
     //DELETE /post-images/delete
@@ -146,12 +146,12 @@ class PostImageController extends Controller
         //verify that the post image exists
         $postImage = PostImage::find($request->get('id'));
         if (!$postImage) {
-            return response()->json(['is_success' => false, 'message' => 'PostImageController[delete]: PostImage not found', 'data' => null]);
+            return null;
         }
 
         //delete the post image
         $postImage->delete();
 
-        return response()->json(['is_success' => true, 'message' => 'PostImageController[delete]: PostImage deleted', 'data' => $postImage]);
+        return $postImage;
     }
 }

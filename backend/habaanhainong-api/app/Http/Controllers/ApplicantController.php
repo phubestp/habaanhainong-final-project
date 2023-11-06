@@ -13,27 +13,27 @@ class ApplicantController extends Controller
     //GET /applicants/get
     public function getAll()
     {
-        return response()->json(['is_success' => true, 'message' => 'ApplicantController[getAll]: Applicants all', 'data' => Applicant::all()]);
+        return Applicant::all();
     }
 
     //GET /applicants/get/post/{post_id}
     public function getApplicantsByPost($post_id)
     {
         $post = Post::find($post_id);
-        return response()->json(['is_success' => true, 'message' => 'ApplicantController[getApplicantsByPost]: Applicants found', 'data' => Applicant::where('post', $post)->get()]);
+        return Applicant::where('post', $post)->get();
     }
 
     //GET /applicants/get/user/{user_id}
     public function getApplicantsByUser($user_id)
     {
         $user = User::find($user_id);
-        return response()->json(['is_success' => true, 'message' => 'ApplicantController[getApplicantsByUser]: Applicants found', 'data' => Applicant::where('applicant', $user)->get()]);
+        return Applicant::where('applicant', $user)->get();
     }
 
     //GET /applicants/get/status-list
     public function getStatusList(){
         $statusList = [ApplicantStatus::REJECTED, ApplicantStatus::WAITING, ApplicantStatus::CONTACTING, ApplicantStatus::ADOPTED, ApplicantStatus::TRUSTWORTHY];
-        return response()->json(['is_success' => true, 'message' => "ApplicantController[getStatusList]: getStatusList", 'data' => $statusList]);
+        return $statusList;
     }
 
     //GET /applicants/get/if-applied
@@ -47,19 +47,19 @@ class ApplicantController extends Controller
         //verify that the post exists
         $post = Post::find($request->get('post'));
         if (!$post) {
-            return response()->json(['is_success' => false, 'message' => 'ApplicantController[isApplied]: Post not found', 'data' => $request]);
+            return null;
         }
 
         //verify that the applicant exists
         $applicant = User::find($request->get('applicant'));
         if (!$applicant) {
-            return response()->json(['is_success' => false, 'message' => 'ApplicantController[isApplied]: Applicant not found', 'data' => $request]);
+            return null;
         }
 
         //check if the applicant has applied for this post
         $applied = Applicant::where('post', $post)->where('applicant', $applicant)->first();
 
-        return response()->json(['is_success' => true, 'message' => "ApplicantController[isApplied]: isApplied", 'data' => $applied]);
+        return $applied;
     }
 
     //POST /applicants/add
@@ -76,28 +76,25 @@ class ApplicantController extends Controller
         //verify that the post exists
         $post = Post::find($request->get('post'));
         if (!$post) {
-            return response()->json(['is_success' => false, 'message' => 'ApplicantController[add]: Post not found', 'data' => $request]);
+            return null;
         }
 
         //verify that the applicant exists
         $applicant = User::find($request->get('applicant'));
         if (!$applicant) {
-            return response()->json(['is_success' => false, 'message' => 'ApplicantController[add]: Applicant not found', 'data' => $request]);
+            return null;
         }
 
         //if there is already an applicant that status == ApplicantStatus::ADOPTED for this post, then reject this applicant
         if (Applicant::where('post', $post)->where('status', ApplicantStatus::ADOPTED)->first()){
             $validatedData['status'] = ApplicantStatus::REJECTED;
-            return response()->json(['is_success' => false,
-                'message' => 'ApplicantController[add]: Applicant rejected because there is already an adopted applicant for this post',
-                'data' => $applicant]
-            );
+            return null;
         }
 
         //create the applicant
         $applicant = Applicant::create($validatedData);
 
-        return response()->json(['is_success' => true, 'message' => 'ApplicantController[add]: Applicant created', 'data' => $applicant]);
+        return $applicant;
     }
 
     //PUT /applicants/save
@@ -114,19 +111,19 @@ class ApplicantController extends Controller
         //verify that the post exists
         $post = Post::find($request->get('post'));
         if (!$post) {
-            return response()->json(['is_success' => false, 'message' => 'ApplicantController[save]: Post not found', 'data' => $request]);
+            return null;
         }
 
         //verify that the applicant exists
         $applicant = User::find($request->get('applicant'));
         if (!$applicant) {
-            return response()->json(['is_success' => false, 'message' => 'ApplicantController[save]: Applicant not found', 'data' => $request]);
+            return null;
         }
 
         //verify that the applicant exists
         $applicant = Applicant::where('post', $post)->where('applicant', $applicant)->first();
         if (!$applicant) {
-            return response()->json(['is_success' => false, 'message' => 'ApplicantController[save]: Applicant not found', 'data' => $request]);
+            return null;
         }
 
         //update the applicant
@@ -143,7 +140,7 @@ class ApplicantController extends Controller
             }
         }
 
-        return response()->json(['is_success' => true, 'message' => 'ApplicantController[save]: Applicant updated', 'data' => $applicant]);
+        return $applicant;
     }
 
     //DELETE /applicants/delete
@@ -158,25 +155,25 @@ class ApplicantController extends Controller
         //verify that the post exists
         $post = Post::find($request->get('post'));
         if (!$post) {
-            return response()->json(['is_success' => false, 'message' => 'ApplicantController[delete]: Post not found', 'data' => $request]);
+            return null;
         }
 
         //verify that the applicant exists
         $applicant = User::find($request->get('applicant'));
         if (!$applicant) {
-            return response()->json(['is_success' => false, 'message' => 'ApplicantController[delete]: Applicant not found', 'data' => $request]);
+            return null;
         }
 
         //verify that the applicant exists
         $applicant = Applicant::where('post', $post)->where('applicant', $applicant)->first();
         if (!$applicant) {
-            return response()->json(['is_success' => false, 'message' => 'ApplicantController[delete]: Applicant not found', 'data' => $request]);
+            return null;
         }
 
         //delete the applicant
         $applicant->delete();
 
-        return response()->json(['is_success' => true, 'message' => 'ApplicantController[delete]: Applicant deleted', 'data' => $applicant]);
+        return $applicant;
     }
 
 }

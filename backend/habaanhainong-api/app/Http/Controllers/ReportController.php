@@ -12,34 +12,34 @@ class ReportController extends Controller
     //GET /reports/get
     public function getAll()
     {
-        return response()->json(['is_success' => true, 'message' => 'ReportController[getAll]: Reports all', 'data' => Report::all()]);
+        return Report::all();
     }
 
     //GET /reports/get/reporter/{user_id}
     public function getReportsByReporter($user_id)
     {
         $user = User::find($user_id);
-        return response()->json(['is_success' => true, 'message' => 'ReportController[getReportsByReporter]: Reports found', 'data' => Report::where('reporter', $user)->get()]);
+        return Report::where('reporter', $user)->get();
     }
 
     //GET /reports/get/reported/{user_id}
     public function getReportsByReported($user_id)
     {
         $user = User::find($user_id);
-        return response()->json(['is_success' => true, 'message' => 'ReportController[getReportsByReported]: Reports found', 'data' => Report::where('reported', $user)->get()]);
+        return Report::where('reported', $user)->get();
     }
 
     //GET /reports/get/post/{post_id}
     public function getReportsByPost($post_id)
     {
         $post = Post::find($post_id);
-        return response()->json(['is_success' => true, 'message' => 'ReportController[getReportsByPost]: Reports found', 'data' => Report::where('from_post', $post)->get()]);
+        return Report::where('from_post', $post)->get();
     }
 
     //GET /report/get/id/{id}
     public function getFromId($id)
     {
-        return response()->json(['is_success' => true, 'message' => 'ReportController[getFromId]: Report found', 'data' => Report::find($id)]);
+        return Report::find($id);
     }
 
     //POST /reports/add
@@ -66,7 +66,7 @@ class ReportController extends Controller
         $report->save();
 
         // return response
-        return response()->json(['is_success' => true, 'message' => 'ReportController[add]: Report added', 'data' => $report]);
+        return $report;
     }
 
     //DELETE /reports/delete/{id}
@@ -79,7 +79,7 @@ class ReportController extends Controller
         $report->delete();
 
         // return response
-        return response()->json(['is_success' => true, 'message' => 'ReportController[deleteWithId]: Report deleted', 'data' => $report]);
+        return $report;
     }
 
     //DELETE /reports/delete
@@ -97,7 +97,7 @@ class ReportController extends Controller
         $report->delete();
 
         // return response
-        return response()->json(['is_success' => true, 'message' => 'ReportController[delete]: Report deleted', 'data' => $report]);
+        return $report;
     }
 
 

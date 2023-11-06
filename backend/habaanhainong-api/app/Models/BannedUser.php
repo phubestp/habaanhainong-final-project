@@ -23,7 +23,7 @@ class BannedUser extends Model
     // Define a many-to-one relationship with Users (a banned user record belongs to a banned user)
     public function bannedUser() : BelongsTo
     {
-        return $this->belongsTo(User::class, 'banned_user', 'id');
+        return $this->belongsTo(User::class, 'banned_user', 'username');
     }
 
     // Define a many-to-one relationship with Reports (a banned user record belongs to a report)
@@ -35,6 +35,6 @@ class BannedUser extends Model
     // Define a many-to-one relationship with Users (a banned user record belongs to a user who banned)
     public function banningUser(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'by_user', 'id');
+        return $this->belongsTo(User::class, 'by_user', 'username');
     }
 }
