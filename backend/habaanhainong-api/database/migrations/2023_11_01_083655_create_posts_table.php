@@ -15,18 +15,20 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            //$table->string('author');
             $table->string('title');
             $table->string('description');
             $table->string('address');
 
-            $table->string('user_username');
-            $table->foreign('user_username')->references('username')->on('users');
+            $table->string('author');
 
-            $table->uuid('animal_id');
-            $table->foreign('animal_id')->references('id')->on('animals');
+            $table->uuid('animal');
 
             $table->timestamps();
+        });
+
+        Schema::table('posts', function (Blueprint $table) {
+            $table->foreign('author')->references('username')->on('users');
+            $table->foreign('animal')->references('id')->on('animals');
         });
     }
 

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('lastname');
             $table->string('role')->default('user');
             $table->string('status')->default('normal');
-            $table->string('phone_no')->nullable();
+            $table->string('phone_no');
             $table->string('facebook')->nullable();
             $table->string('instagram')->nullable();
             $table->string('line')->nullable();

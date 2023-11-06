@@ -20,7 +20,7 @@ class Animal extends Model
 
     public function animal_type(): belongsTo
     {
-        return $this->hasMany(AnimalType::class);
+        return $this->belongsTo(AnimalType::class);
     }
 
 }
