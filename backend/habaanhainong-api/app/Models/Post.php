@@ -15,7 +15,7 @@ class Post extends Model
 
     public function images(): HasMany
     {
-        return $this->hasMany(Image::class, 'from_post', 'id');
+        return $this->hasMany(PostImage::class, 'from_post', 'id');
     }
 
     public function applicants(): HasMany

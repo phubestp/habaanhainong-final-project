@@ -9,21 +9,21 @@ use Illuminate\Http\Request;
 class AnimalTypeController extends Controller
 {
 
-    //GET /animal-types
+    //GET /animal-types/get
     public function getAll()
     {
         return response()->json(['is_success' => true, 'message' => 'Animal types all', 'data' => AnimalType::all()]);
         //AnimalType::all();
     }
 
-    //GET /animal-types/list
+    //GET /animal-types/get/type-list
     public function getTypeList()
     {
         return response()->json(['is_success' => true, 'message' => 'Animal types string list', 'data' => AnimalType::all()->pluck('type')]);
         //AnimalType::all()->pluck('type');
     }
 
-    //GET /animal-types/animal/{animal_id}
+    //GET /animal-types/get/animal/{animal_id}
     public function getTypesByAnimalId($animal_id)
     {
         $animal = Animal::find($animal_id);
@@ -34,7 +34,7 @@ class AnimalTypeController extends Controller
         return response()->json(['is_success' => true, 'message' => 'Animal found', 'data' => $animal->animalType]);
     }
 
-    //GET /animal-types/animal
+    //GET /animal-types/get/animal
     public function getTypesByAnimalObject(Request $request)
     {
         if ($request->has('animal')) {
@@ -53,7 +53,7 @@ class AnimalTypeController extends Controller
     }
 
 
-    //POST /animal-types
+    //POST /animal-types/add
     public function add(Request $request)
     {
         $animal_type_name = $request->get('type');
@@ -63,7 +63,7 @@ class AnimalTypeController extends Controller
         return response()->json(['is_success' => true, 'message' => 'Animal type added successfully', 'data' => $animal_type]);
     }
 
-    //PUT /animal-types/{type}
+    //PUT /animal-types/save/{type}
     public function saveWithType(Request $request, $type)
     {
         $animal_request_type = $request->get('type');
@@ -77,7 +77,7 @@ class AnimalTypeController extends Controller
         return response()->json(['is_success' => true, 'message' => 'Animal type updated successfully', 'data' => $animal_type]);
     }
 
-    //PUT /animal-types
+    //PUT /animal-types/save
     public function save(Request $request)
     {
         $animal_type_name = $request->get('type');
@@ -92,7 +92,7 @@ class AnimalTypeController extends Controller
         return response()->json(['is_success' => true, 'message' => 'Animal type updated successfully', 'data' => $animal_type]);
     }
 
-    //DELETE /animal-types/{type}
+    //DELETE /animal-types/delete/{type}
     public function deleteWithType($type)
     {
         $animal_type = self::getByType($type);
@@ -104,7 +104,7 @@ class AnimalTypeController extends Controller
         return response()->json(['is_success' => true, 'message' => 'Animal type deleted successfully', 'data' => $animal_type]);
     }
 
-    //DELETE /animal-types
+    //DELETE /animal-types/delete
     public function delete(Request $request)
     {
         $animal_type_name = $request->get('type');

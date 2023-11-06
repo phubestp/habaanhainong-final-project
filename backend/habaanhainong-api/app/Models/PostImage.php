@@ -5,9 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Image extends Model
+class PostImage extends Model
 {
     use HasFactory, HasUuids;
 
@@ -15,13 +16,11 @@ class Image extends Model
     protected $fillable = [
         'image_id',
         'from_post',
-        'image_file',
         'file_extension',
     ];
 
-// Define a one-to-many relationship with Images (a post has many images)
-    public function images() : HasMany
+    public function images() : BelongsTo
     {
-        return $this->hasMany(Image::class, 'from_post', 'id');
+        return $this->belongsTo(Post::class);
     }
 }

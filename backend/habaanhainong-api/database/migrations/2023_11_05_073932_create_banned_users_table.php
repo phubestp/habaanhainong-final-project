@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('banned_users', function (Blueprint $table) {
-            $table->string('banned_user');
+            $table->string('banned_user')->unique();
             $table->uuid('from_report')->nullable();
             $table->string('by_user');
             $table->string('ban_reason');

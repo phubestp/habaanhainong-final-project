@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('images', function (Blueprint $table) {
+        Schema::create('post_images', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('from_post')->nullable();
             $table->string('file_name')->nullable();
             $table->string('file_extension');
             $table->timestamps();
         });
-        Schema::table('images', function (Blueprint $table) {
+        Schema::table('post_images', function (Blueprint $table) {
             $table->foreign('from_post')->references('id')->on('posts');
         });
     }

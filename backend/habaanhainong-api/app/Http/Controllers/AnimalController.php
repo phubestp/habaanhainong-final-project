@@ -4,24 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\Animal;
 use App\Models\AnimalType;
+use App\Models\Enums\AnimalSex;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
 class AnimalController extends Controller
 {
-    //GET /animals
+    //GET /animals/get
     public function getAll()
     {
         return response()->json(['is_success' => true, 'message' => 'AnimalController[getAll]: Animals all', 'data' => Animal::all()]);
     }
 
-    //GET /animals/{id}
+    //GET /animal/get/id/{id}
     public function getFromId($id)
     {
         return response()->json(['is_success' => true, 'message' => 'AnimalController[getFromId]: Animal found', 'data' => Animal::find($id)]);
     }
 
-    //GET /animals/type/{type}
+    //GET /animals/get/type/{type}
     public function getAnimalsByType($type)
     {
 //        return "getAnimalsByType";
@@ -32,14 +33,20 @@ class AnimalController extends Controller
     }
 
 
-    //GET /animals/post/{post_id}
+    //GET /animal/get/post/{post_id}
     public function getAnimalsByPost($post_id)
     {
         $post = Post::find($post_id);
         return response()->json(['is_success' => true, 'message' => 'AnimalController[getAnimalsByPost]: Animals found', 'data' => Animal::where('post_id', $post)]);
     }
 
-    //POST /animals
+    //GET /animals/get/sex-list
+    public function getSexList(){
+        $sexList = [AnimalSex::UNKNOWN, AnimalSex::NOT_SPECIFIED, AnimalSex::MALE, AnimalSex::FEMALE];
+        return response()->json(['is_success' => true, 'message' => "AnimalController[getSexList]: getSexList", 'data' => $sexList]);
+    }
+
+    //POST /animals/add
     public function add(Request $request)
     {
         //verify that the animal data is present
@@ -66,7 +73,7 @@ class AnimalController extends Controller
         return response()->json(['is_success' => true, 'message' => 'AnimalController[add]: Animal added successfully', 'data' => $animal]);
     }
 
-    //PUT /animals/{animal}
+    //PUT /animals/save/{id}
     public function saveWithId(Request $request, Animal $animal){
         $validatedData = $request->validate([
             'name' => 'required',
@@ -91,7 +98,7 @@ class AnimalController extends Controller
 
     }
 
-    //PUT /animals
+    //PUT /animals/save
     public function save(Request $request)
     {
         $validatedData = $request->validate([
@@ -118,14 +125,14 @@ class AnimalController extends Controller
         return response()->json(['is_success' => true, 'message' => 'AnimalController[save]: Animal updated successfully', 'data' => $animal]);
     }
 
-    //DELETE /animals/{animal}
+    //DELETE /animals/delete/{id}
     public function deleteWithId(Animal $animal)
     {
         $animal->delete();
-        return response()->json(['is_success' => true, 'message' => 'AAnimalController[deleteWithId]: nimal deleted successfully', 'data' => $animal]);
+        return response()->json(['is_success' => true, 'message' => 'AAnimalController[deleteWithId]: Animal deleted successfully', 'data' => $animal]);
     }
 
-    //DELETE /animals
+    //DELETE /animals/delete
     public function delete(Request $request)
     {
         $validatedData = $request->validate([
