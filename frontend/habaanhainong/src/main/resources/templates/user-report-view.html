@@ -13,7 +13,7 @@
 
 <div th:insert="~{fragments/navbar :: navbar}"></div>
 
-<div class="flex flex-col mx-auto p-16 pt-20 container">
+<div class="flex flex-col mx-auto p-16 pt-20 container justify-between min-h-screen">
   <div class="flex justify-center items-center relative w-full">
     <h1 class="text-4xl mb-3 font-semibold p-16"> ผู้ถูกรายงาน</h1>
   </div>
@@ -25,7 +25,7 @@
           ผู้ถูกรายงาน </a>
       </div>
       <div>
-        <a href="/user-ban-view" class="border-b border-primary py-3 px-8 my-5 font-semibold">
+        <a th:href="@{/admin/user-management}" class="border-b border-primary py-3 px-8 my-5 font-semibold">
           ผู้ใช้ที่โดนแบน </a>
       </div>
     </div>

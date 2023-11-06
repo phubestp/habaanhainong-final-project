@@ -9,7 +9,7 @@
 <div th:insert="~{fragments/navbar :: navbar}"></div>
 
 
-<div class="flex flex-col mx-auto p-16 pt-20 container px-120px">
+<div class="flex flex-col mx-auto p-16 pt-20 container px-120px justify-between min-h-screen">
     <div class="bg-white p-16 border border-primary my-5 flex flex-col w-full">
         <div class="flex flex-col justify-center items-center relative w-full">
             <form action="#" th:action="@{/register-info}" method="POST">
@@ -69,8 +69,8 @@
                     </div>
                     <!-- IG -->
                     <div class="flex flex-col lg: w-1/2 w-full">
-                        <label for="username" class="block mb-2 text-sm font-medium text-gray-900"> Instagram Link </label>
-                        <input id = "ig" type="text"
+                        <label for="instagram" class="block mb-2 text-sm font-medium text-gray-900"> Instagram Link </label>
+                        <input id="ig" type="text"
                                class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
                                placeholder="" required>
                     </div> <div></div>

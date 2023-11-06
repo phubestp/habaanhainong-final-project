@@ -15,11 +15,12 @@ import java.util.ArrayList;
 import java.util.Map;
 
 @Controller
+@RequestMapping("/admin")
 public class AnimalTypeViewController {
 
     private final AnimalTypeService animalTypeService = new AnimalTypeService();
 
-    @GetMapping("/animal-type-view")
+    @GetMapping("/animal-type")
     public String getAnimalType(Model animalTypes){
         ArrayList<Object> animalTypeLists = (ArrayList<Object>) animalTypeService.getAnimalTypes();
         animalTypes.addAttribute("animalTypes", animalTypeLists);

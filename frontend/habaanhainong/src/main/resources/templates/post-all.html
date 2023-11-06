@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
   <title> หาบ้านให้น้อง </title>
@@ -13,7 +14,7 @@
 
 <div th:insert="~{fragments/navbar :: navbar}"></div>
 
-<div class="flex flex-col mx-auto p-16 pt-20 container">
+<div class="flex flex-col justify-between min-h-screen mx-auto p-16 pt-20 container">
   <div class="flex justify-center items-center relative w-full">
     <h1 class="text-4xl mb-3 font-semibold p-16"> หาบ้านให้น้อง </h1>
   </div>
@@ -46,7 +47,7 @@
               </form>
             </div>
             <div>
-              <div th:unless="${(post.get('user_username') == username)}">
+              <div th:unless="${(post.get('user_username') == username)}" sec:authorize="isAuthenticated()">
               <form th:unless="${isFollows[iter.index].isFollow}" th:action="@{|follow/${username}/${post.get('id')}|}" method="POST">
               <button class="border border-primary py-3 px-3 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold md:max-w-fit mx-auto lg:mx-0 bg-white w-full">
                 <img th:src="@{/images/paw-1-svgrepo-com.svg}" alt="paw" width="20" class="inline mr-1">

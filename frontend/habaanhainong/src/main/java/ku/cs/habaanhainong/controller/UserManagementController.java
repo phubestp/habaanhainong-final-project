@@ -2,15 +2,17 @@ package ku.cs.habaanhainong.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 @Controller
-public class UserBanViewController {
+@RequestMapping("/admin")
+public class UserManagementController {
 
-    @RequestMapping("/user-ban-view")
+    @GetMapping("/user-management")
     public String getBanUser(Model user){
         ArrayList<HashMap<String,String>> banLists = new ArrayList<>();
         for (int i = 0; i < 2; i++){

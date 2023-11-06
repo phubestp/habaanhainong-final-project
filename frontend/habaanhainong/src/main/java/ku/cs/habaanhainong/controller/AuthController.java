@@ -3,7 +3,6 @@ package ku.cs.habaanhainong.controller;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import ku.cs.habaanhainong.entity.Users;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
@@ -15,7 +14,7 @@ public class AuthController {
     public String loginView(HttpServletRequest request) {
         HttpSession session = request.getSession();
         if(session.getAttribute("users") != null) {
-            return "registerInfo";
+            return "register-info";
         }
         return "login";
     }

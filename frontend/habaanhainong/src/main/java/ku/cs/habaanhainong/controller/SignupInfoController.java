@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
-import java.util.Map;
 
 @Controller
 public class SignupInfoController {
@@ -20,7 +19,7 @@ public class SignupInfoController {
         if(users == null) {
             return "register";
         }
-        return "registerInfo"; // return หน้าฟอร์ม signup.html
+        return "register-info"; // return หน้าฟอร์ม signup.html
     }
 
     @PostMapping("/register-info")

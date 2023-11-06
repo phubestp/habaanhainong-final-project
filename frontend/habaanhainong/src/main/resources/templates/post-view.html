@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -21,7 +21,7 @@
 <body class="bg-background text-primary">
 
 
-<div class="flex flex-col mx-auto p-16 pt-15 container">
+<div class="flex flex-col mx-auto p-16 pt-15 container justify-between min-h-screen">
     <!- header ->
     <div class="bg-white p-16 border border-primary my-5 flex flex-col w-full">
         <h1 class="text-4xl mb-3 font-semibold pt-15" th:text="${post.title}"></h1>
@@ -67,34 +67,50 @@
                 </div>
             </div>
 
-            <!-- contact details
-            <div class="bg-background p-8 border border-primary my-5 mx-auto ">
-                <div class="grid grid-col-1 gap-y-9">
-                    <div class="flex gap-x-4 mb-2">
-                        <img th:src="@{/images/paw-1-svgrepo-com.svg}" alt="paw" width="12">
-                        <p> 012-345-6789 </p>
-                    </div>
-                    <div class="flex gap-x-4 mb-2">
-                        <img th:src="@{/images/paw-1-svgrepo-com.svg}" alt="paw" width="12">
-                        <p><a href="https://web.facebook.com/xmickeys/"> facebook.com/xmickeys </a></p>
-                    </div>
-                    <div class="flex gap-x-4 mb-2">
-                        <img th:src="@{/images/paw-1-svgrepo-com.svg}" alt="paw" width="12">
-                        <p><a href="https://www.instagram.com/xmickeys/"> instagram.com/xmickeys </a></p>
-                    </div>
-                </div>
-            </div>
-            -->
-
             <!- content ->
             <div class="col-span-3">
                 <p th:text="${post.description}"></p>
             </div>
 
             <!- button ->
+            <div th:if="${post.user_username != username}" sec:authorize="isAuthenticated()">
+                    <button data-modal-target="applicantModal" data-modal-toggle="applicantModal"
+                            class="border border-primary py-3 px-16 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold md:max-w-fit mx-auto lg:mx-0 bg-white w-full">
+                        ขอรับเลี้ยงสัตว์
+                    </button>
+            </div>
 
         </div>
     </div>
+</div>
+
+<div id="applicantModal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative w-full max-w-2xl max-h-full">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow ">
+            <!-- Modal body -->
+            <div class="p-6 py-8 flex flex-col">
+                <div>
+                    <h1 class="text-lg mb-3 font-semibold"> บอกเหตุว่าทำไมถึงอยากเลี้ยงได้ไหม? </h1>
+                </div>
+                <form action="#" th:action="@{|/applicant/${username}/${post.id}|}" method="POST">
+                    <div class="py-3 flex flex-col lg:w-1/2 w-full">
+                        <label for="reason" class="block mb-2 text-sm font-medium text-gray-900"> เหตุผล </label>
+                        <input type="text" id="reason" name="reason"
+                               class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+                               placeholder="อยากเลี้ยงเพราะน่ารักมากๆ" required>
+                    </div>
+                    <button id="submit-button" type="submit"
+                            class="border border-primary py-3 px-8 mt-4 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold">
+                        ขอรับเลี้ยง
+                    </button>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
 </div>
 
 <div th:insert="~{fragments/navbar :: navbar}"></div>
