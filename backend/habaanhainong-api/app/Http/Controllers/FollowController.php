@@ -20,26 +20,26 @@ class FollowController extends Controller
         $user = User::where('username', $username)->first();
 
         $user->post()->detach($post_id);
-        return $user->posts;
+        return $user->post;
     }
 
     public function getFollowPosts(String $username)
     {
         $user = User::where('username', $username)->first();
-        return $user->posts;
+        return $user->post;
     }
 
     public function getFollowersCount(String $post_id) {
         $post = Post::where('id', $post_id)->first();
         return response()->json([
-            'count' => $post->users->count()
+            'count' => $post->user->count()
         ]);
     }
 
     public function isFollow(String $username, String $post_id) {
         $isFollow = false;
         $post = Post::where('id', $post_id)->first();
-        $exist = $post->users->where('username', $username)->first();
+        $exist = $post->user->where('username', $username)->first();
         if($exist !== null) {
             $isFollow = true;
         }
