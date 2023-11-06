@@ -12,56 +12,31 @@ class AnimalController extends Controller
     //GET /animals
     public function getAll()
     {
-        return response()->json(['is_success' => true, 'message' => 'Animals all', 'data' => Animal::all()]);
+        return response()->json(['is_success' => true, 'message' => 'AnimalController[getAll]: Animals all', 'data' => Animal::all()]);
     }
 
     //GET /animals/{id}
     public function getFromId($id)
     {
-        return response()->json(['is_success' => true, 'message' => 'Animal found', 'data' => Animal::find($id)]);
-    }
-
-    //GET /animals/type
-    public function getAnimalsByTypeObject(Request $request)
-    {
-//        return $request;
-        if ($request->has('animal_type')) {
-            $animal_type_request = $request->get('animal_type');
-            $type = AnimalType::find($animal_type_request->id);
-        }
-        else { //if ($request->has('type')) {
-            $type = AnimalType::where('type', $request->get('type'))->first();
-        }
-        return $type;
-//        return response()->json(['is_success' => true, 'message' => 'Animals found', 'data' => Animal::where('animal_type_id', $type)]);
+        return response()->json(['is_success' => true, 'message' => 'AnimalController[getFromId]: Animal found', 'data' => Animal::find($id)]);
     }
 
     //GET /animals/type/{type}
     public function getAnimalsByType($type)
     {
+//        return "getAnimalsByType";
         $typeFound = AnimalType::where('type', $type)->first();
-//        return $typeFound->id;
-        return response()->json(['is_success' => true, 'message' => 'Animals found', 'data' => Animal::where('animal_type_id', $typeFound->id)]);
+        $animals = Animal::where('animal_type_id', $typeFound->id)->get();
+
+        return response()->json(['is_success' => true, 'message' => 'AnimalController[getAnimalsByType]: Animals found', 'data' => $animals]);
     }
 
-    //GET /animals/post
-    public function getAnimalsByPostObject(Request $request)
-    {
-        if ($request->has('post')) {
-            $post_request = $request->get('post');
-            $post = Post::find($post_request->id);
-        }
-        else { //if ($request->has('post_id')) {
-            $post = Post::find($request->post_id);
-        }
-        return response()->json(['is_success' => true, 'message' => 'Animals found', 'data' => Animal::where('post_id', $post)]);
-    }
 
     //GET /animals/post/{post_id}
     public function getAnimalsByPost($post_id)
     {
         $post = Post::find($post_id);
-        return response()->json(['is_success' => true, 'message' => 'Animals found', 'data' => Animal::where('post_id', $post)]);
+        return response()->json(['is_success' => true, 'message' => 'AnimalController[getAnimalsByPost]: Animals found', 'data' => Animal::where('post_id', $post)]);
     }
 
     //POST /animals
@@ -88,7 +63,7 @@ class AnimalController extends Controller
         $animal->animal_type_id = $animal_type->id;
         $animal->save();
 
-        return response()->json(['is_success' => true, 'message' => 'Animal added successfully', 'data' => $animal]);
+        return response()->json(['is_success' => true, 'message' => 'AnimalController[add]: Animal added successfully', 'data' => $animal]);
     }
 
     //PUT /animals/{animal}
@@ -101,7 +76,7 @@ class AnimalController extends Controller
         //verify that the animal type exists
         $animal_type = AnimalType::where('type', $request->get('type'))->first();
         if (!$animal_type) {
-            return response()->json(['is_success' => false, 'message' => 'Animal type \"' . $request->get('type') . '\" not found', 'data' => null]);
+            return response()->json(['is_success' => false, 'message' => 'AnimalController[saveWithId]: Animal type \"' . $request->get('type') . '\" not found', 'data' => null]);
         }
 
         //update the animal
@@ -112,7 +87,7 @@ class AnimalController extends Controller
         $animal->animal_type_id = $animal_type->id;
         $animal->save();
 
-        return response()->json(['is_success' => true, 'message' => 'Animal updated successfully', 'data' => $animal]);
+        return response()->json(['is_success' => true, 'message' => 'AnimalController[saveWithId]: Animal updated successfully', 'data' => $animal]);
 
     }
 
@@ -128,7 +103,7 @@ class AnimalController extends Controller
         //verify that the animal type exists
         $animal_type = AnimalType::where('type', $request->get('type'))->first();
         if (!$animal_type) {
-            return response()->json(['is_success' => false, 'message' => 'Animal type \"' . $request->get('type') . '\" not found', 'data' => null]);
+            return response()->json(['is_success' => false, 'message' => 'AnimalController[save]: Animal type \"' . $request->get('type') . '\" not found', 'data' => null]);
         }
 
         //update the animal
@@ -140,14 +115,14 @@ class AnimalController extends Controller
         $animal->animal_type_id = $animal_type->id;
         $animal->save();
 
-        return response()->json(['is_success' => true, 'message' => 'Animal updated successfully', 'data' => $animal]);
+        return response()->json(['is_success' => true, 'message' => 'AnimalController[save]: Animal updated successfully', 'data' => $animal]);
     }
 
     //DELETE /animals/{animal}
     public function deleteWithId(Animal $animal)
     {
         $animal->delete();
-        return response()->json(['is_success' => true, 'message' => 'Animal deleted successfully', 'data' => $animal]);
+        return response()->json(['is_success' => true, 'message' => 'AAnimalController[deleteWithId]: nimal deleted successfully', 'data' => $animal]);
     }
 
     //DELETE /animals
@@ -159,6 +134,6 @@ class AnimalController extends Controller
 
         $animal = Animal::find($validatedData['id']);
         $animal->delete();
-        return response()->json(['is_success' => true, 'message' => 'Animal deleted successfully', 'data' => $animal]);
+        return response()->json(['is_success' => true, 'message' => 'AAnimalController[delete]: Animal deleted successfully', 'data' => $animal]);
     }
 }

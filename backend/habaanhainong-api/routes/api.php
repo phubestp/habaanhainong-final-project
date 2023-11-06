@@ -31,7 +31,6 @@ Route::delete('/animal-types', [AnimalTypeController::class, 'delete']);
 //Animal
 Route::get('/animals', [AnimalController::class, 'getAll']);
 Route::get('/animals/{id}', [AnimalController::class, 'getFromId']);
-Route::get('/animals/type', [AnimalController::class, 'getAnimalsByTypeObject']);
 Route::get('/animals/type/{type}', [AnimalController::class, 'getAnimalsByType']);
 Route::get('/animals/post/{post_id}', [AnimalController::class, 'getAnimalsByPost']);
 Route::post('/animals', [AnimalController::class, 'add']);
