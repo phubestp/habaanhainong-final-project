@@ -75,7 +75,7 @@ Route::get('/post-images/get', [PostImageController::class, 'getAll']);
 Route::get('/post-image/get/id/{id}', [PostImageController::class, 'getFromId']);
 Route::get('/post-images/get/post/{post_id}', [PostImageController::class, 'getPostImagesByPost']);
 Route::post('/post-images/add', [PostImageController::class, 'add']);
-Route::post('/post-images/add/test', [PostImageController::class, 'addTest']);
+Route::post('/post-images/add-test', [PostImageController::class, 'addTest']);
 Route::put('/post-images/save/{id}', [PostImageController::class, 'saveWithId']);
 Route::put('/post-images/save', [PostImageController::class, 'save']);
 Route::delete('/post-images/delete/{id}', [PostImageController::class, 'deleteWithId']);

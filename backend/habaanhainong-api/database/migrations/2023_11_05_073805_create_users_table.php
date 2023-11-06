@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Enums\UserRole;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,7 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('firstname');
             $table->string('lastname');
-            $table->boolean('isAdmin')->default(false);
+            $table->string('role')->default(UserRole::USER);
             $table->string('phone_no');
             $table->string('Facebook')->nullable();
             $table->string('Instagram')->nullable();
