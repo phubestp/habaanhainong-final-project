@@ -31,7 +31,7 @@
         <div class="flex flex-row gap-x-4">
             <div> <img class="rounded-full w-12 h-12" th:src="@{/images/undraw_contact_us_re_4qqt.svg}" alt="image author"> </div>
             <div> <p class="py-3" th:text="${post.user_username}"></p> </div>
-            <div> <p class="py-3" th:text="${post.created_at}"> 23 กันยายน 2023 </p> </div>
+            <div> <p class="py-3" th:text="${#strings.arraySplit(post.created_at, 'T')[0]}"></p> </div>
         </div>
 
         <!- grid ->

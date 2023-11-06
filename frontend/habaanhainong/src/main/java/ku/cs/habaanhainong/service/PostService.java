@@ -55,4 +55,33 @@ public class PostService {
         req = new HttpEntity<>(newPostJson.toString(), headers);
         restTemplate.postForObject(url, req, Object.class);
     }
+
+    public void updatePost(HashMap<String, String> params,String post_id, String animal_id) {
+        RestTemplate restTemplate = new RestTemplate();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        String url = APIServices.BASE_URL + "animals/" + animal_id;
+        JSONObject animalJson = new JSONObject();
+        animalJson.put("name", params.get("name"));
+        animalJson.put("breed", params.get("breed"));
+        animalJson.put("animal_type", params.get("animal_type"));
+        animalJson.put("sex", params.get("sex"));
+        HttpEntity<String> req = new HttpEntity<>(animalJson.toString(), headers);
+        restTemplate.put(url, req);
+
+        url = APIServices.BASE_URL + "posts/" + post_id;
+        JSONObject postJson = new JSONObject();
+        System.out.println(authentication.getName());
+        postJson.put("username", authentication.getName());
+        postJson.put("title", params.get("title"));
+        postJson.put("description", params.get("description"));
+        postJson.put("address", params.get("address"));
+        postJson.put("animal_id", animal_id);
+        System.out.println(postJson.toString());
+        req = new HttpEntity<>(postJson.toString(), headers);
+        restTemplate.put(url, req);
+    }
 }

@@ -28,11 +28,11 @@
     </div>
 
     <!-- ฟอร์ม -->
-    <form action="">
+    <form th:action="@{|/post-edit/${post.id}/${animal.id}|}" method="POST">
       <!-- หัวข้อ -->
       <div class="py-3 flex flex-col lg:w-1/2 w-full">
         <label for="breed" class="block mb-2 text-sm font-medium text-gray-900"> หัวข้อ </label>
-        <input type="text" id="title"
+        <input type="text" id="title" th:value="${post.title}" name="title"
                class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
                placeholder="" required>
       </div>
@@ -40,7 +40,7 @@
       <!-- รายละเอียด-->
       <div class="py-3">
         <label for="description" class="block mb-2 text-sm font-medium text-gray-900"> รายละเอียด </label>
-        <textarea id="description"
+        <textarea id="description" th:text="${post.description}" name="description"
                   class="block p-2.5 w-full text-sm  bg-white rounded-lg border border-primary focus:ring-blue-500 focus:border-blue-500 min-h-[20px]"
                   placeholder="เช่น : น้องมะลิเป็นแมวกินเก่ง ชอบข่วนโซฟา" required></textarea>
       </div>
@@ -52,19 +52,16 @@
         <!-- ชื่อ -->
         <div class="py-3 flex flex-col lg:w-1/2 w-full">
           <label for="name" class="block mb-2 text-sm font-medium text-gray-900"> ชื่อ </label>
-          <input type="text" id="name"
+          <input type="text" id="name" th:value="${animal.name}" name="name"
                  class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
                  placeholder="เช่น มะลิ" required>
         </div>
         <!-- ประเภท -->
         <div class="py-3 flex flex-col lg:w-1/2 w-full">
           <label for="type" class="block mb-2 text-sm font-medium text-gray-900"> ประเภทสัตว์ </label>
-          <select name="text" id="type" class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
-                  placeholder="ประเภท" required>
-            <option>แมว</option>
-            <option>แมว</option>
-            <option>แมว</option>
-            <option>แมว</option>
+          <select id="type" class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+                  placeholder="ประเภท" required th:value="${animal.animal_type}" name="type">
+            <option th:each="animalType : ${animalTypes}" th:value="${animalType.type}" th:text="${animalType.type}"></option>
           </select>
         </div>
       </div>
@@ -73,10 +70,12 @@
       <div class="flex flex-row space-x-4">
         <div class="py-3 flex flex-col lg:w-1/2 w-full">
           <label for="sex" class="block mb-2 text-sm font-medium text-gray-900"> เพศ </label>
-          <select name="type" id="sex" class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
-                  placeholder="เพศ" required>
+          <select id="sex" class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+                  placeholder="เพศ" required th:value="${animal.sex}" name="sex">
             <option>เพศผู้</option>
             <option>เพศเมีย</option>
+            <option>ไร้เพศ</option>
+            <option>ไม่ระบุ</option>
           </select>
         </div>
 
@@ -84,13 +83,13 @@
           <label for="breed" class="block mb-2 text-sm font-medium text-gray-900"> สายพันธุ์ </label>
           <input type="text" id="breed"
                  class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
-                 placeholder="เช่น : สก๊อตทิช โฟลด์" required>
+                 placeholder="เช่น : สก๊อตทิช โฟลด์" required th:value="${animal.breed}" name="breed">
         </div>
       </div>
 
       <div class="py-3 flex flex-col lg:w-1/2 w-full">
         <label for="breed" class="block mb-2 text-sm font-medium text-gray-900"> พิกัด </label>
-        <input type="text" id="map"
+        <input type="text" id="map" th:value="${post.address}" name="address"
                class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
                placeholder="" required>
       </div>
@@ -110,7 +109,7 @@
         </label>
       </div>
 
-      <button class="border border-primary py-3 px-8 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold md:max-w-fit mx-auto lg:mx-0 bg-white w-full">
+      <button type="submit" class="border border-primary py-3 px-8 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold md:max-w-fit mx-auto lg:mx-0 bg-white w-full">
         โพสต์
       </button>
 

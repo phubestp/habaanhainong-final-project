@@ -19,19 +19,13 @@
   </div>
 
   <div class="bg-white p-16 border border-primary my-5 flex flex-col w-full">
-    <div >
+    <div>
       <div th:each="post : ${posts}" class="grid grid-cols-1 bg-background pr-16 pb-8 border border-primary my-5 lg:grid-cols-2">
         <div class="flex flex-col">
-          <div class="flex bg-primary items-center justify-center p-2">
-            <div>
-              <label class="text-white"> สถานะ </label>
-            </div>
-
-          </div>
           <div class="flex flex-row gap-x-4 px-16 py-4">
             <div> <img class="rounded-full w-12 h-12" th:src="@{/images/undraw_contact_us_re_4qqt.svg}" alt="image author"></div>
             <div> <p class="py-3" th:text="${post.get('user_username')}" > </p> </div>
-            <div> <p class="py-3" th:text="${post.get('created_at')}" > </p> </div>
+            <div> <p class="py-3" th:text="${#strings.arraySplit(post.get('created_at'), 'T')[0]}" > </p> </div>
           </div>
           <div>
             <label class="text-2xl block font-semibold px-16 py-4" th:text="${post.get('title')}" > </label>
@@ -62,10 +56,8 @@
         <div>
           <img class="h-auto max-w-full" th:src="@{/images/undraw_contact_us_re_4qqt.svg}" alt="image description">
         </div>
-
       </div>
     </div>
-
   </div>
 </div>
 
