@@ -20,7 +20,7 @@
 
   <div class="bg-white p-16 border border-primary my-5 flex flex-col w-full">
     <div>
-      <div th:each="post : ${posts}" class="grid grid-cols-1 bg-background pr-16 pb-8 border border-primary my-5 lg:grid-cols-2">
+      <div th:each="post, iter : ${posts}"  class="grid grid-cols-1 bg-background pr-16 pb-8 border border-primary my-5 lg:grid-cols-2">
         <div class="flex flex-col">
           <div class="flex flex-row gap-x-4 px-16 py-4">
             <div> <img class="rounded-full w-12 h-12" th:src="@{/images/undraw_contact_us_re_4qqt.svg}" alt="image author"></div>
@@ -46,10 +46,21 @@
               </form>
             </div>
             <div>
-              <button class="border border-primary py-3 px-8 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold md:max-w-fit mx-auto lg:mx-0 bg-white w-full">
+              <div th:unless="${(post.get('user_username') == username)}">
+              <form th:unless="${isFollows[iter.index].isFollow}" th:action="@{|follow/${username}/${post.get('id')}|}" method="POST">
+              <button class="border border-primary py-3 px-3 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold md:max-w-fit mx-auto lg:mx-0 bg-white w-full">
                 <img th:src="@{/images/paw-1-svgrepo-com.svg}" alt="paw" width="20" class="inline mr-1">
-                ติดตาม 20 คน
+                ติดตาม | ผู้ติดตาม <span th:text="${followers[iter.index].count}"></span> คน
               </button>
+              </form>
+              <form th:if="${isFollows[iter.index].isFollow}" th:action="@{|unfollow/${username}/${post.get('id')}|}" method="POST">
+                <button class="border border-primary py-3 px-0.5 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold md:max-w-fit mx-auto lg:mx-0 bg-white w-full">
+                  <img th:src="@{/images/paw-1-svgrepo-com.svg}" alt="paw" width="20" class="inline mr-1">
+                  ยกเลิกติดตาม | ผู้ติดตาม <span th:text="${followers[iter.index].count}"></span> คน
+                </button>
+              </form>
+              </div>
+
             </div>
           </div>
         </div>
