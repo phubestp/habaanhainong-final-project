@@ -39,7 +39,7 @@ class FollowController extends Controller
     public function isFollow(String $post_id, String $username) {
         $isFollow = false;
         $post = Post::where('id', $post_id)->first();
-        $exist = $post->users->where('username', $username);
+        $exist = $post->users->where('username', $username)->first();
         if($exist !== null) {
             $isFollow = true;
         }
