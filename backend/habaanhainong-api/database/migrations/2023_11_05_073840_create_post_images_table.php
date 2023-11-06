@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('post_images', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('from_post')->nullable();
-            $table->string('file_name')->nullable();
             $table->string('file_extension');
             $table->timestamps();
         });

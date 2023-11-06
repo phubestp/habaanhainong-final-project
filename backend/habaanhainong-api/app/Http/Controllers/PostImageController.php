@@ -50,7 +50,7 @@ class PostImageController extends Controller
         return response()->json(['is_success' => true, 'message' => 'PostImageController[add]: PostImage created', 'data' => $postImage]);
     }
 
-    //POST /post-images/add/test
+    //POST /post-images/add-test
     public function addTest(Request $request)
     {
         //verify that the post image data is present
