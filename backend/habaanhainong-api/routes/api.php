@@ -34,7 +34,7 @@ Route::get('/posts/my-follow-post/{username}', [FollowController::class, 'getFol
 Route::get('/followers/{post_id}', [FollowController::class, 'getFollowersCount']);
 Route::post('/follow/{username}/{post_id}', [FollowController::class, 'follow']);
 Route::post('/unfollow/{username}/{post_id}', [FollowController::class, 'unfollow']);
-Route::post('/is-follow/{username}/{post_id}', [FollowController::class, 'isFollow']);
+Route::get('/is-follow/{username}/{post_id}', [FollowController::class, 'isFollow']);
 
 Route::post('/applicant', [ApplicantController::class, 'applicant']);
 Route::get('/applicants/{post_id}', [ApplicantController::class, 'getApplicants']);
