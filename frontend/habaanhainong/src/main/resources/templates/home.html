@@ -31,7 +31,7 @@
     </div>
   </div>
   <!-- น้องๆกำลังรอคุณอยู่นะ -->
-  <div class="bg-white p-16 justify-between min-h-screen border border-primary my-5 flex flex-col items-center w-full">
+  <div class="bg-white p-16 justify-between border border-primary my-5 flex flex-col items-center w-full">
     <h1 class="text-3xl font-semibold">น้องๆกำลังรอคุณอยู่นะ</h1>
     <p class="py-5">ดูน้องๆที่น่ารักพวกนี้สิ เลือกสัตว์ที่คุณอยากเลี้ยงได้เลย</p>
     <div class="flex lg:flex-row flex-col lg:justify-between lg:gap-x-10 gap-y-10">
@@ -48,14 +48,9 @@
     <!-- Example Pet Type -->
     <div class="grid grid-cols-4 gap-5">
       <!-- Example Pet Type Button -->
-      <button th:replace="fragments/pet-type-btn :: pet-type-btn"></button>
-      <button th:replace="fragments/pet-type-btn :: pet-type-btn"></button>
-      <button th:replace="fragments/pet-type-btn :: pet-type-btn"></button>
-      <button th:replace="fragments/pet-type-btn :: pet-type-btn"></button>
-      <button th:replace="fragments/pet-type-btn :: pet-type-btn"></button>
-      <button th:replace="fragments/pet-type-btn :: pet-type-btn"></button>
-      <button th:replace="fragments/pet-type-btn :: pet-type-btn"></button>
-      <button th:replace="fragments/pet-type-btn :: pet-type-btn"></button>
+      <div th:each="animalType : ${animalTypes}">
+        <button th:replace="fragments/pet-type-btn :: pet-type-btn" th:with="type=${animalType.type}"></button>
+      </div>
     </div>
   </div>
   <!-- Contact to Admin -->

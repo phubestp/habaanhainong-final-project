@@ -6,6 +6,6 @@ import org.springframework.web.client.RestTemplate;
 public class APIServices {
 
     public static final String BASE_URL
-            = "https://habaanhainong-final-project.vercel.app/api/api/";
+            = "http://localhost/api/";
 
 }

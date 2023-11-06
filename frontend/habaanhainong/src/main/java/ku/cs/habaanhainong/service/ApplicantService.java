@@ -21,4 +21,10 @@ public class ApplicantService {
         HttpEntity<String> req = new HttpEntity<>(newApplicantJson.toString(), headers);
         restTemplate.postForObject(url, req, HashMap.class);
     }
+
+    public Object getAllApplicant(String post_id) {
+        RestTemplate restTemplate = new RestTemplate();
+        String url = APIServices.BASE_URL + "applicants/" + post_id;
+        return restTemplate.getForObject(url, Object.class);
+    }
 }

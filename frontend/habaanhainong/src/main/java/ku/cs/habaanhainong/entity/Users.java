@@ -26,13 +26,9 @@ public class Users {
     private String firstname;
     private String lastname;
 
-    @Nullable
     private String phone_no;
-    @Nullable
     private String facebook;
-    @Nullable
     private String line;
-    @Nullable
     private String instagram;
 
 }

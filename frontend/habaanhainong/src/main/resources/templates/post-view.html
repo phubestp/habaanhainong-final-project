@@ -30,7 +30,7 @@
 
         <div class="flex flex-row gap-x-4">
             <div> <img class="rounded-full w-12 h-12" th:src="@{/images/undraw_contact_us_re_4qqt.svg}" alt="image author"> </div>
-            <div> <p class="py-3" th:text="${post.user_username}"></p> </div>
+            <div> <p class="py-3" th:text="${post.author}"></p> </div>
             <div> <p class="py-3" th:text="${#strings.arraySplit(post.created_at, 'T')[0]}"></p> </div>
         </div>
 
@@ -73,7 +73,7 @@
             </div>
 
             <!- button ->
-            <div th:if="${post.user_username != username}" sec:authorize="isAuthenticated()">
+            <div th:if="${post.author != username}" sec:authorize="isAuthenticated()">
                     <button data-modal-target="applicantModal" data-modal-toggle="applicantModal"
                             class="border border-primary py-3 px-16 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold md:max-w-fit mx-auto lg:mx-0 bg-white w-full">
                         ขอรับเลี้ยงสัตว์

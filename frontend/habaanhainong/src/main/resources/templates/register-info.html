@@ -33,15 +33,15 @@
                 <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
                     <!-- ชื่อ -->
                     <div class="flex flex-col">
-                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900"> ชื่อ </label>
-                        <input id = "name" type="text"
+                        <label for="firstname" class="block mb-2 text-sm font-medium text-gray-900"> ชื่อ </label>
+                        <input id="firstname" type="text" name="firstname"
                                class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
                                placeholder="" required>
                     </div>
                     <!-- นามสกุล -->
                     <div class="flex flex-col">
-                        <label for="surname" class="block mb-2 text-sm font-medium text-gray-900"> นามสกุล </label>
-                        <input id = "surname" type="text"
+                        <label for="lastname" class="block mb-2 text-sm font-medium text-gray-900"> นามสกุล </label>
+                        <input id="lastname" type="text" name="lastname"
                                class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
                                placeholder="" required>
                     </div>
@@ -55,25 +55,32 @@
                 <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
                     <!-- เบอร์โทรศัพท์ชื่อ -->
                     <div class="flex flex-col">
-                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900"> เบอร์โทรศัพท์ </label>
-                        <input id = "tel" type="text"
+                        <label for="phone_no" class="block mb-2 text-sm font-medium text-gray-900"> เบอร์โทรศัพท์ </label>
+                        <input id="phone_no" type="text" name="phone_no"
                                class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
                                placeholder="" required>
                     </div>
                     <!-- FB-->
                     <div class="flex flex-col">
-                        <label for="surname" class="block mb-2 text-sm font-medium text-gray-900"> Facebook Link </label>
-                        <input id = "facebook" type="text"
+                        <label for="facebook" class="block mb-2 text-sm font-medium text-gray-900"> Facebook </label>
+                        <input id="facebook" type="text" name="facebook"
                                class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
                                placeholder="" required>
                     </div>
                     <!-- IG -->
                     <div class="flex flex-col lg: w-1/2 w-full">
-                        <label for="instagram" class="block mb-2 text-sm font-medium text-gray-900"> Instagram Link </label>
-                        <input id="ig" type="text"
+                        <label for="instagram" class="block mb-2 text-sm font-medium text-gray-900"> Instagram</label>
+                        <input id="instagram" type="text" name="instagram"
                                class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
                                placeholder="" required>
-                    </div> <div></div>
+                    </div>
+                    <!-- FB-->
+                    <div class="flex flex-col">
+                        <label for="line" class="block mb-2 text-sm font-medium text-gray-900">Line</label>
+                        <input id="line" type="text" name="line"
+                               class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+                               placeholder="" required>
+                    </div>
 
                     <div class="flex flex-row space-x-4  w-full">
                         <input type="checkbox" id="privacyPolicyAndTermOfService" style="width: 20px; height: 20px; margin-right: 2px" required>

@@ -39,6 +39,7 @@ public class SignupService {
         record.setLastname("");
         record.setRole("user");
         record.setStatus("normal");
+        record.setPhone_no("");
 
         String hashedPassword = passwordEncoder.encode(users.getPassword());
         record.setPassword(hashedPassword);
@@ -54,7 +55,7 @@ public class SignupService {
         String username = users.getUsername();
         RestTemplate restTemplate = new RestTemplate();
 
-        String url = "https://habaanhainong-final-project.vercel.app/api/api/edit-profile/" + username;
+        String url = APIServices.BASE_URL + "edit-profile/" + username;
         JSONObject jsonObject = new JSONObject();
 
         System.out.println(params);

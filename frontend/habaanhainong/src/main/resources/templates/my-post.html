@@ -25,29 +25,29 @@
         <h2 class="font-semibold" style="font-size: 24px; margin-top: 40px; margin-bottom: 20px">โพสต์ของฉัน</h2>
     </div>
     <div class="bg-white border flex flex-col border-primary justify-center lg:w-3/4">
-        <div class="grid grid-cols-2">
-            <div class="flex flex-col lg:py-16" style="padding-left: 80px">
-                <div class="flex flex-row items-center">
+        <div class="grid grid-cols-2" th:each="post : ${posts}">
+            <div class="flex flex-col lg:py-16" style="padding-left: 80px" th:if="${post.author == username}">
+                <div class="flex flex-row items-center" th:if="${post.author == username}">
                     <img th:src="@{/images/raccoon.jpg}" alt="raccoon" style="border-radius:50%; width: 39.36px; height:39.36px" class="border">
-                    <span style="font-size: 12px; margin-left: 15px">น้องมัวร์มัวร์ แรคคูนซ่า | 23 กันยายน 2023</span>
+                    <span style="font-size: 12px; margin-left: 15px" th:text="${post.author} + ${#strings.arraySplit(post.created_at, 'T')[0]}"></span>
                 </div>
-                <div class="flex flex-wrap" style="width: 50%; margin-bottom: 10px">
-                    <span style="font-weight: 600; font-size: 20px">
-                        หาบ้านให้น้องหน่อยค่ะ เจอน้องอยู่ข้างทางค่ะ
+                <div class="flex flex-wrap" style="width: 50%; margin-bottom: 10px" th:text="${post.title}" th:if="${post.author == username}">
+                    <span style="font-weight: 600; font-size: 20px" >
                     </span>
                 </div>
                 <div class="flex flex-wrap">
-                    <span style="font-size: 12px">
-                        เจอน้องแถวๆ มอเกษตรค่ะ มีใครพอจะช่วยเลี้ยงน้องๆได้บ้างมั้ยคะ ฮือ สงสารน้อง
+                    <span style="font-size: 12px" th:text="${post.description}" th:if="${post.author == username}">
                     </span>
                 </div>
-                <div class="flex flex-row" style="margin-top: 30px">
-                    <button type="button" class="w-[61px] h-[36px] text-[16px] font-semibold rounded border shadow-[5px_5px_0px_0px_#004225]" onclick="" style="margin-right: 15px">แก้ไข</button>
-                    <button type="button" class="w-[43px] h-[36px] text-[16px] text-[#F32013] font-semibold rounded border border-[#F32013] shadow-[5px_5px_0px_0px_#F32013]" onclick="" style="margin-right: 15px">ลบ</button>
-                    <button type="button" class="w-[137px] h-[36px] text-[16px] font-semibold rounded border shadow-[5px_5px_0px_0px_#004225]" onclick="" >ผู้ขอรับเลี้ยง</button>
+                <div class="flex flex-row" style="margin-top: 30px" th:if="${post.author == username}">
+                    <button type="button" class="w-[61px] h-[36px] text-[16px] font-semibold rounded border shadow-[5px_5px_0px_0px_#004225]" style="margin-right: 15px">
+                        <a th:href="@{|/post-edit/${post.id}|}">แก้ไข</a></button>
+                    <button type="button" class="w-[43px] h-[36px] text-[16px] text-[#F32013] font-semibold rounded border border-[#F32013] shadow-[5px_5px_0px_0px_#F32013]" style="margin-right: 15px">ลบ</button>
+                    <button type="button" class="w-[137px] h-[36px] text-[16px] font-semibold rounded border shadow-[5px_5px_0px_0px_#004225]">
+                        <a th:href="@{|/applicant-view/${post.id}|}">ผู้ขอรับเลี้ยง</a></button>
                 </div>
             </div>
-            <div class="flex lg:justify-self-end">
+            <div class="flex lg:justify-self-end" th:if="${post.author == username}">
                 <img th:src="@{/images/real-cat.png}" alt="real-cat" style="width: 355px; height:355px" class="border">
             </div>
         </div>

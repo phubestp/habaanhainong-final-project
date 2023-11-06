@@ -12,14 +12,13 @@ import java.util.HashMap;
 import java.util.Objects;
 
 public class PostService {
-
     public HashMap<String, Object> getPostFromId(String id) {
         RestTemplate restTemplate = new RestTemplate();
         String postUrl = APIServices.BASE_URL + "posts/" + id;
         System.out.println(postUrl);
         HashMap<String, Object> res = new HashMap<>();
         res.put("post", restTemplate.getForObject(postUrl, Object.class));
-        String animal_id = (String) Objects.requireNonNull(restTemplate.getForObject(postUrl, HashMap.class)).get("animal_id");
+        String animal_id = (String) Objects.requireNonNull(restTemplate.getForObject(postUrl, HashMap.class)).get("animal");
         System.out.println(animal_id);
         String animalUrl = APIServices.BASE_URL + "animals/" + animal_id;
         res.put("animal", restTemplate.getForObject(animalUrl, Object.class));
@@ -84,4 +83,5 @@ public class PostService {
         req = new HttpEntity<>(postJson.toString(), headers);
         restTemplate.put(url, req);
     }
+
 }

@@ -44,6 +44,6 @@ public class AnimalTypeViewController {
     public String deleteAnimalType(Model model, @PathVariable String type){
         System.out.println(type);
         AnimalTypeService.deleteAnimalType(type);
-        return "redirect:/animal-type-view";
+        return "redirect:/admin/animal-type";
     }
 }

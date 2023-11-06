@@ -58,9 +58,9 @@
         </div>
         <!-- ประเภท -->
         <div class="py-3 flex flex-col lg:w-1/2 w-full">
-          <label for="type" class="block mb-2 text-sm font-medium text-gray-900"> ประเภทสัตว์ </label>
-          <select id="type" class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
-                  placeholder="ประเภท" required th:value="${animal.animal_type}" name="type">
+          <label for="animal_type" class="block mb-2 text-sm font-medium text-gray-900"> ประเภทสัตว์ </label>
+          <select id="animal_type" class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+                  placeholder="ประเภท" required th:value="${animal.animal_type}" name="animal_type">
             <option th:each="animalType : ${animalTypes}" th:value="${animalType.type}" th:text="${animalType.type}"></option>
           </select>
         </div>
