@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.HashMap;
 import java.util.List;
 
-public class PostImageAPI {
+public class PostImageService {
 
     public static List<HashMap<String, Object>> getPostImages() {
         RestTemplate restTemplate = new RestTemplate();
@@ -17,7 +17,7 @@ public class PostImageAPI {
         HashMap<String, Object> result = (HashMap<String, Object>) restTemplate.getForObject(resourceUrl, Object.class);
         boolean is_success = (boolean) result.get("is_success");
         if (!is_success) {
-            throw new RuntimeException("PostImageAPI[getPostImages]: is_success is false result -> " + result);
+            throw new RuntimeException("PostImageService[getPostImages]: is_success is false result -> " + result);
         }
         List<HashMap<String, Object>> data = (List<HashMap<String, Object>>) result.get("data");
         return data;
@@ -44,7 +44,7 @@ public class PostImageAPI {
         HashMap<String, Object> result = (HashMap<String, Object>) restTemplate.postForObject(resourceUrl, req, Object.class);
         boolean is_success = (boolean) result.get("is_success");
         if (!is_success) {
-            throw new RuntimeException("PostImageAPI[addPostImage]: is_success is false result -> " + result);
+            throw new RuntimeException("PostImageService[addPostImage]: is_success is false result -> " + result);
         }
         HashMap<String, Object> data = (HashMap<String, Object>) result.get("data");
         return data;
