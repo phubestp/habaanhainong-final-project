@@ -50,4 +50,10 @@ class AnimalTypeController extends Controller
             'message' => 'delete success'
         ]);
     }
+
+    public function delete(AnimalType $animalType)
+    {
+        $animalType->delete();
+        return $animalType;
+    }
 }
