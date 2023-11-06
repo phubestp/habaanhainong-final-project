@@ -31,7 +31,7 @@ class PostController extends Controller
         $address = $request->get('address');
         $animal_id = $request->get('animal_id');
         
-        $post->username = $username;
+        $post->user_username = $username;
         $post->title = $title;
         $post->description = $description;
         $post->address = $address;
