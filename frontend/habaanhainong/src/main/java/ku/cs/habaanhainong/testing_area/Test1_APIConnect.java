@@ -27,15 +27,17 @@ public class Test1_APIConnect {
 //        String resourceUrl = APIServices.BASE_URL + "animals";
 //        System.out.println(restTemplate.getForObject(resourceUrl, Object.class));
 
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("image_file", "Ote'sImageFile");
-        jsonObject.put("file_extension", "Ote'sFileExtension");
-        String apiUrl = "http://localhost/api/image";
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<String> req = new HttpEntity<>(jsonObject.toString(), headers);
+//        JSONObject jsonObject = new JSONObject();
+//        jsonObject.put("image_file", "Ote'sImageFile");
+//        jsonObject.put("file_extension", "Ote'sFileExtension");
+//        String apiUrl = "http://localhost/api/image";
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setContentType(MediaType.APPLICATION_JSON);
+//        HttpEntity<String> req = new HttpEntity<>(jsonObject.toString(), headers);
+//
+//        RestTemplate restTemplate = new RestTemplate();
+//        System.out.println(restTemplate.postForObject(apiUrl, req, Object.class));
 
-        RestTemplate restTemplate = new RestTemplate();
-        System.out.println(restTemplate.postForObject(apiUrl, req, Object.class));
+
     }
 }
