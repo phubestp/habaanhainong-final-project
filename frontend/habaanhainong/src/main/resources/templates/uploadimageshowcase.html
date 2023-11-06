@@ -9,5 +9,6 @@
     <input type="file" name="file" accept="image/*" required />
     <button type="submit">Upload</button>
 </form>
+<img th:src="@{'/images/' + ${imagePath}}" alt="Image">
 </body>
 </html>

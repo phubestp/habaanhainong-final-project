@@ -13,7 +13,7 @@ public class PostImageAPI {
 
     public static List<HashMap<String, Object>> getPostImages() {
         RestTemplate restTemplate = new RestTemplate();
-        String resourceUrl = APIServices.BASE_URL + "post_images/get";
+        String resourceUrl = APIServices.BASE_URL + "post-images/get";
         HashMap<String, Object> result = (HashMap<String, Object>) restTemplate.getForObject(resourceUrl, Object.class);
         boolean is_success = (boolean) result.get("is_success");
         if (!is_success) {
