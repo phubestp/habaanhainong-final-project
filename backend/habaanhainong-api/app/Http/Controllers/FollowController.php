@@ -31,7 +31,7 @@ class FollowController extends Controller
 
     public function getFollowersCount(Post $post) {
         return response()->json([
-            'count' => $post->users()->count()
+            'count' => $post->users->count()
         ]);
     }
 
