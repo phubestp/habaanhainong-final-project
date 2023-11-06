@@ -47,16 +47,8 @@ class AnimalTypeController extends Controller
      */
     public function destroy(AnimalType $animalType)
     {
-        $animalType->delete();
-        return response()->json([
-            'message' => 'delete success'
-        ]);
-    }
-
-    public function delete(AnimalType $animalType)
-    {
         $animals = Animal::where('animal_type', $animalType->type);
-        foreach($animals as $animal) {
+        foreach ($animals as $animal) {
             $post = Post::where('animal', $animal->id)->first();
             $post->delete();
             $animal->delete();
