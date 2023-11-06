@@ -35,7 +35,7 @@ class PostController extends Controller
         $post->title = $title;
         $post->description = $description;
         $post->address = $address;
-        $post->address = $animal_id;
+        $post->animal_id = $animal_id;
         $post->save();
         $post->refresh();
 
