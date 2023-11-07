@@ -3,6 +3,7 @@
 use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PostImageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FollowController;
 use App\Http\Controllers\ApplicantController;
@@ -21,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('/animals', AnimalController::class); 
+Route::resource('/animals', AnimalController::class);
 Route::resource('/animals-type', AnimalTypeController::class);
 Route::resource('/posts', PostController::class);
 Route::put('/edit-profile/{username}', [UserController::class, 'editProfile']);
@@ -54,5 +55,17 @@ Route::group([
     Route::post('me', [AuthController::class, 'me']);
 });
 
-Route::post('/register', [AuthConroller::class, 'register']);
+Route::post('/register', [AuthController::class, 'register']);
 Route::post('/reset-password', [AuthController::class, 'reset-password']);
+
+
+//PostImage
+Route::get('/post-images/get', [PostImageController::class, 'getAll']);
+Route::get('/post-image/get/id/{id}', [PostImageController::class, 'getFromId']);
+Route::get('/post-images/get/post/{post_id}', [PostImageController::class, 'getPostImagesByPost']);
+Route::post('/post-images/add', [PostImageController::class, 'add']);
+Route::post('/post-images/add-test', [PostImageController::class, 'addTest']);
+Route::put('/post-images/save/{id}', [PostImageController::class, 'saveWithId']);
+Route::put('/post-images/save', [PostImageController::class, 'save']);
+Route::delete('/post-images/delete/{id}', [PostImageController::class, 'deleteWithId']);
+Route::delete('/post-images/delete', [PostImageController::class, 'delete']);
