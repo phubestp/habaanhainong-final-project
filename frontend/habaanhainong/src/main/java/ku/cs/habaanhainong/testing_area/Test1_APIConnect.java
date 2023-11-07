@@ -2,6 +2,7 @@ package ku.cs.habaanhainong.testing_area;
 
 import ku.cs.habaanhainong.service.APIServices;
 import ku.cs.habaanhainong.service.AnimalsAPI;
+import ku.cs.habaanhainong.service.ImageFileSourcingService;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.http.HttpEntity;
@@ -38,6 +39,8 @@ public class Test1_APIConnect {
 //        RestTemplate restTemplate = new RestTemplate();
 //        System.out.println(restTemplate.postForObject(apiUrl, req, Object.class));
 
+//        ImageFileSourcingService.getHTMLImageSrcPostImagePath();
 
+        System.out.println(ImageFileSourcingService.getPostImages());
     }
 }
