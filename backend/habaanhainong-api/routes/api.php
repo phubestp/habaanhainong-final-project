@@ -38,6 +38,7 @@ Route::get('/is-follow/{username}/{post_id}', [FollowController::class, 'isFollo
 
 Route::post('/applicant', [ApplicantController::class, 'applicant']);
 Route::get('/applicants/{post_id}', [ApplicantController::class, 'getApplicants']);
+Route::post('/accept-applicant', [ApplicantController::class, 'accept']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

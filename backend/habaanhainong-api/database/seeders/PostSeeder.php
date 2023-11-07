@@ -16,7 +16,7 @@ class PostSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = User::get()->first();
+        $user = User::where('username', 'user02')->first();
 
         $animal1 = Animal::get()->first();
         $post = new Post();

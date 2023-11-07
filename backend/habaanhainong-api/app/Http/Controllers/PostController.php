@@ -31,11 +31,11 @@ class PostController extends Controller
         $address = $request->get('address');
         $animal_id = $request->get('animal_id');
         
-        $post->user_username = $username;
+        $post->author = $username;
         $post->title = $title;
         $post->description = $description;
         $post->address = $address;
-        $post->animal_id = $animal_id;
+        $post->animal = $animal_id;
         $post->save();
         $post->refresh();
 
@@ -64,7 +64,8 @@ class PostController extends Controller
         $animals->transform(function (array $item) {
             return $item['id'];
         });
-        $posts = Post::whereIn('animal_id', $animals)->get();
+        Log::info($animals);
+        $posts = Post::whereIn('id', $animals)->get();
         return $posts;
     }
 
@@ -81,7 +82,7 @@ class PostController extends Controller
         $post->title = $title;
         $post->description = $description;
         $post->address = $address;
-        $post->address = $animal_id;
+        $post->animal = $animal_id;
         $post->save();
         $post->refresh();
 

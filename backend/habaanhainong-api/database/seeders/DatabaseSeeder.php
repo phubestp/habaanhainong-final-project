@@ -27,9 +27,23 @@ class DatabaseSeeder extends Seeder
             'instagram' => 'user01',
             'line' => 'user01'
         ]);
+
+        User::create([
+            'id' => '0',
+            'username' => 'user02',
+            'password' => Hash::make('password'),
+            'firstname' => 'user',
+            'lastname' => 'example',
+            'role' => 'user',
+            'status' => 'normal',
+            'phone_no' => '000-000-0001',
+            'facebook' => 'user example',
+            'instagram' => 'user02',
+            'line' => 'user02'
+        ]);
+        
         
         $this->call([
-            UserSeeder::class,
             AnimalSeeder::class,
             PostSeeder::class,
         ]);
