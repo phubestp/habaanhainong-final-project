@@ -5,6 +5,7 @@ import ku.cs.habaanhainong.service.PostService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
@@ -19,4 +20,10 @@ public class ApplicantViewController {
         model.addAttribute("applicants", applicantService.getAllApplicant(post_id));
         return "applicant-view";
     }
+    @PostMapping("/accept-applicant/{username}/{post_id}")
+    public String getApplicantPage(Model model, @PathVariable String post_id, @PathVariable String username){
+        applicantService.accept(username, post_id);
+        return "my-post";
+    }
+
 }
