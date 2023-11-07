@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Animal;
+use App\Models\Post;
 use App\Models\AnimalType;
 use Illuminate\Http\Request;
 
@@ -45,9 +47,13 @@ class AnimalTypeController extends Controller
      */
     public function destroy(AnimalType $animalType)
     {
+        $animals = Animal::where('animal_type', $animalType->type);
+        foreach ($animals as $animal) {
+            $post = Post::where('animal', $animal->id)->first();
+            $post->delete();
+            $animal->delete();
+        }
         $animalType->delete();
-        return response()->json([
-            'message' => 'delete success'
-        ]);
+        return $animalType;
     }
 }
