@@ -41,9 +41,10 @@ cp .env.example .env
 
 แก้ไข .env
 
-1. `DB_HOST=mysql` 
-2. `DB_USERNAME=sail` 
-3. `DB_PASSWORD=password` 
+1. `DB_HOST=mysql`
+2. `DB_DATABASE=test` 
+3. `DB_USERNAME=sail` 
+4. `DB_PASSWORD=password` 
 
 รันโดยใช้ 
 
