@@ -1,0 +1,7 @@
+mysql:
+  image: 'mysql:8.0'
+  environment:
+    MYSQL_ROOT_PASSWORD: your_mysql_password
+    MYSQL_DATABASE: your_database_name
+    MYSQL_USER: your_database_username
+    MYSQL_PASSWORD: your_database_password

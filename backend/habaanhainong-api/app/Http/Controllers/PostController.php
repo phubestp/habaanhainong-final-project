@@ -56,7 +56,7 @@ class PostController extends Controller
         Log::info($user);
         return $user->all_posts;
     }
-    
+
 
     public function showWithAnimalTypeFilter(String $animal_type)
     {

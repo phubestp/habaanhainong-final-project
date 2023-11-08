@@ -40,4 +40,5 @@ class Post extends Model
     {
         return $this->hasMany(PostImage::class, 'from_post', 'id');
     }
+
 }
