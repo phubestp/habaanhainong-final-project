@@ -56,3 +56,15 @@ generate key
 ```jsx
 sail artisan key:generate
 ```
+
+### Jira
+
+https://besxzer.atlassian.net/jira/software/projects/HBHN/boards/1
+
+### Figma
+
+https://www.figma.com/file/xqgibUDt6mcFb4VgzVUKuc/HaBaanHaiNong?type=design&node-id=0%3A1&mode=design&t=d82yAALvrAq71k5Z-1
+
+### About Project
+
+https://www.canva.com/design/DAFzO330NB8/HyM_k2W5eSa7sp2lOyD5ZQ/view?utm_content=DAFzO330NB8&utm_campaign=designshare&utm_medium=link&utm_source=editor#2
