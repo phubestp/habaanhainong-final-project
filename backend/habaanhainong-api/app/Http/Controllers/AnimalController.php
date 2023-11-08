@@ -13,8 +13,12 @@ class AnimalController extends Controller
      */
     public function index()
     {
-        $animals = Animal::get();
-        return $animals;
+        return Animal::get();
+    }
+
+    public function show(Animal $animal)
+    {
+        return $animal;
     }
 
     /**
@@ -44,12 +48,12 @@ class AnimalController extends Controller
     {
         $name = $request->get('name');
         $breed = $request->get('breed');
-        $animal_type = $request->get('animal_type');
+        $type = $request->get('animal_type');
         $sex = $request->get('sex');
 
         $animal->name = $name;
         $animal->breed = $breed ?? null;
-        $animal_type = $animal_type;
+        $animal->animal_type = $type;
         $animal->sex = $sex;
         $animal->save();
         $animal->refresh();

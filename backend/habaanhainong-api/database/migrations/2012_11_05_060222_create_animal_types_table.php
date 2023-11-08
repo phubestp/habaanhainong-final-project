@@ -11,15 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('post_user', function (Blueprint $table) {
-            $table->id();
-
-            $table->string('user_username');
-            $table->uuid('post_id');
-
-            $table->foreign('user_username')->references('username')->on('users');
-            $table->foreign('post_id')->references('id')->on('posts');
-
+        Schema::create('animal_types', function (Blueprint $table) {
+            $table->string('type')->primary();
             $table->timestamps();
         });
     }
@@ -29,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('post_user');
+        Schema::dropIfExists('animal_types');
     }
 };

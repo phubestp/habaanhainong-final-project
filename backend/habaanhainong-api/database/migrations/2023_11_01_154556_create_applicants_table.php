@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Enums\ApplicantStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,14 +14,14 @@ return new class extends Migration
     {
         Schema::create('applicants', function (Blueprint $table) {
             $table->id();
-            $table->string('username');
-            $table->uuid('post_id');
+            $table->string('user');
+            $table->uuid('post');
 
-            $table->foreign('username')->references('username')->on('users');
-            $table->foreign('post_id')->references('id')->on('posts');
+            $table->foreign('user')->references('username')->on('users');
+            $table->foreign('post')->references('id')->on('posts');
 
             $table->string('reason');
-            $table->string('status')->default('รอการติดต่อ');
+            $table->string('status')->default(ApplicantStatus::WAITING);
             $table->timestamps();
         });
     }

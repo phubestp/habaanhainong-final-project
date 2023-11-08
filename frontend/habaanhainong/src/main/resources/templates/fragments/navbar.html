@@ -25,7 +25,7 @@
         </button>
       </div>
       <div sec:authorize="isAuthenticated()">
-        <a th:href="@{/}" sec:authorize="hasAuthority('admin')"><span sec:authentication="name"></span></a>
+        <a th:href="@{/}" sec:authorize="hasAuthority('admin')"><span sec:authentication="name" id="usernameLabel"></span></a>
         <a th:href="@{/my-post}" sec:authorize="hasAuthority('user')"><span sec:authentication="name"></span></a>
         <button
                 class="border border-primary p-2 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold max-w-fit ml-5 bg-white">

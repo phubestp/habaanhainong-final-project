@@ -14,6 +14,7 @@
 
 <div th:insert="~{fragments/navbar :: navbar}"></div>
 
+
 <div class="flex flex-col justify-between min-h-screen mx-auto p-16 pt-20 container">
   <div class="flex justify-center items-center relative w-full">
     <h1 class="text-4xl mb-3 font-semibold p-16"> หาบ้านให้น้อง <span th:if="type != null" th:text="${type}"></span></h1>
@@ -21,22 +22,21 @@
 
   <div class="bg-white p-16 border border-primary my-5 flex flex-col w-full">
     <div>
-      <div th:each="post, iter : ${posts}"  class="grid grid-cols-1 bg-background pr-16 pb-8 border border-primary my-5 lg:grid-cols-2">
+      <div th:each="post, iter : ${posts}" class="grid grid-cols-1 bg-background pr-16 pb-8 border border-primary my-5 lg:grid-cols-2">
         <div class="flex flex-col">
           <div class="flex flex-row gap-x-4 px-16 py-4">
-            <div> <img class="rounded-full w-12 h-12" th:src="@{/images/undraw_contact_us_re_4qqt.svg}" alt="image author"></div>
-            <div> <p class="py-3" th:text="${post.get('author')}" > </p> </div>
-            <div> <p class="py-3" th:text="${#strings.arraySplit(post.get('created_at'), 'T')[0]}" > </p> </div>
+            <div> <p class="py-3" th:text="${post.get('author')}" id="author-[[${iter.index}]]"> </p> </div>
+            <div> <p class="py-3" th:text="${#strings.arraySplit(post.get('created_at'), 'T')[0]}" id="created-date-[[${iter.index}]]"> </p> </div>
           </div>
           <div>
-            <label class="text-2xl block font-semibold px-16 py-4" th:text="${post.get('title')}" > </label>
+            <label class="text-2xl block font-semibold px-16 py-4" th:text="${post.get('title')}" id="title-[[${iter.index}]]"> </label>
           </div>
           <div>
-            <p class="px-16" th:text="${post.get('description')}">
+            <p class="px-16" th:text="${post.get('description')}" id="description-[[${iter.index}]]">
             </p>
           </div>
           <!--button-->
-          <div class="flex flex-row space-x-4 px-16  mt-8 justify-startitems-center">
+          <div class="flex flex-row space-x-4 px-16 mt-8 justify-start items-center">
             <div>
               <form th:action="@{post-all/read-post}" th:method="GET">
                 <input type="text" hidden name="post_id" th:value="${post.get('id')}"></input>
@@ -48,20 +48,19 @@
             </div>
             <div>
               <div th:unless="${(post.get('author') == username)}" sec:authorize="isAuthenticated()">
-              <form th:unless="${isFollows[iter.index].isFollow}" th:action="@{|follow/${username}/${post.get('id')}|}" method="POST">
-              <button class="border border-primary py-3 px-3 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold md:max-w-fit mx-auto lg:mx-0 bg-white w-full">
-                <img th:src="@{/images/paw-1-svgrepo-com.svg}" alt="paw" width="20" class="inline mr-1">
-                ติดตาม | ผู้ติดตาม <span th:text="${followers[iter.index].count}"></span> คน
-              </button>
-              </form>
-              <form th:if="${isFollows[iter.index].isFollow}" th:action="@{|unfollow/${username}/${post.get('id')}|}" method="POST">
-                <button class="border border-primary py-3 px-0.5 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold md:max-w-fit mx-auto lg:mx-0 bg-white w-full">
-                  <img th:src="@{/images/paw-1-svgrepo-com.svg}" alt="paw" width="20" class="inline mr-1">
-                  ยกเลิกติดตาม | ผู้ติดตาม <span th:text="${followers[iter.index].count}"></span> คน
-                </button>
-              </form>
+                <form th:unless="${isFollows[iter.index].isFollow}" th:action="@{|follow/${username}/${post.get('id')}|}" method="POST">
+                  <button class="border border-primary py-3 px-3 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold md:max-w-fit mx-auto lg:mx-0 bg-white w-full">
+                    <img th:src="@{/images/paw-1-svgrepo-com.svg}" alt="paw" width="20" class="inline mr-1">
+                    ติดตาม | ผู้ติดตาม <span th:text="${followers[iter.index].count}"></span> คน
+                  </button>
+                </form>
+                <form th:if="${isFollows[iter.index].isFollow}" th:action="@{|unfollow/${username}/${post.get('id')}|}" method="POST">
+                  <button class="border border-primary py-3 px-0.5 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold md:max-w-fit mx-auto lg:mx-0 bg-white w-full">
+                    <img th:src="@{/images/paw-1-svgrepo-com.svg}" alt="paw" width="20" class="inline mr-1">
+                    ยกเลิกติดตาม | ผู้ติดตาม <span th:text="${followers[iter.index].count}"></span> คน
+                  </button>
+                </form>
               </div>
-
             </div>
           </div>
         </div>

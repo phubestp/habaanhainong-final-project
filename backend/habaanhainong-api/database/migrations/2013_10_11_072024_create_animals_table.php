@@ -20,6 +20,10 @@ return new class extends Migration
             $table->string('animal_type');
             $table->timestamps();
         });
+
+        Schema::table('animals', function (Blueprint $table) {
+            $table->foreign('animal_type')->references('type')->on('animal_types')->onDelete('cascade');
+        });
     }
 
     /**

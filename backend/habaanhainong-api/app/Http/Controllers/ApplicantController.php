@@ -15,7 +15,7 @@ class ApplicantController extends Controller
         $post_id = $request->get('post_id');
         $reason = $request->get('reason');
 
-        $exist = Applicant::where('post_id', $post_id)->where('username', $username)->first();
+        $exist = Applicant::where('post', $post_id)->where('user', $username)->first();
         if($exist != null) {
             abort(400, "คุณได้ขอรับเลี้ยงสัตว์ตัวนี้แล้ว");
         }
