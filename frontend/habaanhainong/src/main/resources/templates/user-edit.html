@@ -15,23 +15,8 @@
 
 <div class="flex flex-col mx-auto p-16 pt-20 container justify-between min-h-screen">
     <div class="bg-white p-16 border border-primary my-5 flex flex-col w-full">
-      <div class="flex flex-col justify-center items-center relative w-full">
-        <h1 class="text-4xl mb-3 font-semibold"> ข้อมูลส่วนตัว </h1>
-        <div>
-          <img class="rounded-full w-40 h-40" th:src="@{/images/undraw_contact_us_re_4qqt.svg}" alt="image author">
-        </div>
-        <div>
-          <button class="border border-primary py-3 px-8 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold md:max-w-fit mx-auto lg:mx-0 bg-white w-full">
-            ใส่รูปโปรไฟล์
-            <input for="file_input" type="file" hidden> </input>
-          </button>
 
-<!--          <button th:replace="fragments/delete-post-btn :: delete-post-btn"></button>-->
-        </div>
-      </div>
-
-
-      <form action="#" th:action="@{/}" method="POST">
+      <form action="#" th:action="@{/user-edit}" method="POST">
         <div class="flex justify-center">
           <h1 class="justify-center text-4xl mb-3 font-semibold"> ข้อมูลส่วนตัว </h1>
         </div>
@@ -55,14 +40,14 @@
             <label for="firstname" class="block mb-2 text-sm font-medium text-gray-900"> ชื่อ </label>
             <input id="firstname" type="text" name="firstname"
                    class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
-                   placeholder="" required>
+                   placeholder="" required th:value="${users.getFirstname()}">
           </div>
           <!-- นามสกุล -->
           <div class="flex flex-col">
             <label for="lastname" class="block mb-2 text-sm font-medium text-gray-900"> นามสกุล </label>
             <input id="lastname" type="text" name="lastname"
                    class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
-                   placeholder="" required>
+                   placeholder="" required th:value="${users.getLastname()}">
           </div>
         </div>
 
@@ -75,41 +60,37 @@
           <!-- เบอร์โทรศัพท์ชื่อ -->
           <div class="flex flex-col">
             <label for="phone_no" class="block mb-2 text-sm font-medium text-gray-900"> เบอร์โทรศัพท์ </label>
-            <input id="phone_no" type="text" name="phone_no"
+            <input id="phone_no" type="tel" name="phone_no"
                    class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
-                   placeholder="" required>
+                   placeholder="" required th:value="${users.getPhone_no()}">
           </div>
           <!-- FB-->
           <div class="flex flex-col">
             <label for="facebook" class="block mb-2 text-sm font-medium text-gray-900"> Facebook </label>
             <input id="facebook" type="text" name="facebook"
                    class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
-                   placeholder="" required>
+                   placeholder="" required th:value="${users.getFacebook()}">
           </div>
           <!-- IG -->
           <div class="flex flex-col lg: w-1/2 w-full">
             <label for="instagram" class="block mb-2 text-sm font-medium text-gray-900"> Instagram</label>
             <input id="instagram" type="text" name="instagram"
                    class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
-                   placeholder="" required>
+                   placeholder="" required th:value="${users.getInstagram()}">
           </div>
           <!-- FB-->
           <div class="flex flex-col">
             <label for="line" class="block mb-2 text-sm font-medium text-gray-900">Line</label>
             <input id="line" type="text" name="line"
                    class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
-                   placeholder="" required>
+                   placeholder="" required th:value="${users.getLine()}">
           </div>
 
-          <div class="flex flex-row space-x-4  w-full">
-            <input type="checkbox" id="privacyPolicyAndTermOfService" style="width: 20px; height: 20px; margin-right: 2px" required>
-            <span style="font-size: 12px">คุณได้ยอมรับข้อตกลงและนโยบายการใช้ข้อมูลส่วนบุคคล</span>
-          </div>
         </div>
 
         <div class="flex justify-center">
           <button type="submit" class="w-[280px] h-[44px] text-[16px] font-semibold rounded border shadow-[5px_5px_0px_0px_#004225]" onclick="" style="margin-top: 60px">
-            Login</button>
+            แก้ไขข้อมูล</button>
         </div>
 
 

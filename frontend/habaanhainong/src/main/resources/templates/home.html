@@ -49,73 +49,11 @@
     <div class="grid grid-cols-4 gap-5">
       <!-- Example Pet Type Button -->
       <div th:each="animalType : ${animalTypes}">
-        <button th:replace="fragments/pet-type-btn :: pet-type-btn" th:with="type=${animalType.type}"></button>
-      </div>
-    </div>
-  </div>
-  <!-- Contact to Admin -->
-  <div class="bg-white lg:pl-16 lg:py-16 p-16 border border-primary my-5 flex flex-col lg:flex-row items-center w-full text-primary">
-    <div class="flex flex-col lg:w-1/2 w-full">
-      <h1 class="text-4xl mb-3 font-semibold text-left">ติดต่อเรา</h1>
-
-<!--      <button data-modal-target="defaultModal" data-modal-toggle="defaultModal" class="text-secondary text-left" type="button">-->
-<!--        * ข้อควรทราบก่อนการยื่นเรื่องให้แอดมิน-->
-<!--      </button>-->
-
-<!--      &lt;!&ndash; Main modal &ndash;&gt;-->
-<!--      <div id="defaultModal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">-->
-<!--        <div class="relative w-full max-w-2xl max-h-full">-->
-<!--          &lt;!&ndash; Modal content &ndash;&gt;-->
-<!--          <div class="relative bg-white rounded-lg shadow ">-->
-<!--            &lt;!&ndash; Modal body &ndash;&gt;-->
-<!--            <div class="p-6 py-8 flex flex-col items-center">-->
-<!--              <img th:src="@{/images/paw-1-svgrepo-com.svg}" alt="paw" width="75" class="my-4">-->
-<!--              <h3 class="text-3xl mb-1">ข้อควรทราบก่อนการยื่นเรื่องให้แอดมิน</h3>-->
-<!--              <ul class="list-disc p-8 leading-relaxed">-->
-<!--                <li>เว็บของเรามีระบบรายงานความเหมาะสมของโพสต์ ผู้ใช้สามารถกดรายงานได้ในโพสต์ทันทีโดยไม่จำเป็นต้องแจ้งผ่านหน้าการยื่นเรื่องให้แอดมิน</li>-->
-<!--                <li>ได้โปรดแจ้งจุดบกพร่อง(บัํก)ในเว็บของเราผ่านยื่นเรื่องให้แอดมิน</li>-->
-<!--                <li>อย่ากวนตีน</li>-->
-<!--              </ul>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      &lt;!&ndash; Contact Form &ndash;&gt;-->
-<!--      <form action="">-->
-<!--        &lt;!&ndash; Name &ndash;&gt;-->
-<!--        <div class="py-3">-->
-<!--          <label for="name" class="block mb-2 text-sm font-medium text-gray-900">ชื่อ</label>-->
-<!--          <input type="text" id="name"-->
-<!--                 class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 lg:w-2/3 w-full"-->
-<!--                 placeholder="John" required>-->
-<!--        </div>-->
-<!--        &lt;!&ndash; Email &ndash;&gt;-->
-<!--        <div class="py-3">-->
-<!--          <label for="email" class="block mb-2 text-sm font-medium">อีเมล</label>-->
-<!--          <input type="email" id="email"-->
-<!--                 class="bg-white border border-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block lg:w-2/3 w-full p-2.5"-->
-<!--                 placeholder="John@example.com" required>-->
-<!--        </div>-->
-<!--        &lt;!&ndash; Description to admin &ndash;&gt;-->
-<!--        <div class="py-3">-->
-<!--          <label for="message" class="block mb-2 text-sm font-medium">เนื้อหา</label>-->
-<!--          <textarea id="message" rows="4"-->
-<!--                    class="block p-2.5 w-full text-sm  bg-white rounded-lg border border-primary focus:ring-blue-500 focus:border-blue-500 "-->
-<!--                    placeholder="เนื้อหาที่จะส่งให้แอดมิน"></textarea>-->
-<!--        </div>-->
-<!--        &lt;!&ndash; Submit Button &ndash;&gt;-->
-<!--        <button class="border border-primary py-3 px-4 rounded-md shadow-[5px_5px_0px_0px_#004225] my-5 font-semibold md:max-w-fit mx-auto lg:mx-0 bg-white w-full">-->
-<!--          ส่งข้อความ-->
-<!--        </button>-->
-<!--      </form>-->
-
-    </div>
-    <!-- Illustration (Contact) -->
-    <div class="lg:w-1/2 w-full lg:my-0 my-8">
-      <div class="">
-        <img th:src="@{/images/undraw_contact_us_re_4qqt.svg}"
-             alt="cat" class="rounded-lg scale-75">
+        <a th:href="@{|/post-all/${animalType.type}|}">
+          <button class="border border-primary p-3 rounded-md font-semibold max-w-fit bg-white hover:bg-secondary transition-all"
+                  th:fragment="pet-type-btn" th:text="${animalType.type}">
+          </button>
+        </a>
       </div>
     </div>
   </div>

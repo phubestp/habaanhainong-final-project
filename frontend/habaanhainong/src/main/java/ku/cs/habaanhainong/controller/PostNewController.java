@@ -28,6 +28,6 @@ public class PostNewController {
     @PostMapping("/post-new")
     public String postNewPost(@RequestParam HashMap<String, String> params) {
         postService.createPost(params);
-        return "post-all";
+        return "redirect:/post-all";
     }
 }

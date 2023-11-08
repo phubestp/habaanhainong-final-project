@@ -16,7 +16,7 @@
 
 <div class="flex flex-col justify-between min-h-screen mx-auto p-16 pt-20 container">
   <div class="flex justify-center items-center relative w-full">
-    <h1 class="text-4xl mb-3 font-semibold p-16"> หาบ้านให้น้อง </h1>
+    <h1 class="text-4xl mb-3 font-semibold p-16"> หาบ้านให้น้อง <span th:if="type != null" th:text="${type}"></span></h1>
   </div>
 
   <div class="bg-white p-16 border border-primary my-5 flex flex-col w-full">

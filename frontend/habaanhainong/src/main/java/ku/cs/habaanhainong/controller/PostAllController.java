@@ -61,4 +61,17 @@ public class PostAllController {
         followService.unfollow(username, post_id);
         return "redirect:/post-all";
     }
+    @RequestMapping("/post-all/{type}")
+    public String getAllPostByType(Model model, @PathVariable String type){
+        ArrayList<Object> allPost = (ArrayList<Object>) postAllService.getPostByType(type);
+        ArrayList<Object> allFollower = (ArrayList<Object>) followService.getFollowersCount();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        ArrayList<Object> allIsFollow = (ArrayList<Object>) followService.getIsFollowPosts(username);
+        model.addAttribute("username", username);
+        model.addAttribute("posts", allPost);
+        model.addAttribute("followers", allFollower);
+        model.addAttribute("isFollows", allIsFollow);
+        return "post-all";
+    }
 }

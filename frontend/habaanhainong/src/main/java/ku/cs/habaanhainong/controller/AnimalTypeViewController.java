@@ -37,7 +37,7 @@ public class AnimalTypeViewController {
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<String> req = new HttpEntity<>(jsonObject.toString(), headers);
         AnimalTypeService.postAnimalType(req);
-        return "redirect:/animal-type-view";
+        return "animal-type-view";
     }
 
     @GetMapping("animal-type/delete/{type}")

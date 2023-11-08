@@ -19,4 +19,10 @@ public class PostAllService {
         return restTemplate.getForObject(resourceUrl, Object.class);
     }
 
+    public Object getPostByType(String type){
+        RestTemplate restTemplate = new RestTemplate();
+        String resourceUrl = APIServices.BASE_URL + "posts/animal-type/" + type ;
+        return restTemplate.getForObject(resourceUrl, Object.class);
+    }
+
 }
