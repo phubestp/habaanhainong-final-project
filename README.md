@@ -49,6 +49,7 @@ cp .env.example .env
 รันโดยใช้ 
 
 ```jsx
+echo "alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'" >> ~/.bashrc
 sail up -d
 ```
 
